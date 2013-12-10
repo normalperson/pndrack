@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.13, created on 2013-12-10 16:40:55
+<?php /* Smarty version Smarty-3.1.13, created on 2013-12-10 17:02:50
          compiled from "C:\Zend\Apache2\htdocs\pndrack\smarty\templates\header.html" */ ?>
 <?php /*%%SmartyHeaderCode:2170552a6c9384f7ae2-33792870%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '3b953143e95062e8da29a7561667d202a06e436b' => 
     array (
       0 => 'C:\\Zend\\Apache2\\htdocs\\pndrack\\smarty\\templates\\header.html',
-      1 => 1386664853,
+      1 => 1386666138,
       2 => 'file',
     ),
   ),
@@ -54,24 +54,23 @@ $_smarty_tpl->tpl_vars["js"]->_loop = true;
 </title>
 </head>
 <body>
-<div id="headercontainer" >
-	<nav class="navbar navbar-inverse navbar-fixed-top" >
-	   <div class="navbar-header">
-	    <a class="navbar-brand" href="#">Phi Orion Logo</a>
-	    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
-	      <span class="icon-bar"></span>
-	      <span class="icon-bar"></span>
-	      <span class="icon-bar"></span>
-	    </button>
-	  </div>
-		<a class="navbar-right" href="#">Log Out</a>
-		<div class="nav-collapse" >
-			<?php echo $_smarty_tpl->tpl_vars['Menu']->value->renderMenu();?>
+<nav class="navbar navbar-inverse navbar-fixed-top" >
+   <div class="navbar-header">
+    <a class="navbar-brand" href="#">Phi Orion Logo</a>
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+  </div>
+	<a class="navbar-right" href="#">Log Out</a>
+	<div class="nav-collapse" >
+		<?php echo $_smarty_tpl->tpl_vars['Menu']->value->renderMenu();?>
 
-		</div>
-	</nav>
-</div>
-<div id="body">
+	</div>
+</nav>
+<div id="body" class="container">
+	<div class="row">
 
 
 <script type="text/javascript">

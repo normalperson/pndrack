@@ -6,17 +6,7 @@ body{
 	height: 100%; 
 }
 #body{
-	margin-top:41px;
-	margin-left:10em;
-    margin-right:10em;
-    height: 100%;
-    background-color:#FFFFFF;
-}
-.affix{
-	margin-bottom:0px;
-	position:fixed;
-	top:0;width:100%;
-	z-index: 100;
+	margin-top:55px;
 }
 #menulogo{
 	background:url(images/logo.png) no-repeat;

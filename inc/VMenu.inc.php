@@ -25,8 +25,9 @@ class VMenu extends Menu{
 				        WHERE   @id IS NOT NULL
 				        ) ho
 				JOIN    fcmenu menu
-				ON      menu.mn_id = ho.id order by mn_order ";
-		$menuArr = $DB->GetArray($sql);
+				ON      menu.mn_id = ho.id 
+				where mn_status = :0 order by mn_order ";
+		$menuArr = $DB->GetArray($sql,array('ACTIVE'));
 
 		foreach($menuArr as $menuitem){
           $parentMenuIds[] = $menuitem['mn_parentid'];
