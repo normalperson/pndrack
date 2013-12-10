@@ -43,7 +43,7 @@ class VMenu extends Menu{
 					# this level is to support bootstrap nav css level 0: class=nav level 1: class=dropdown-menu  level > 1 class=dropdown-submenu
 					switch ($currLevel) {
 						case 0:
-							$ulclass = 'nav';
+							$ulclass = 'nav navbar-nav';
 							break;
 						default:
 							$ulclass = 'dropdown-menu';
