@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Code39 Barcode</title>
+    <script type="text/javascript" src="js/code39.js"></script>
+    <style type="text/css">
+    #barcode {font-weight: normal; font-style: normal; line-height:normal; sans-serif; font-size: 12pt}
+    </style>
+</head>
+<body>
+
+<table border="1px solid black">
+  <tr>
+    <td>
+      <div id="externalbox" style="width:5in;">
+        <div id="inputdata" >1650-A2-00000005</div>
+        <br>
+        <div style="text-align:center">Customer Name: Sony</div>
+        <div style="text-align:center">Master ID:MG-10021-A1 </div>
+        <div style="text-align:center">Created Date: 11-Nov-2013</div>
+        <div style="text-align:center">Last used: 12-Nov-2013</div>
+        <div style="text-align:center">Printed: 1</div>
+      </div>
+    </td>
+    <td>
+      <div id="externalbox" style="width:5in">
+        <div id="inputdata2" >1650-A2-00000005</div>
+        <br>
+        <div style="text-align:center">Customer Name: Sony</div>
+        <div style="text-align:center">Master ID:MG-10021-A1 </div>
+        <div style="text-align:center">Created Date: 11-Nov-2013</div>
+        <div style="text-align:center">Last used: 12-Nov-2013</div>
+        <div style="text-align:center">Printed: 1</div>
+      </div>
+    </td>
+  </tr>
+</table>
+
+
+<script type="text/javascript">
+/* <![CDATA[ */
+  function get_object(id) {
+   var object = null;
+   if (document.layers) {
+    object = document.layers[id];
+   } else if (document.all) {
+    object = document.all[id];
+   } else if (document.getElementById) {
+    object = document.getElementById(id);
+   }
+   return object;
+  }
+get_object("inputdata").innerHTML=DrawCode39Barcode(get_object("inputdata").innerHTML,1);
+get_object("inputdata2").innerHTML=DrawCode39Barcode(get_object("inputdata2").innerHTML,1);
+/* ]]> */
+</script>
+
+</body>
+</html>

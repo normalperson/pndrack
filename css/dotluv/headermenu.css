@@ -1,0 +1,14 @@
+#menulogo{
+	background:url(images/logo.png) no-repeat;
+	background-position:center top;
+	height: 60px;
+	width :250px;
+	float:left;
+}
+#menuinfo{
+	font-weight: bold;
+	font-size: 1.1em;
+	color : #000000;
+	padding-top : 5px;
+}
+

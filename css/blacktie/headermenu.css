@@ -1,0 +1,33 @@
+html,body { 
+	height: 100%; 
+}
+body{
+	background-color:#D8D8D8;
+	height: 100%; 
+}
+#body{
+	margin-top:41px;
+	margin-left:10em;
+    margin-right:10em;
+    height: 100%;
+}
+.affix{
+	margin-bottom:0px;
+	position:fixed;
+	top:0;width:100%;
+	z-index: 100;
+}
+#menulogo{
+	background:url(images/logo.png) no-repeat;
+	background-position:center top;
+	height: 60px;
+	width :250px;
+	float:left;
+}
+#menuinfo{
+	font-weight: bold;
+	font-size: 1.1em;
+	color : #000000;
+	padding-top : 5px;
+}
+

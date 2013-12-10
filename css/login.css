@@ -1,0 +1,142 @@
+html, body{
+	font-family:Calibri, Arial;
+	font-size:1.0em;
+	margin:0px;
+	padding:0px;
+	height : 100%;
+}
+
+table.container{
+	width:1024px;
+	border-collapse:collapse;
+	border-spacing: 0px;
+}
+
+td.leftspace{
+	width:4px;
+}
+
+td.banner{
+	width:574px;
+	height:427px;
+	background:url(../image/login_banner1.png) no-repeat;
+}
+
+td.formContainer{
+	vertical-align:top;
+	background:url(../image/login_logo.png) no-repeat center 55px;
+	padding-top:220px;
+	width:445px;
+}
+
+td.message{
+	background-color:#666666;
+	padding:10px;
+	color:#ffffff;
+}
+td.message h2{
+	margin:0px;
+}
+td.message p{
+	margin:0px 5px;
+}
+td.copyright hr{
+	margin:0px;
+	height:1px;
+	background-color:#8f8f8f;
+}
+td.copyright p{
+	margin:10px 20px;
+}
+
+div.loginFormContainer{
+	margin:0px 20px;
+	font-weight:bold;
+}
+div.loginFormContainer span.company{
+	color:#0000ff;
+}
+#captionContainer{
+	font-size:1.4em;
+}
+#usernameContainer{
+	width:408px;
+	height:54px;
+	background:url(../image/login_username.png) no-repeat;
+	margin:18px 0px;
+}
+#username{
+	width:310px;
+	height:30px;
+	line-height:30px;
+	margin:10px 0px 10px 80px;
+	background:transparent;
+	border:0px;
+	color:#dbdbdb;
+	font-size:1.4em;
+}
+#passwordContainer{
+	width:408px;
+	height:54px;
+	background:url(../image/login_password.png) no-repeat;
+}
+#password{
+	width:310px;
+	height:30px;
+	line-height:30px;
+	margin:10px 0px 10px 80px;
+	background:transparent;
+	border:0px;
+	color:#dbdbdb;
+	font-size:1.4em;
+}
+#submit{
+	background:url(../image/login_submit.png) no-repeat transparent;
+	border:0px;
+	width:125px;
+	height:54px;
+	cursor:pointer;
+	margin:18px 20px;
+}
+#helpContainer{
+	margin-top:50px;
+}
+#helpContainer a, #helpContainer a:link, #helpContainer a:visited{
+	color:#0000ff;
+	text-decoration:none;
+	font-size:1.3em;
+}
+#helpContainer a:hover{
+	text-decoration:underline;
+}
+
+/* multiple session */
+div.mulsessFormContainer{
+	margin:0px 20px;
+	font-weight:bold;
+	font-size:0.8em;
+}
+
+div.mulsessFormContainer #submit{
+	background:url(../image/mulsess_submit.png) no-repeat transparent;
+	border:0px;
+	width:125px;
+	height:54px;
+	cursor:pointer;
+	margin:18px 20px;
+}
+
+div.mulsessFormContainer #userInfoContainer{
+	background:url(../image/mulsess_user.png) no-repeat 20px center transparent;
+	height:80px;
+	padding-left:80px;
+	font-size:2.5em;
+	font-weight:normal;
+	color:#cccccc;
+	line-height:80px;
+}
+
+div.mulsessFormContainer #chooseContainer{
+	padding-left:30px;
+	font-size:1.2em;
+}

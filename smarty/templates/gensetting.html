@@ -1,0 +1,64 @@
+<div id="container" >
+<div>&nbsp;&nbsp;&nbsp;</div>	
+<div id="gensettingdiv">
+	<h3>{'General Setting'|tl:false}</h3>
+	<div>					
+		<table style='text-align:left' >
+			<tr>
+				<td><label for='theme'>{'Theme'|tl:true}</label></td>
+				<td>
+					<select class="selectrequired" name="theme" id="theme">
+					{foreach $themeoption as $theme}							
+						{if {$theme.lu_code} eq {$themeselected}}					
+							<option value="{$theme.lu_code}" selected="selected">{$theme.lu_title}</option>
+							{else}
+							<option value="{$theme.lu_code}">{$theme.lu_title}</option>
+						{/if}
+					{/foreach}					
+					</select>	
+				</td>
+			</tr>
+			<tr>
+				<td><label for='language'>{'Language'|tl:true}</label></td>
+				<td>
+					<select class="selectrequired" name="language" id="language">
+					{foreach $langoption as $lang}							
+						{if {$lang.lang_code} eq {$langselected}}					
+							<option value="{$lang.lang_code}" selected="selected">{$lang.lang_name}</option>
+							{else}
+							<option value="{$lang.lang_code}">{$lang.lang_name}</option>
+						{/if}
+					{/foreach}					
+					</select>	
+				</td>
+			</tr>
+		</table>
+	</div>	
+	<h3>{'Time Setting'|tl:false}</h3>
+	<div>					
+		<table style='text-align:left' border="0">
+			<tr>
+				<td><label for='sessiontime'>{'Session Timeout'|tl:true} </label></td>
+				<td><input type="text" id="sessiontime" name="sessiontime" style="border: 0; color: #f6931f; font-weight: bold; width:50px" readonly/>({'min'|tl:true})</td>				
+			</tr>
+			<tr>
+				<td colspan="2"><div id="slider-sessiontime" ></div></td>
+			</tr>
+
+			<tr>
+				<td colspan="2">&nbsp;</td>
+			</tr>			
+		</table>
+	</div>	
+</div>
+<div id="buttonlist" style="float:left;margin-top:50px;">
+<input type="button" class="btn btn-primary" id="resetdefault" value="{'Reset to default'|tl:false}" />	
+<input type="button" class="btn btn-primary" id="save" value="{'Save'|tl:false}" />	
+</div>
+</form>	
+</div><!-- End of Main container -->
+<script type="text/javascript">
+var def = {
+	'sessiontime' :{$sessiontime}
+};
+</script>

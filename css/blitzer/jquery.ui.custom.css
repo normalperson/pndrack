@@ -1,0 +1,133 @@
+/*!
+ * Custom css for start theme
+ * 
+ *
+ * 
+ * 
+ * 
+ *
+ * 
+ */
+ .pagecontent{
+	width:90%;
+	margin:auto;
+}
+
+.ui-custom-input
+ {
+	border: 2px solid #eeeeee;
+	padding:1px 3px;
+}
+.ui-custom-textarea {
+	border: 2px solid #eeeeee;
+	padding:1px 3px;
+	width:60%;
+	height:80px;
+}
+.ui-custom-textarealabel{
+	display: block; 
+    float: left; 
+    padding-top: 8px
+}
+.ui-custom-dialog-alert{
+	width:100%;
+	border:0;
+	margin:auto;
+	border-spacing:5px;
+}
+table.ui-custom-table-guessinfo tr > td {
+	text-align: left;	
+}
+
+table.ui-custom-table-no-header > tbody > tr{
+}
+
+table.ui-custom-table-no-header > tbody > tr > td{
+	/*border:1px solid #000000;*/
+}
+
+table.ui-custom-table-no-header > tbody > tr:nth-child(odd){
+	background-color:#ffffff;
+	color:#333333;
+}
+
+table.ui-custom-table-no-header > tbody > tr:nth-child(even){
+	background-color:#f6f6f6;
+	color:#111111;
+}
+table.ui-custom-table-no-header > tfoot > tr{
+	background-color:#ffffff;
+	color:#333333;
+}
+
+table.ui-custom-table-no-header > tbody > tr.active{
+	border:1px solid #eeeeee;
+	background-color:#ffffff;
+	color:#cc0000;
+}
+
+table.ui-custom-table-no-header > tbody > tr:hover{
+	border:1px solid #fcd3a1;
+	background-color:#fbf8ee;
+	color:#444444;
+}
+table.ui-custom-table-no-header > tbody > tr:hover > td > a {
+	color:inherit;
+}
+.custom-dragable-container {
+	float: left;
+	width: 150px;
+	padding: 0 10px;
+	border: 1px solid #eeeeee;
+	background: #ffffff;
+	color:#333333;
+	text-align: left;
+}
+.custom-external-event{
+	margin: 10px 0;
+	padding: 2px 4px;
+	background: #cc0000;
+	color: #ffffff;
+	font-size: .85em;
+	cursor: pointer;
+	border-radius:5px;	
+	border: 1px solid #e3a1a1;	
+}
+.legend-container {
+	float:right;
+	width: 300px;
+	height:30px;
+	text-align: center;
+	font-weight: bold;
+	margin-bottom:10px;
+}
+.legend-desc{
+	float: right;
+	margin-right: 10px;
+	background: #333333;
+	color: #eeeeee;
+	font-size: .85em;
+	cursor: pointer;
+	border-radius:5px;	
+	border: 1px solid #a3a3a3;	
+}
+/* css by ID*/
+#wrap {
+	margin: 0 auto;
+}			
+#external-events h4 {
+	font-size: 16px;
+	margin-top: 0;
+	padding-top: 1em;
+}	
+#external-events p {
+	margin: 1.5em 0;
+	font-size: 11px;
+	color: #666;
+}		
+#external-events p input {
+	margin: 0;
+	vertical-align: middle;
+}
+
+

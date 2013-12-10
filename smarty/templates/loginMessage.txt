@@ -1,0 +1,8 @@
+<h2>Message Board</h2>
+<div>Phi Orion wishes everyone a Merry Chrismas and we would like to take this opportunity to announce that vantagepos had been upgraded to version 6 includes:</div>
+<div><br />- big fixes</div>
+<div><br />- improve performance</div>
+<div><br />- added export report to pdf</div>
+<div>&nbsp;</div>
+<div><br />Also, version 6 will be available for upgrade free of charge starting next month. Thank you for your continuous support for our software.</div>
+

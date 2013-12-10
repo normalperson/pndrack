@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="{$charset}">
+{foreach from=$csslist item="css"}
+	<link rel="stylesheet" type="text/css" href="{$css}">
+{/foreach}	
+{foreach from=$jslist item="js"}
+	<script type="text/javascript" src="{$js}"></script>
+{/foreach}
+	<title>{$title}</title>
+</head>
+<body>
+<div id="headercontainer" >
+	<nav class="navbar navbar-inverse affix" >
+	<div class="navbar-inner" style="width=100%">
+		<!-- Just to show smaller navigation icon -->
+		<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+		</a>
+		<a class="brand" href="#">Phi Orion Logo</a>
+		<a class="pull-right" href="#">Log Out</a>
+		<div class="nav-collapse" >
+			{$Menu->renderMenu()}
+		</div>
+	</div>
+	</nav>
+</div>
+<div id="body">
+
+{literal}
+<script type="text/javascript">
+
+(function($){ //create closure so we can safely use $ as alias for jQuery
+	// initialize number format
+	accounting.settings = {
+		currency: {
+			symbol : "VND",   // default currency symbol is '$'
+			format: "%v%s", // controls output: %s = symbol, %v = value/number (can be object: see below)
+			decimal : ".",  // decimal point separator
+			thousand: ",",  // thousands separator
+			precision : 0   // decimal places
+		},
+		number: {
+			precision : 0,  // default precision on numbers is 0
+			thousand: ",",
+			decimal : "."
+		}
+	};
+
+	$(document).ready(function(){
+		// initialise plugin
+/*		var example = $('#menu').superfish({
+			delay:       1000,                            // one second delay on mouseout
+			animation:   {opacity:'show',height:'show'},  // fade-in and slide-down animation
+			speed:       'fast',                          // faster animation speed
+			autoArrows:  false
+		});
+
+		$("ul.sf-menu li").addClass("ui-state-default");
+
+		$("ul.sf-menu li").hover(function () { $(this).addClass('ui-state-hover'); },
+                 function () { $(this).removeClass('ui-state-hover'); });
+
+		$(".current").addClass("ui-state-active");
+*/
+		refreshAutotime();
+		window.setInterval(refreshAutotime, 1000);
+		function refreshAutotime(){
+			var arrDay = new Array("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday");
+			var arrMonth = new Array("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December");
+			var now = new Date();
+			var str = arrDay[now.getDay()];
+			str = str + ', ' + now.getDate();
+			str = str + ' ' + arrMonth[now.getMonth()];
+			str = str + ', ' + now.getFullYear();
+			str = str + ' ' + ((now.getHours()%12)<1?12:(now.getHours()%12));
+			str = str + ':' + (now.getMinutes()>9?'':'0') + now.getMinutes();
+			str = str + '' + (now.getHours()>12?'PM':'AM');
+			$('#autotime').text(str);
+		}
+	});
+})(jQuery);
+</script>
+{/literal}

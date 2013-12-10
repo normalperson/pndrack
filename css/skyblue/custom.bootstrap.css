@@ -1,0 +1,5 @@
+.modal.large {
+    width: 80%; /* respsonsive width */
+    height:60%;
+    margin-left:-40%; /* width/2) */
+}

@@ -1,0 +1,68 @@
+.accordion-heading .accordion-toggle-small {
+    display: block;
+    padding: 4px 8px; /*8px 15px;*/
+}
+
+.accordion-inner-small {
+    padding: 4px 8px;  /*9px 15px;*/
+    border-top: 1px solid #e5e5e5;
+}
+
+#sidebar {
+    position: fixed;
+    top: 10px;
+    left: -180px;
+    width: 200px;
+    z-index: 50;
+}
+
+#sidebar-content {
+    width: 80%;
+    float: left;
+    background-color: white;
+    margin-top: 56px;
+}
+
+#toggleSidebar {
+    float: right;
+    height: 100%;
+    width: 20px;
+    margin-top: 41px;
+}
+.fullcontent{
+  margin-left:30px;
+  margin-right:30px;
+}
+.content-withleftsidebar{
+  margin-left:250px;
+  margin-right:30px;
+}
+.simplelink{
+  list-style: none;
+}
+.tblshelf{
+    background-color:#FFFFFF;
+    border:3px solid #0404B4;
+    width:100%;
+    border-collapse: separate; /* Or do nothing, this is default */
+    border-spacing: 3px;
+}
+.tblshelf > caption {
+    background-color:#0404B4;
+    color: #FFFFFF;
+    font-weight: bold;
+}
+.tblshelf > tbody > tr > td.title{
+    color:#0404B4;
+    text-decoration: underline;
+    font-weight:bold;
+    text-align: center;
+}
+.tblshelf > tbody > tr > td.shelfdata {
+    border:3px solid #2E64FE;
+    background-color:#FFFFFF;
+    text-align: center;
+}
+.tblshelf > tbody > tr > td.shelfdata > div.column{
+    cursor:pointer;
+}

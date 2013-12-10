@@ -1,0 +1,137 @@
+/*!
+ * Custom css for start theme
+ * 
+ *
+ * 
+ * 
+ * 
+ *
+ * 
+ */
+ .pagecontent{
+	width:90%;
+	margin:auto;
+}
+
+.ui-custom-input
+ {
+	border: 2px solid #aaaaaa;
+	padding:1px 3px;
+}
+.ui-custom-textarea {
+	border: 2px solid #aaaaaa;
+	padding:1px 3px;
+	width:60%;
+	height:80px;
+}
+.ui-custom-textarealabel{
+	display: block; 
+    float: left; 
+    padding-top: 8px
+}
+.ui-custom-dialog-alert{
+	width:80%;
+	margin:auto;
+}
+table.ui-custom-table-guessinfo {
+	width:850px;
+	border:0;
+	margin:auto;
+	border-spacing:5px;
+}
+table.ui-custom-table-guessinfo tr > td {
+	text-align: left;	
+}
+
+table.ui-custom-table-no-header > tbody > tr{
+}
+
+table.ui-custom-table-no-header > tbody > tr > td{
+	/*border:1px solid #000000;*/
+}
+
+table.ui-custom-table-no-header > tbody > tr:nth-child(odd){
+	background-color:#c9c9c9;
+	color:#333333;
+}
+
+table.ui-custom-table-no-header > tbody > tr:nth-child(even){
+	background-color:#f8f8f8;
+	color:#599fcf;
+}
+table.ui-custom-table-no-header > tfoot > tr{
+	background-color:#c9c9c9;
+	color:#333333;
+}
+
+table.ui-custom-table-no-header > tbody > tr.active{
+	border:1px solid #999999;
+	background-color:#999999;
+	color:#ffffff;
+}
+
+table.ui-custom-table-no-header > tbody > tr:hover{
+	border:1px solid #ffffff;
+	background-color:#eeeeee;
+	color:#444444;
+}
+table.ui-custom-table-no-header > tbody > tr:hover > td > a {
+	color:inherit;
+}
+.custom-dragable-container {
+	float: left;
+	width: 150px;
+	padding: 0 10px;
+	border: 1px solid #aaaaaa;
+	background: #c9c9c9;
+	color:#333333;
+	text-align: left;
+}
+.custom-external-event{
+	margin: 10px 0;
+	padding: 2px 4px;
+	background: #dddddd;
+	color: #444444;
+	font-size: .85em;
+	cursor: pointer;
+	border-radius:5px;	
+	border: 1px solid #bbbbbb;	
+}
+.legend-container {
+	float:right;
+	width: 300px;
+	height:30px;
+	text-align: center;
+	font-weight: bold;
+	margin-bottom:10px;
+}
+.legend-desc{
+	float: right;
+	margin-right: 10px;
+	background: #333333;
+	color: #eeeeee;
+	font-size: .85em;
+	cursor: pointer;
+	border-radius:5px;	
+	border: 1px solid #a3a3a3;	
+}
+/* css by ID*/
+#wrap {
+	margin: 0 auto;
+}			
+#external-events h4 {
+	font-size: 16px;
+	margin-top: 0;
+	padding-top: 1em;
+}	
+#external-events p {
+	margin: 1.5em 0;
+	font-size: 11px;
+	color: #666;
+}		
+#external-events p input {
+	margin: 0;
+	vertical-align: middle;
+}
+
+
