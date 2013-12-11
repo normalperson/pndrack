@@ -20,6 +20,8 @@ $dbo->canNew = true;
 $dbo->canEdit = true;
 $dbo->canDelete = true;
 $dbo->canDetail = false;
+$dbo->canListEdit = false;
+$dbo->canListNew = false;
 $dbo->canNewGroup = array();
 $dbo->canEditGroup = array();
 $dbo->canDeleteGroup = array();
@@ -36,9 +38,10 @@ $dbo->recordPerPage = 10;
 $dbo->defaultState = 'list';
 $dbo->maxSortCount = 9;
 $dbo->lang = 'EN-US';
+$dbo->render = array();
 $dbo->detailBack = 'Back';
 
-$dbo->cols['sg_id'] = new DBO_COL('sg_id', 'int4', '4', '-1');
+$dbo->cols['sg_id'] = new DBO_COL('sg_id', 'LONG', '11', '0');
 $dbo->cols['sg_id']->inputTypeDefault = 'text';
 $dbo->cols['sg_id']->searchMode = 'exact';
 $dbo->cols['sg_id']->capContClassDefault = array();
@@ -49,7 +52,7 @@ $dbo->cols['sg_id']->option->listMethod = 'text';
 $dbo->cols['sg_id']->option->detailMethod = 'text';
 $dbo->cols['sg_id']->option->newMethod = 'text';
 $dbo->cols['sg_id']->option->editMethod = 'text';
-$dbo->cols['sg_groupname'] = new DBO_COL('sg_groupname', 'varchar', '-1', '204');
+$dbo->cols['sg_groupname'] = new DBO_COL('sg_groupname', 'VAR_STRING', '600', '0');
 $dbo->cols['sg_groupname']->inputTypeDefault = 'text';
 $dbo->cols['sg_groupname']->searchMode = 'exact';
 $dbo->cols['sg_groupname']->capContClassDefault = array();
@@ -60,7 +63,7 @@ $dbo->cols['sg_groupname']->option->listMethod = 'text';
 $dbo->cols['sg_groupname']->option->detailMethod = 'text';
 $dbo->cols['sg_groupname']->option->newMethod = 'text';
 $dbo->cols['sg_groupname']->option->editMethod = 'text';
-$dbo->cols['sg_seq'] = new DBO_COL('sg_seq', 'int4', '4', '-1');
+$dbo->cols['sg_seq'] = new DBO_COL('sg_seq', 'LONG', '11', '0');
 $dbo->cols['sg_seq']->inputTypeDefault = 'text';
 $dbo->cols['sg_seq']->searchMode = 'exact';
 $dbo->cols['sg_seq']->capContClassDefault = array();
@@ -71,7 +74,7 @@ $dbo->cols['sg_seq']->option->listMethod = 'text';
 $dbo->cols['sg_seq']->option->detailMethod = 'text';
 $dbo->cols['sg_seq']->option->newMethod = 'text';
 $dbo->cols['sg_seq']->option->editMethod = 'text';
-$dbo->cols['sg_code'] = new DBO_COL('sg_code', 'varchar', '-1', '14');
+$dbo->cols['sg_code'] = new DBO_COL('sg_code', 'VAR_STRING', '30', '0');
 $dbo->cols['sg_code']->inputTypeDefault = 'text';
 $dbo->cols['sg_code']->searchMode = 'exact';
 $dbo->cols['sg_code']->capContClassDefault = array();
@@ -132,6 +135,9 @@ function setup_shelfgroup_custom_delete($table, $wheres){
 		$ret[] = $DB->lastError;
 	}
 	return $ret;
+}
+
+function setup_shelfgroup_display_modifier($col, $colVal, $data=array(), $html=null){
 }
 */
 ?>
