@@ -24,13 +24,36 @@ class Main{
 		$dbo = dbo_include('setup_customer');
 
 	}
-	function board(){
+	function newcustomer(){
+		global $DB;
+		extract($_POST);
+		$table = "smcustomer";
+		$data = array("cus_name" => $companyname,
+		              "cus_regno" => (trim($companyregno))==''?null:trim($companyregno),
+		              "cus_contactno" => (trim($contactno))==''?null:trim($contactno),
+		              "cus_masterid" => (trim($masterid))==''?null:trim($masterid));
+		$DB->doInsert($table, $data);
+		$cusid = $DB->lastInsertId();
+
+		echo json_encode($cusid);
+	}
+	function searchplate(){
 		global $HTML,$DB;
 		$HTML->addJS('js/js.php?c=DBO&js=DBO');
 		
 		html_header();
 		$dbo = dbo_include('setup_board');
 
+	}
+	function createplate(){
+		global $HTML,$DB;
+		html_header();
+		$shelf = $DB->GetArray("select * from smshelfsetting order by sf_seq,sf_code,sf_desc");
+
+		$smarty = $this->initSmarty();
+		$smarty->assign('shelf',$shelf);
+		$smarty->display('createplate.html');	
+		$HTML->addJS('js/js.php?c=Main&js=createplate');
 	}
 	function getCustInfo(){
 		global $DB;

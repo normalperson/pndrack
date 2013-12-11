@@ -8,24 +8,24 @@ $dbo->table = 'smshelfsetting';
 $dbo->key = array('sf_id');
 $dbo->sql = 'select * from smshelfsetting
 order by sf_sgid, sf_seq';
-$dbo->col = array('sf_id', 'sf_sgid', 'sf_code', 'sf_desc', 'sf_row', 'sf_col', 'sf_seq');
-$dbo->colList = array('sf_sgid', 'sf_code', 'sf_desc', 'sf_seq');
+$dbo->col = array('sf_id', 'sf_sgid', 'sf_code', 'sf_desc', 'sf_totalplate', 'sf_seq');
+$dbo->colList = array('sf_sgid', 'sf_code', 'sf_desc', 'sf_totalplate', 'sf_seq');
 $dbo->colDetail = array('sf_sgid', 'sf_code', 'sf_desc');
-$dbo->colNew = array('sf_sgid', 'sf_code', 'sf_desc', 'sf_seq');
+$dbo->colNew = array('sf_sgid', 'sf_code', 'sf_desc', 'sf_totalplate', 'sf_seq');
 $dbo->colEdit = array('sf_sgid', 'sf_code', 'sf_desc', 'sf_seq');
 $dbo->colSearch = array('sf_sgid', 'sf_code', 'sf_desc');
 $dbo->colExport = array();
 $dbo->colSort = array();
 $dbo->canSearch = true;
 $dbo->canNew = true;
-$dbo->canEdit = true;
+$dbo->canEdit = false;
 $dbo->canDelete = true;
 $dbo->canDetail = false;
+$dbo->canListEdit = false;
+$dbo->canListNew = false;
 $dbo->canNewGroup = array();
 $dbo->canEditGroup = array();
 $dbo->canDeleteGroup = array();
-$dbo->listEdit = false;
-$dbo->listNew = false;
 $dbo->showSearch = true;
 $dbo->titleList = 'List Record';
 $dbo->titleDetail = 'Detail';
@@ -40,6 +40,8 @@ $dbo->defaultState = 'list';
 $dbo->maxSortCount = 9;
 $dbo->lang = 'EN-US';
 $dbo->render = array();
+$dbo->listEdit = false;
+$dbo->listNew = false;
 $dbo->searchCancel = 'Cancel';
 $dbo->searchSubmit = 'Search';
 $dbo->detailBack = 'Back';
@@ -48,7 +50,7 @@ $dbo->editSubmit = 'Save';
 $dbo->newCancel = 'Cancel';
 $dbo->newSubmit = 'Save';
 
-$dbo->cols['sf_id'] = new DBO_COL('sf_id', 'int4', '4', '-1');
+$dbo->cols['sf_id'] = new DBO_COL('sf_id', 'LONG', '11', '0');
 $dbo->cols['sf_id']->inputTypeDefault = 'text';
 $dbo->cols['sf_id']->searchMode = 'exact';
 $dbo->cols['sf_id']->capContClassDefault = array();
@@ -112,7 +114,7 @@ $dbo->cols['sf_group']->option->listMethod = 'text';
 $dbo->cols['sf_group']->option->detailMethod = 'text';
 $dbo->cols['sf_group']->option->newMethod = 'text';
 $dbo->cols['sf_group']->option->editMethod = 'text';
-$dbo->cols['sf_sgid'] = new DBO_COL('sf_sgid', 'int4', '4', '-1');
+$dbo->cols['sf_sgid'] = new DBO_COL('sf_sgid', 'LONG', '11', '0');
 $dbo->cols['sf_sgid']->inputTypeDefault = 'select';
 $dbo->cols['sf_sgid']->searchMode = 'exact';
 $dbo->cols['sf_sgid']->capContClassDefault = array();
@@ -125,7 +127,7 @@ $dbo->cols['sf_sgid']->option->listMethod = 'text';
 $dbo->cols['sf_sgid']->option->detailMethod = 'text';
 $dbo->cols['sf_sgid']->option->newMethod = 'text';
 $dbo->cols['sf_sgid']->option->editMethod = 'text';
-$dbo->cols['sf_code'] = new DBO_COL('sf_code', 'varchar', '-1', '14');
+$dbo->cols['sf_code'] = new DBO_COL('sf_code', 'VAR_STRING', '30', '0');
 $dbo->cols['sf_code']->inputTypeDefault = 'text';
 $dbo->cols['sf_code']->searchMode = 'exact';
 $dbo->cols['sf_code']->capContClassDefault = array();
@@ -136,7 +138,7 @@ $dbo->cols['sf_code']->option->listMethod = 'text';
 $dbo->cols['sf_code']->option->detailMethod = 'text';
 $dbo->cols['sf_code']->option->newMethod = 'text';
 $dbo->cols['sf_code']->option->editMethod = 'text';
-$dbo->cols['sf_desc'] = new DBO_COL('sf_desc', 'varchar', '-1', '204');
+$dbo->cols['sf_desc'] = new DBO_COL('sf_desc', 'VAR_STRING', '600', '0');
 $dbo->cols['sf_desc']->inputTypeDefault = 'text';
 $dbo->cols['sf_desc']->searchMode = 'exact';
 $dbo->cols['sf_desc']->capContClassDefault = array();
@@ -147,7 +149,7 @@ $dbo->cols['sf_desc']->option->listMethod = 'text';
 $dbo->cols['sf_desc']->option->detailMethod = 'text';
 $dbo->cols['sf_desc']->option->newMethod = 'text';
 $dbo->cols['sf_desc']->option->editMethod = 'text';
-$dbo->cols['sf_seq'] = new DBO_COL('sf_seq', 'int4', '4', '-1');
+$dbo->cols['sf_seq'] = new DBO_COL('sf_seq', 'LONG', '11', '0');
 $dbo->cols['sf_seq']->inputTypeDefault = 'text';
 $dbo->cols['sf_seq']->searchMode = 'exact';
 $dbo->cols['sf_seq']->capContClassDefault = array();
@@ -158,6 +160,17 @@ $dbo->cols['sf_seq']->option->listMethod = 'text';
 $dbo->cols['sf_seq']->option->detailMethod = 'text';
 $dbo->cols['sf_seq']->option->newMethod = 'text';
 $dbo->cols['sf_seq']->option->editMethod = 'text';
+$dbo->cols['sf_totalplate'] = new DBO_COL('sf_totalplate', 'LONG', '11', '0');
+$dbo->cols['sf_totalplate']->inputTypeDefault = 'text';
+$dbo->cols['sf_totalplate']->searchMode = 'exact';
+$dbo->cols['sf_totalplate']->capContClassDefault = array();
+$dbo->cols['sf_totalplate']->valContClassDefault = array();
+$dbo->cols['sf_totalplate']->option->defaultMethod = 'text';
+$dbo->cols['sf_totalplate']->option->searchMethod = 'text';
+$dbo->cols['sf_totalplate']->option->listMethod = 'text';
+$dbo->cols['sf_totalplate']->option->detailMethod = 'text';
+$dbo->cols['sf_totalplate']->option->newMethod = 'text';
+$dbo->cols['sf_totalplate']->option->editMethod = 'text';
 
 // support multiple language. only caption
 global $LANG;
@@ -208,6 +221,9 @@ function setup_shelf_custom_delete($table, $wheres){
 		$ret[] = $DB->lastError;
 	}
 	return $ret;
+}
+
+function setup_shelf_display_modifier($col, $colVal, $data=array(), $html=null){
 }
 */
 ?>

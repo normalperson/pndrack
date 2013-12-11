@@ -9,27 +9,35 @@ $dbo->newModifier = 'setup_shelf_custom_new';
 function setup_shelf_custom_new($table, $cols){
 	global $DB;
 	$ret = array();
-/*	$totalrow = $cols['sf_row'];
-	$totalcol = $cols['sf_col'];*/
+	// validation
+	$cnt = $DB->GetOne("select count(*) from smshelfsetting where sf_code = :0 and sf_sgid = :1",array($cols['sf_code'],$cols['sf_sgid']));
+	if($cnt > 0){
+		echo '<script>alert("You are not allow to have duplicated shelf code in the same group");</script>';
+		return;
+	}
+
+	// get shelf group code
+	$sgcode = $DB->GetOne("select sg_code from smshelfgroup where sg_id = :0",array($cols['sf_sgid']));
+	$totalslot = $cols['sf_totalplate'];
+	$shelfcode = $cols['sf_code'];
+
 	$ok = $DB->doInsert($table, $cols);
+	// get the last insert id
+	$sfid = $DB->lastInsertId();
 	if(!$ok){
 		$ret[] = $DB->lastError;
 	}else{
-		/*$shelfid =  $DB->lastInsertId('smshelfsetting_sf_id_seq');
-		// populate the shelf row and columns
-		for($row=1;$row<=$totalrow;$row++){
-			for($col=1;$col<=$totalcol;$col++){
-				$slfcode = 'row_'.$row.'col_'.$col;
-				$data = array(
-					'slf_row' => $row,
-					'slf_col' => $col,
-					'slf_code' => $slfcode,
-					'slf_sfid' => $shelfid
-					);
-				$DB->doInsert('smshelf',$data);
-			}
-		}*/
-
+		// populate smplateslot
+		for ($i = 1;$i<=$totalslot;$i++){
+			$slotno = str_pad($i,4,"0",STR_PAD_LEFT);
+			$pscode = $sgcode.'-'.$shelfcode.'-'.$slotno;
+			$data = array( 
+				'ps_sfid' => $sfid,
+				'ps_slotno' => $slotno,
+				'ps_code' => $pscode
+				);
+			$ok = $DB->doInsert("smplateslot", $data);
+		}		
 	}
 	return $ret;
 }
