@@ -5,6 +5,18 @@ class Main{
 	function __construct(){
 		
 	}
+	function index(){
+		$curdir = dirname(__FILE__);
+
+		if(!isset($_GET['webf']) || empty($_GET['webf'])) return;
+		$func = $_GET['webf'];
+		if(file_exists($curdir.DS.$func.'.php')){
+			include($curdir.DS.$func.'.php');
+		}else{
+			html_header();
+			// echo '<!-- function not found -->';
+		}
+	}
 	function initSmarty(){
 		$smarty = new Smarty();
 		$smarty->caching = false;
