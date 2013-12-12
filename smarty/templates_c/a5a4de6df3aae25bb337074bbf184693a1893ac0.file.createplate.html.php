@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.13, created on 2013-12-11 15:56:52
+<?php /* Smarty version Smarty-3.1.13, created on 2013-12-12 16:42:40
          compiled from "C:\Zend\Apache2\htdocs\pndrack\smarty\templates\createplate.html" */ ?>
 <?php /*%%SmartyHeaderCode:3162152a71038621239-04427987%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'a5a4de6df3aae25bb337074bbf184693a1893ac0' => 
     array (
       0 => 'C:\\Zend\\Apache2\\htdocs\\pndrack\\smarty\\templates\\createplate.html',
-      1 => 1386748609,
+      1 => 1386837757,
       2 => 'file',
     ),
   ),
@@ -33,7 +33,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
           <div id="searchdiv" class="input-group" style="padding-bottom:5px;width:100%">  
             <span class="input-group-addon glyphicon glyphicon-new-window" id="newcust" 
             data-toggle="tooltip" data-placement="bottom" data-original-title="Click here to create new customer"></span>
-            <input type="text" class="form-control" id="custname" name="custname" data-cusid="" placeholder="Enter customer name" data-required="true">     
+            <input type="text" class="form-control" id="custname" name="custname" placeholder="Enter customer name" data-required="true">     
           </div>
           <span class="help-block">Note......</span>       
         </div>
@@ -65,9 +65,15 @@ $_smarty_tpl->tpl_vars["sf"]->_loop = true;
           <input type="text" class="form-control" id="platename" name="platename" placeholder="Enter plate name">     
         </div>    
       </div>      
+      <div class="form-group">
+        <div class="col-lg-12">        
+          <label for="platemodel">Plate model(Optional)</label>
+          <input type="text" class="form-control" id="platemodel" name="platemodel" placeholder="Enter plate model">     
+        </div>    
+      </div>      
       <div class="col col-lg-12" style="margin-top:50px">
         <button type="button" class="btn btn-lg btn-primary" id="clearplateform">Clear</button>
-        <button type="submit" class="btn btn-lg  btn-primary" id="savenewplate">Save</button>
+        <button type="button" class="btn btn-lg  btn-primary" id="savenewplate">Save</button>
       </div>
     </form>  
   </div><!-- /row -->
@@ -109,11 +115,49 @@ $_smarty_tpl->tpl_vars["sf"]->_loop = true;
         </form>  
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
         <button type="button" class="btn btn-primary" id="savenewcust">Save & Close</button>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 <!-- end of new cust modal -->
-<?php }} ?>
+<!-- plate location modal start -->
+<div class="modal fade" id="mdplatelocation">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div>
+          <span class="close glyphicon glyphicon-print" id="printlocation"></span>
+        </div>
+        <h4 class="modal-title">New plate created!</h4>
+      </div>
+      <div class="modal-body">
+        <form class="form-horizontal" role="form" id="newplateInfo">
+        <div class="form-group">
+          <div class="col-lg-10">      
+            <label for="nplocation">Location</label>
+            <span id="nplocation" style="font-size:1.5em;font-weight:bold"></span>
+          </div>
+        </div> 
+        <div class="form-group">
+          <div class="col-lg-10">      
+            <label for="npcustname">Customer Name</label>
+            <span id="npcustname"></span>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-lg-10">      
+            <label for="npcreatdby">Created By</label>
+            <span id="npcreatdby"></span>
+          </div>
+        </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!-- end of plate location modal --><?php }} ?>
