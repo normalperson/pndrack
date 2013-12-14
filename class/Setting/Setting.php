@@ -3,7 +3,7 @@ require_once(dirname(__FILE__).'/../../init.inc.php');
 
 class Setting{
 	function __construct(){
-		global $HTML, $GLOBAL, $DB, $USER;
+		/* global $HTML, $GLOBAL, $DB, $USER;
 		$curdir = dirname(__FILE__);
 
 		if(!isset($_GET['webf']) || empty($_GET['webf'])) return;
@@ -13,8 +13,7 @@ class Setting{
 		}else{
 			//html_header();
 			// echo '<!-- function not found -->';
-		}
-		
+		} */		
 	}
 	function gensetting(){
 		global $HTML,$DB;
