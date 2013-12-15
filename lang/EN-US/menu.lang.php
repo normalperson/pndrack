@@ -1,4 +1,6 @@
-<?php/*Last Modified by admin on 10-12-2013 20:56:32*/$translate = array (
+<?php
+/*Last Modified by admin on 15-12-2013 10:59:23*/
+$translate = array (
   'Shelf' => 'Shelf',
   'Report' => 'Report',
   'Revenue Report' => 'Revenue Report',
@@ -17,4 +19,9 @@
   'Search Plate' => 'Search Plate',
   'Customer List' => 'Customer List',
   'Create Plate' => 'Create Plate',
-);?>
+  'User Setting' => 'User Setting',
+  'User Setup' => 'User Setup',
+  'Role Setup' => 'Role Setup',
+  'Permission Setup' => 'Permission Setup',
+);
+?>
