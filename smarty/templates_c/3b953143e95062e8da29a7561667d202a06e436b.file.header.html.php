@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.13, created on 2013-12-14 22:19:28
+<?php /* Smarty version Smarty-3.1.13, created on 2013-12-15 17:30:24
          compiled from "C:\Zend\Apache2\htdocs\pndrack\smarty\templates\header.html" */ ?>
 <?php /*%%SmartyHeaderCode:1066952ac0330688a70-10879320%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '3b953143e95062e8da29a7561667d202a06e436b' => 
     array (
       0 => 'C:\\Zend\\Apache2\\htdocs\\pndrack\\smarty\\templates\\header.html',
-      1 => 1386769154,
+      1 => 1387099823,
       2 => 'file',
     ),
   ),
@@ -25,6 +25,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'jslist' => 0,
     'js' => 0,
     'title' => 0,
+    'APP' => 0,
     'Menu' => 0,
   ),
   'has_nocache_code' => false,
@@ -63,7 +64,8 @@ $_smarty_tpl->tpl_vars["js"]->_loop = true;
       <span class="icon-bar"></span>
     </button>
   </div>
-	<a class="navbar-right" href="#">Log Out</a>
+	<a class="navbar-right" href="/<?php echo $_smarty_tpl->tpl_vars['APP']->value;?>
+/login.php?logout=1">Log Out</a>
 	<div class="nav-collapse" >
 		<?php echo $_smarty_tpl->tpl_vars['Menu']->value->renderMenu();?>
 

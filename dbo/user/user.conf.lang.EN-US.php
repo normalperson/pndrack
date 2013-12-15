@@ -48,9 +48,9 @@ $dbo->titleSearch = 'Search User';
 $dbo->text->searchCancel = 'Cancel';
 $dbo->text->searchSubmit = 'Search';
 $dbo->text->editCancel = 'Cancel';
-$dbo->text->editSubmit = 'Save';
+$dbo->text->editSubmit = 'Edit';
 $dbo->text->newCancel = 'Cancel';
-$dbo->text->newSubmit = 'Save';
+$dbo->text->newSubmit = 'New';
 $dbo->text->detailCancel = 'Back';
 
 ?>
