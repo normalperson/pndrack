@@ -94,6 +94,21 @@ class Setting{
 		$DB->Execute("select resetfcsetting()");
 		
 	}
+	function usersetup(){
+		global $HTML;
+		html_header();
+		$dbo = dbo_include('user');
+	}
+	function rolesetup(){
+		global $HTML;
+		html_header();
+		$dbo = dbo_include('role');
+	}
+	function permissionsetup(){
+		global $HTML;
+		html_header();
+		$dbo = dbo_include('permission');
+	}
 	
 }
 
