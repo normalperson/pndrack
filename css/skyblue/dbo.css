@@ -3,23 +3,44 @@ div.dbo_theme_skyblue{
 	width:90%;
 	margin:auto;
 }
-
-div.dbo_theme_skyblue table{
-	color:#222222;
-}
-
-div.dbo_theme_skyblue  > table{
-	width:100%;
-	color:#222222;
-}
 /*Apply to all the table */
-div.dbo_theme_skyblue table {
+div.dbo_theme_skyblue >  table {
+	width:100%;
 	border-spacing:3px;
     border-collapse:collapse;
     margin-left:10px;
     margin-right:10px;
+   	color:#222222;
+}
+div.dbo_theme_skyblue > table td, table th{
+    padding: 3px; /* 'cellpadding' equivalent */
 }
 
+div.dbo_theme_skyblue div.value_container input  {
+  display: block;
+  width: 100%;
+  height: 34px;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.428571429;
+  color: #555555;
+  vertical-align: middle;
+  background-color: #ffffff;
+  background-image: none;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+          transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+}
+
+div.dbo_theme_skyblue div.value_container input.text:focus {
+  border-color: #66afe9;
+  outline: 0;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
+}
 
 /* list */
 div.dbo_theme_skyblue td.dbo_container_list{
@@ -114,8 +135,8 @@ div.dbo_theme_skyblue table.dbo_list > thead > tr div.tool > input.multiple_dele
 }
 
 div.dbo_theme_skyblue table.dbo_list > thead > tr.title{
-	background-color:#0044cc;
-	border:1px solid #0044cc;
+	background-color:#428bca;
+	border:1px solid #428bca;
 	color:#ffffff;
 }
 
@@ -133,9 +154,9 @@ div.dbo_theme_skyblue table.dbo_list > tbody > tr:nth-child(odd){
 }
 
 div.dbo_theme_skyblue table.dbo_list > tbody > tr:nth-child(even){
-	background-color:#49afcd;
-	border:1px solid #2f96b4;
-	color:#ffffff;
+	background-color:#b6dbf2;
+	border:1px solid #b6dbf2;
+	color:#222222;
 }
 
 div.dbo_theme_skyblue table.dbo_list > tbody > tr.active{
@@ -528,21 +549,18 @@ div.dbo_theme_skyblue table.dbo_list  a.sort_desc_9:after{
 }
 
 /* detail */
+td.dbo_container_detail td.form_button{
+ display:none;
+}
 div.dbo_theme_skyblue td.dbo_container_detail{
 }
 
 div.dbo_theme_skyblue td.dbo_container_detail > fieldset{
-	background-color: #fcfdfd;
-	padding:10px;
-	border-radius: 8px;
-	border:1px solid #4297d7;
-	color:#222222;
+
 }
 
 div.dbo_theme_skyblue td.dbo_container_detail > fieldset > legend{
-	background-color:#fcfdfd;
-	border-radius:8px;
-	border-top:#4297d7;
+
 }
 
 div.dbo_theme_skyblue td.dbo_container_detail th.caption{
@@ -674,6 +692,7 @@ div.dbo_theme_skyblue td.dbo_container_search td.form_button input.search_submit
 }
 
 /* new */
+
 div.dbo_theme_skyblue td.dbo_container_new{
 }
 
@@ -709,7 +728,7 @@ div.dbo_theme_skyblue td.dbo_container_new td.value select{
 }*/
 
 div.dbo_theme_skyblue td.dbo_container_new td.form_button{
-	text-align:center;
+	text-align:right;
 }
 
 div.dbo_theme_skyblue td.dbo_container_new td.form_button button.new_cancel, 
@@ -799,11 +818,11 @@ div.dbo_theme_skyblue td.dbo_container_edit td.value select{
 }
 */
 div.dbo_theme_skyblue td.dbo_container_edit td.form_button{
-	text-align:center;
+	text-align:right;
 }
 
 div.dbo_theme_skyblue td.dbo_container_edit td.form_button{
-	text-align:center;
+	text-align:right;
 }
 
 div.dbo_theme_skyblue td.dbo_container_edit td.form_button button.edit_cancel, 

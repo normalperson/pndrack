@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.13, created on 2013-12-14 15:05:15
+<?php /* Smarty version Smarty-3.1.13, created on 2013-12-19 15:16:42
          compiled from "C:\Zend\Apache2\htdocs\pndrack\smarty\templates\login.html" */ ?>
 <?php /*%%SmartyHeaderCode:3091052ac032b41f895-86928358%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '18c1ad2db15c1f44a0239c5374e883a53ca9585e' => 
     array (
       0 => 'C:\\Zend\\Apache2\\htdocs\\pndrack\\smarty\\templates\\login.html',
-      1 => 1379384214,
+      1 => 1387437398,
       2 => 'file',
     ),
   ),
@@ -15,14 +15,14 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.13',
+  'unifunc' => 'content_52ac032b47f181_64283556',
   'variables' => 
   array (
     'contents' => 0,
     'year' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.13',
-  'unifunc' => 'content_52ac032b47f181_64283556',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_52ac032b47f181_64283556')) {function content_52ac032b47f181_64283556($_smarty_tpl) {?><!DOCTYPE html>
 <html>
@@ -53,6 +53,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 						</label>
 					</div>-->
 					<div id="submitContainer">
+						
 						<input type="submit" name="submit" id="submit" value=" "/>
 					</div>
 					<div id="helpContainer">
@@ -63,7 +64,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 		</td>
 	</tr>
 	<tr>
-		<td class="message">
+		<td class="message" style="height:200px">
 			<?php echo $_smarty_tpl->tpl_vars['contents']->value;?>
 
 		</td>
