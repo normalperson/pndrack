@@ -39,6 +39,7 @@ $dbo->cols['cloud_refid']->caption->set('default', 'cloud_refid', 'text');
 $dbo->cols['usr_status']->caption->set('default', 'Status', 'text');
 $dbo->cols['usr_langid']->caption->set('default', 'usr_langid', 'text');
 $dbo->cols['userRole']->caption->set('default', 'userRole', 'text');
+$dbo->cols['usr_orgid']->caption->set('default', 'usr_orgid', 'text');
 
 $dbo->titleList = 'List User';
 $dbo->titleDetail = 'Detail';

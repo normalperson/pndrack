@@ -8,7 +8,7 @@ $dbo->table = 'smcustomer';
 $dbo->key = array('cus_id');
 $dbo->sql = 'select smcustomer.*,\'\' noofplate
 from smcustomer';
-$dbo->col = array('cus_id', 'cus_name', 'cus_regno', 'cus_masterid', 'noofplate');
+$dbo->col = array('cus_id', 'cus_name', 'cus_regno', 'cus_masterid', 'cus_contactno', 'cus_orgid', 'noofplate');
 $dbo->colList = array('cus_name', 'cus_regno', 'cus_masterid');
 $dbo->colDetail = array('cus_name', 'cus_regno', 'cus_masterid');
 $dbo->colNew = array('cus_name', 'cus_regno', 'cus_masterid');
@@ -21,11 +21,13 @@ $dbo->canNew = true;
 $dbo->canEdit = true;
 $dbo->canDelete = true;
 $dbo->canDetail = false;
+$dbo->canListEdit = false;
+$dbo->canListNew = false;
 $dbo->canNewGroup = array();
 $dbo->canEditGroup = array();
 $dbo->canDeleteGroup = array();
 $dbo->showSearch = true;
-$dbo->titleList = 'List Record';
+$dbo->titleList = 'Customer List';
 $dbo->titleDetail = 'Detail';
 $dbo->titleNew = 'New Record';
 $dbo->titleEdit = 'Edit Record';
@@ -37,8 +39,9 @@ $dbo->recordPerPage = 10;
 $dbo->defaultState = 'list';
 $dbo->maxSortCount = 9;
 $dbo->lang = 'EN-US';
+$dbo->render = array();
 
-$dbo->cols['cus_id'] = new DBO_COL('cus_id', 'int4', '4', '-1');
+$dbo->cols['cus_id'] = new DBO_COL('cus_id', 'LONG', '11', '0');
 $dbo->cols['cus_id']->inputTypeDefault = 'text';
 $dbo->cols['cus_id']->searchMode = 'exact';
 $dbo->cols['cus_id']->capContClassDefault = array();
@@ -49,7 +52,7 @@ $dbo->cols['cus_id']->option->listMethod = 'text';
 $dbo->cols['cus_id']->option->detailMethod = 'text';
 $dbo->cols['cus_id']->option->newMethod = 'text';
 $dbo->cols['cus_id']->option->editMethod = 'text';
-$dbo->cols['cus_name'] = new DBO_COL('cus_name', 'varchar', '-1', '204');
+$dbo->cols['cus_name'] = new DBO_COL('cus_name', 'VAR_STRING', '600', '0');
 $dbo->cols['cus_name']->inputTypeDefault = 'text';
 $dbo->cols['cus_name']->searchMode = 'exact';
 $dbo->cols['cus_name']->capContClassDefault = array();
@@ -60,7 +63,7 @@ $dbo->cols['cus_name']->option->listMethod = 'text';
 $dbo->cols['cus_name']->option->detailMethod = 'text';
 $dbo->cols['cus_name']->option->newMethod = 'text';
 $dbo->cols['cus_name']->option->editMethod = 'text';
-$dbo->cols['cus_regno'] = new DBO_COL('cus_regno', 'varchar', '-1', '104');
+$dbo->cols['cus_regno'] = new DBO_COL('cus_regno', 'VAR_STRING', '300', '0');
 $dbo->cols['cus_regno']->inputTypeDefault = 'text';
 $dbo->cols['cus_regno']->searchMode = 'exact';
 $dbo->cols['cus_regno']->capContClassDefault = array();
@@ -71,7 +74,7 @@ $dbo->cols['cus_regno']->option->listMethod = 'text';
 $dbo->cols['cus_regno']->option->detailMethod = 'text';
 $dbo->cols['cus_regno']->option->newMethod = 'text';
 $dbo->cols['cus_regno']->option->editMethod = 'text';
-$dbo->cols['cus_masterid'] = new DBO_COL('cus_masterid', 'varchar', '-1', '104');
+$dbo->cols['cus_masterid'] = new DBO_COL('cus_masterid', 'VAR_STRING', '300', '0');
 $dbo->cols['cus_masterid']->inputTypeDefault = 'text';
 $dbo->cols['cus_masterid']->searchMode = 'exact';
 $dbo->cols['cus_masterid']->capContClassDefault = array();
@@ -82,7 +85,7 @@ $dbo->cols['cus_masterid']->option->listMethod = 'text';
 $dbo->cols['cus_masterid']->option->detailMethod = 'text';
 $dbo->cols['cus_masterid']->option->newMethod = 'text';
 $dbo->cols['cus_masterid']->option->editMethod = 'text';
-$dbo->cols['noofplate'] = new DBO_COL('noofplate', 'unknown', '-2', '-1');
+$dbo->cols['noofplate'] = new DBO_COL('noofplate', 'STRING', '0', '0');
 $dbo->cols['noofplate']->inputTypeDefault = 'text';
 $dbo->cols['noofplate']->searchMode = 'exact';
 $dbo->cols['noofplate']->capContClassDefault = array();
@@ -93,6 +96,12 @@ $dbo->cols['noofplate']->option->listMethod = 'text';
 $dbo->cols['noofplate']->option->detailMethod = 'text';
 $dbo->cols['noofplate']->option->newMethod = 'text';
 $dbo->cols['noofplate']->option->editMethod = 'text';
+$dbo->cols['cus_contactno'] = new DBO_COL('cus_contactno', 'VAR_STRING', '60', '0');
+$dbo->cols['cus_contactno']->capContClassDefault = array();
+$dbo->cols['cus_contactno']->valContClassDefault = array();
+$dbo->cols['cus_orgid'] = new DBO_COL('cus_orgid', 'LONG', '11', '0');
+$dbo->cols['cus_orgid']->capContClassDefault = array();
+$dbo->cols['cus_orgid']->valContClassDefault = array();
 
 // support multiple language. only caption
 global $LANG;
@@ -143,6 +152,9 @@ function setup_customer_custom_delete($table, $wheres){
 		$ret[] = $DB->lastError;
 	}
 	return $ret;
+}
+
+function setup_customer_display_modifier($col, $colVal, $data=array(), $html=null){
 }
 */
 ?>
