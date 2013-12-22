@@ -1,30 +1,31 @@
-<?php /* Smarty version Smarty-3.1.13, created on 2013-12-19 15:16:42
+<?php /* Smarty version Smarty-3.1.13, created on 2013-12-22 16:43:23
          compiled from "C:\Zend\Apache2\htdocs\pndrack\smarty\templates\login.html" */ ?>
-<?php /*%%SmartyHeaderCode:3091052ac032b41f895-86928358%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:2783052b6a62bae64f1-35303012%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '18c1ad2db15c1f44a0239c5374e883a53ca9585e' => 
     array (
       0 => 'C:\\Zend\\Apache2\\htdocs\\pndrack\\smarty\\templates\\login.html',
-      1 => 1387437398,
+      1 => 1387696332,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '3091052ac032b41f895-86928358',
+  'nocache_hash' => '2783052b6a62bae64f1-35303012',
   'function' => 
   array (
   ),
-  'version' => 'Smarty-3.1.13',
-  'unifunc' => 'content_52ac032b47f181_64283556',
   'variables' => 
   array (
+    'APP' => 0,
     'contents' => 0,
     'year' => 0,
   ),
   'has_nocache_code' => false,
+  'version' => 'Smarty-3.1.13',
+  'unifunc' => 'content_52b6a62bb9a025_68566093',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_52ac032b47f181_64283556')) {function content_52ac032b47f181_64283556($_smarty_tpl) {?><!DOCTYPE html>
+<?php if ($_valid && !is_callable('content_52b6a62bb9a025_68566093')) {function content_52b6a62bb9a025_68566093($_smarty_tpl) {?><!DOCTYPE html>
 <html>
 <head>
 	<meta charset="utf-8">
@@ -57,7 +58,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 						<input type="submit" name="submit" id="submit" value=" "/>
 					</div>
 					<div id="helpContainer">
-						<a href="">Can't sign in to your account?</a>
+						<a href="/<?php echo $_smarty_tpl->tpl_vars['APP']->value;?>
+/login.php?forgot=1">Can't sign in to your account?</a>
 					</div>
 				</form>
 			</div>

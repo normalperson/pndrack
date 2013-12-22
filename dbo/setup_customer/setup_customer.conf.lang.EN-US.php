@@ -7,7 +7,7 @@ $dbo->cols['cus_regno']->caption->set('default', 'Company Registration Number', 
 $dbo->cols['cus_masterid']->caption->set('default', 'Master ID', 'text');
 $dbo->cols['noofplate']->caption->set('default', 'No. Of Plate', 'text');
 
-$dbo->titleList = 'List Record';
+$dbo->titleList = 'Customer List';
 $dbo->titleDetail = 'Detail';
 $dbo->titleNew = 'New Record';
 $dbo->titleEdit = 'Edit Record';

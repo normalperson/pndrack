@@ -8,7 +8,7 @@ $dbo->table = 'fcuser';
 $dbo->key = array('usr_userid');
 $dbo->sql = 'select fcuser.*,\'\' userRole from fcuser
 order by usr_userid';
-$dbo->col = array('usr_userid', 'usr_password', 'usr_created', 'usr_name', 'usr_email', 'usr_last_active', 'usr_last_success_login', 'usr_last_fail_login', 'usr_group', 'usr_sessiondata', 'usr_langid', 'usr_status', 'userRole');
+$dbo->col = array('usr_userid', 'usr_password', 'usr_created', 'usr_name', 'usr_email', 'usr_last_active', 'usr_last_success_login', 'usr_last_fail_login', 'usr_group', 'usr_sessiondata', 'usr_langid', 'usr_status', 'usr_orgid', 'userRole');
 $dbo->colList = array('usr_userid', 'usr_name', 'usr_email', 'usr_status');
 $dbo->colDetail = array('usr_password', 'usr_name', 'usr_email', 'usr_status');
 $dbo->colNew = array('usr_userid', 'usr_password', 'usr_name', 'usr_email', 'userRole');
@@ -61,7 +61,7 @@ $dbo->cols['usr_userid']->option->newMethod = 'text';
 $dbo->cols['usr_userid']->option->editMethod = 'text';
 $dbo->cols['usr_password'] = new DBO_COL('usr_password', 'VAR_STRING', '150', '0');
 $dbo->cols['usr_password']->displayDataType = 'datetime';
-$dbo->cols['usr_password']->inputTypeDefault = 'text';
+$dbo->cols['usr_password']->inputTypeDefault = 'password';
 $dbo->cols['usr_password']->mandatoryNew = 1;
 $dbo->cols['usr_password']->mandatoryEdit = 1;
 $dbo->cols['usr_password']->searchMode = 'exact';
@@ -298,6 +298,17 @@ $dbo->cols['userRole']->option->listMethod = 'text';
 $dbo->cols['userRole']->option->detailMethod = 'text';
 $dbo->cols['userRole']->option->newMethod = 'text';
 $dbo->cols['userRole']->option->editMethod = 'text';
+$dbo->cols['usr_orgid'] = new DBO_COL('usr_orgid', 'LONG', '11', '0');
+$dbo->cols['usr_orgid']->inputTypeDefault = 'select';
+$dbo->cols['usr_orgid']->searchMode = 'exact';
+$dbo->cols['usr_orgid']->capContClassDefault = array();
+$dbo->cols['usr_orgid']->valContClassDefault = array();
+$dbo->cols['usr_orgid']->option->defaultMethod = 'text';
+$dbo->cols['usr_orgid']->option->searchMethod = 'text';
+$dbo->cols['usr_orgid']->option->listMethod = 'text';
+$dbo->cols['usr_orgid']->option->detailMethod = 'text';
+$dbo->cols['usr_orgid']->option->newMethod = 'text';
+$dbo->cols['usr_orgid']->option->editMethod = 'text';
 
 // support multiple language. only caption
 global $LANG;

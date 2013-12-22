@@ -187,6 +187,7 @@ function user_custom_new($table, $cols){
 	}
 	$userid = $cols['usr_userid'];
 	unset($cols['userRole']);
+	$cols['usr_password'] = User::genPassword($cols['usr_password']);
 	$ok = $DB->doInsert($table, $cols);
 	if($ok){
 		// insert into vrelationship
@@ -241,6 +242,13 @@ function user_custom_edit($table, $cols, $wheres){
 
 	$userid = $cols['usr_userid'];
 	unset($cols['userRole']);
+	if(isset($cols['usr_password'])){
+		$oripassword = $DB->getOne("select usr_password from ".$DB->prefix."user where usr_userid = :0", array($wheres['usr_userid']));
+		if($oripassword==$cols['usr_password'] || empty($cols['usr_password'])){
+			unset($cols['usr_password']);
+		}
+	}
+	$cols['usr_password'] = User::genPassword($cols['usr_password']);
 	$ok = $DB->doUpdate($table, $cols, $wheres);
 	if($ok){
 		$sql = "Delete from $tblrel where uor_usrid = :0";

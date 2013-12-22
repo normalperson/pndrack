@@ -140,3 +140,35 @@ div.mulsessFormContainer #chooseContainer{
 	padding-left:30px;
 	font-size:1.2em;
 }
+
+/* forgot password */
+#submitContainerForgot{
+	text-align:right;
+}
+#forgotsubmit{
+	border:3px solid grey;
+	border-radius:5px;
+	width:100px;
+	height:30px;
+	text-align:center;
+	line-height:10px;
+	font-weight:bold;
+	margin-right:auto;
+	margin-top:10px;
+	cursor:pointer;
+}
+#forgotTable{
+	margin-top:10px;
+}
+#forgotTable > caption{
+	font-size:20px;
+	padding-bottom:10px;
+	text-decoration:underline;
+}
+#forgotTable td.captionContainer{
+}
+#forgotTable td.inputContainer input{
+	border:1px solid grey;
+	border-radius:8px;
+	padding:3px;
+}

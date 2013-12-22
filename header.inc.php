@@ -22,6 +22,7 @@ function html_header($headerTemplate='header.html', $showAutoTime = true){
 		$HTML->addCSS('css/'.$THEME.'/custom.css');
 		$HTML->smarty->assign('Menu', $Menu);
 		$HTML->smarty->assign('ShowAutoTime', $showAutoTime);
+		$HTML->smarty->assign('APP', APP);
 		$HTML->genHeader($headerTemplate);
 	}
 }

@@ -1,25 +1,25 @@
-<?php /* Smarty version Smarty-3.1.13, created on 2013-12-22 15:15:26
-         compiled from "7ecae345580871ec048251ba449666f8f1c20345" */ ?>
-<?php /*%%SmartyHeaderCode:2470752b6918eb21955-87798254%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /* Smarty version Smarty-3.1.13, created on 2013-12-22 15:15:49
+         compiled from "9482c8dcb25b9284daf49b3eaab1b7abc66a7619" */ ?>
+<?php /*%%SmartyHeaderCode:1052052b691a5189a40-92918545%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
-    '7ecae345580871ec048251ba449666f8f1c20345' => 
+    '9482c8dcb25b9284daf49b3eaab1b7abc66a7619' => 
     array (
-      0 => '7ecae345580871ec048251ba449666f8f1c20345',
+      0 => '9482c8dcb25b9284daf49b3eaab1b7abc66a7619',
       1 => 0,
       2 => 'string',
     ),
   ),
-  'nocache_hash' => '2470752b6918eb21955-87798254',
+  'nocache_hash' => '1052052b691a5189a40-92918545',
   'function' => 
   array (
   ),
   'variables' => 
   array (
     'headerHTML' => 0,
-    'new_cancel_html' => 0,
-    'new_submit_html' => 0,
+    'edit_cancel_html' => 0,
+    'edit_submit_html' => 0,
     'footerHTML' => 0,
     'caption_cus_name' => 0,
     'value_cus_name' => 0,
@@ -30,9 +30,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.13',
-  'unifunc' => 'content_52b6918eb44bd1_73069177',
+  'unifunc' => 'content_52b691a51accd3_51247081',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_52b6918eb44bd1_73069177')) {function content_52b6918eb44bd1_73069177($_smarty_tpl) {?><fieldset><legend>New Record</legend><table class="dbo_new" id="dbo_setup_customer_newtable">
+<?php if ($_valid && !is_callable('content_52b691a51accd3_51247081')) {function content_52b691a51accd3_51247081($_smarty_tpl) {?><fieldset><legend>Edit Record</legend><table class="dbo_edit" id="dbo_setup_customer_edittable">
 	<?php if ($_smarty_tpl->tpl_vars['headerHTML']->value){?>
 	<thead>
 		<tr>
@@ -42,8 +42,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 	</thead>
 	<?php }?>
 	<tfoot><tr>
-			<td colspan="2" class="form_button"><?php echo $_smarty_tpl->tpl_vars['new_cancel_html']->value;?>
- <?php echo $_smarty_tpl->tpl_vars['new_submit_html']->value;?>
+			<td colspan="2" class="form_button"><?php echo $_smarty_tpl->tpl_vars['edit_cancel_html']->value;?>
+ <?php echo $_smarty_tpl->tpl_vars['edit_submit_html']->value;?>
 </td>
 		</tr>
 		<?php if ($_smarty_tpl->tpl_vars['footerHTML']->value){?>

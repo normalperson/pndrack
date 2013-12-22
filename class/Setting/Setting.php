@@ -4,7 +4,7 @@ require_once(CORE_DIR.DS.'inc'.DS.'dompdf'.DS.'dompdf_config.inc.php');
 
 class Setting{
 	function __construct(){
-		global $HTML, $GLOBAL, $DB, $USER;
+		/* global $HTML, $GLOBAL, $DB, $USER;
 		$curdir = dirname(__FILE__);
 
 		if(!isset($_GET['webf']) || empty($_GET['webf'])) return;
@@ -14,8 +14,7 @@ class Setting{
 		}else{
 			//html_header();
 			// echo '<!-- function not found -->';
-		}
-		
+		} */		
 	}
 	function initSmarty(){
 		$smarty = new Smarty();
