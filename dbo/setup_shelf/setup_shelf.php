@@ -41,8 +41,82 @@ function setup_shelf_custom_new($table, $cols){
 	}
 	return $ret;
 }
+$dbo->deleteModifier = 'setup_shelf_custom_delete';
+function setup_shelf_custom_delete($table, $wheres){
+	global $DB;
+	$ret = array();
+	// validate is there anyboard on this shelf... if yes do not allow to delete
+	$sql = "select count(*) from smplateslot where ps_sfid = :0 and ps_available = :1";
+	$cnt = $DB->GetOne($sql,array($wheres['sf_id'],'N'));
 
+	if($cnt > 0){
+		echo '<script>alert("You are not allow to delete shelf with board");</script>';
+		return;
+	}
+
+
+	$ok = $DB->doDelete($table, $wheres);
+	if(!$ok){
+		$ret[] = $DB->lastError;
+	}else{
+		//$sql ="delete from smplateslot where ps_sfid = :0"
+	}
+	return $ret;
+}
 
 # final rendering
 $dbo->render();
+echo '<input type="button" id="printlabel" class="btn btn-primary" value="Print Label" />';
 ?>
+<script type="text/javascript">
+$btn = {
+	printlabel : $('#printlabel')
+};
+$select = {
+	shelfgroup    : $('#dbo_setup_shelf_new_sf_sgid'),
+};
+$input = {
+    shelfcode : $('#dbo_setup_shelf_new_sf_code'),
+    shelfdesc : $('#dbo_setup_shelf_new_sf_desc')
+};
+
+$select.shelfgroup.on('change',function(){
+	var recommendsugg = '';
+	recommendsugg = $('#dbo_setup_shelf_new_sf_sgid option:selected').text()+'-'+$input.shelfcode.val();
+	$input.shelfdesc.val(recommendsugg);
+});
+$input.shelfcode.on('keyup',function(){
+	var recommendsugg = '';
+	recommendsugg = $('#dbo_setup_shelf_new_sf_sgid option:selected').text()+'-'+$(this).val();
+	$input.shelfdesc.val(recommendsugg);
+});
+function fullScreenPopUp(url){
+	var params = [
+    'height='+screen.height,
+    'width='+screen.width,
+    'fullscreen=yes' // only works in IE, but here for completeness
+	].join(',');
+
+	var popup = window.open(url, 'popup_window', params); 
+	popup.moveTo(0,0);
+}
+$btn.printlabel.click(function(){
+	var sfidarr = [], count=0;
+
+	$("input:checkbox:checked").each(function(){
+		if($(this).attr('id') != 'dboform_setup_shelf_list_cb_toggle'){
+			sfidarr.push($(this).val().split('=')[1]);
+		}
+		count++;
+	});
+
+	if(count>0){
+		url = window.location.href  +'/../printShelfLabel?sfiarr='+sfidarr;
+
+		fullScreenPopUp(url);
+	}else{
+		alert('Please select at least one shelf');
+	}
+
+});
+</script>

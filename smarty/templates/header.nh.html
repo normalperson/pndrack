@@ -11,30 +11,5 @@
 	<title>{$title}</title>
 </head>
 <body>
-<div id="container">
-	<div id="header" >
-		<div class="menu">
-<!-- 			<a href="" id="menulogo"></a> -->
-			{if $ShowAutoTime}<div id="menuinfo"><div id='autotime'></div></div>
-			<script type='text/javascript'>
-				//date time
-				refreshAutotime();
-				window.setInterval(refreshAutotime, 1000);
-				function refreshAutotime(){
-					var arrDay = new Array("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday");
-					var arrMonth = new Array("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December");
-					var now = new Date();
-					var str = arrDay[now.getDay()];
-					str = str + ', ' + now.getDate();
-					str = str + ' ' + arrMonth[now.getMonth()];
-					str = str + ', ' + now.getFullYear();
-					str = str + ' ' + ((now.getHours()%12)<1?12:(now.getHours()%12));
-					str = str + ':' + (now.getMinutes()>9?'':'0') + now.getMinutes();
-					str = str + '' + (now.getHours()>12?'PM':'AM');
-					document.getElementById('autotime').innerHTML = str;
-				}
-			</script>
-			{/if}
-		</div>
-	</div>	
-	<div id="body">
+<div id="body" class="container">
+	<div class="row">

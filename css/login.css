@@ -24,7 +24,7 @@ td.banner{
 
 td.formContainer{
 	vertical-align:top;
-	background:url(../image/login_logo.png) no-repeat center 55px;
+	/*background:url(../image/login_logo.png) no-repeat center 55px;*/
 	padding-top:220px;
 	width:445px;
 }

@@ -3,11 +3,12 @@
 <div id="gensettingdiv">
 	<h3>{'General Setting'|tl:false}</h3>
 	<div>					
-		<table style='text-align:left' >
+		<table class="settingtbl" style='text-align:left' >
+			<tbody>
 			<tr>
 				<td><label for='theme'>{'Theme'|tl:true}</label></td>
 				<td>
-					<select class="selectrequired" name="theme" id="theme">
+					<select class="form-control"  name="theme" id="theme">
 					{foreach $themeoption as $theme}							
 						{if {$theme.lu_code} eq {$themeselected}}					
 							<option value="{$theme.lu_code}" selected="selected">{$theme.lu_title}</option>
@@ -21,22 +22,24 @@
 			<tr>
 				<td><label for='language'>{'Language'|tl:true}</label></td>
 				<td>
-					<select class="selectrequired" name="language" id="language">
+					<select class="form-control"  name="language" id="language">
 					{foreach $langoption as $lang}							
-						{if {$lang.lang_code} eq {$langselected}}					
-							<option value="{$lang.lang_code}" selected="selected">{$lang.lang_name}</option>
+						{if {$lang.lu_code} eq {$langselected}}					
+							<option value="{$lang.lu_code}" selected="selected">{$lang.lu_title}</option>
 							{else}
-							<option value="{$lang.lang_code}">{$lang.lang_name}</option>
+							<option value="{$lang.lu_code}">{$lang.lu_title}</option>
 						{/if}
 					{/foreach}					
 					</select>	
 				</td>
 			</tr>
+			</tbody>
 		</table>
 	</div>	
 	<h3>{'Time Setting'|tl:false}</h3>
 	<div>					
-		<table style='text-align:left' border="0">
+		<table class="settingtbl" style='text-align:left'>
+			<tbody>
 			<tr>
 				<td><label for='sessiontime'>{'Session Timeout'|tl:true} </label></td>
 				<td><input type="text" id="sessiontime" name="sessiontime" style="border: 0; color: #f6931f; font-weight: bold; width:50px" readonly/>({'min'|tl:true})</td>				
@@ -47,7 +50,8 @@
 
 			<tr>
 				<td colspan="2">&nbsp;</td>
-			</tr>			
+			</tr>	
+			</tbody>		
 		</table>
 	</div>	
 </div>

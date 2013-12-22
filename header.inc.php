@@ -16,6 +16,7 @@ function html_header($headerTemplate='header.html', $showAutoTime = true){
 		$HTML->addCSS('css/'.$THEME.'/headermenu.css');		
 		$HTML->addCSS('css/'.$THEME.'/jquery-ui-timepicker-addon.css');
 		$HTML->addCSS('css/'.$THEME.'/dbo.css');
+		$HTML->addCSS('css/'.$THEME.'/custom.css');
 		$HTML->addCSS('css/bootstrap/css/bootstrap.css');
 		$HTML->addCSS('css/bootstrap/css/bootstrap-theme.css');
 		$HTML->addCSS('css/'.$THEME.'/custom.css');

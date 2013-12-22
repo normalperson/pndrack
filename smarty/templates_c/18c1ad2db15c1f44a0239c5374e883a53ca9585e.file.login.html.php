@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 <?php /* Smarty version Smarty-3.1.13, created on 2013-12-15 17:46:40
+=======
+<?php /* Smarty version Smarty-3.1.13, created on 2013-12-19 15:16:42
+>>>>>>> 417abe41e85513deae865b7977fe963c13464614
          compiled from "C:\Zend\Apache2\htdocs\pndrack\smarty\templates\login.html" */ ?>
 <?php /*%%SmartyHeaderCode:3091052ac032b41f895-86928358%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +11,11 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '18c1ad2db15c1f44a0239c5374e883a53ca9585e' => 
     array (
       0 => 'C:\\Zend\\Apache2\\htdocs\\pndrack\\smarty\\templates\\login.html',
+<<<<<<< HEAD
       1 => 1387100797,
+=======
+      1 => 1387437398,
+>>>>>>> 417abe41e85513deae865b7977fe963c13464614
       2 => 'file',
     ),
   ),
@@ -54,6 +62,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 						</label>
 					</div>-->
 					<div id="submitContainer">
+						
 						<input type="submit" name="submit" id="submit" value=" "/>
 					</div>
 					<div id="helpContainer">
@@ -65,7 +74,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 		</td>
 	</tr>
 	<tr>
-		<td class="message">
+		<td class="message" style="height:200px">
 			<?php echo $_smarty_tpl->tpl_vars['contents']->value;?>
 
 		</td>
