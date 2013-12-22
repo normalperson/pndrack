@@ -1,5 +1,6 @@
 <?php
 require_once(dirname(__FILE__).'/../../init.inc.php');
+require_once(CORE_DIR.DS.'inc'.DS.'dompdf'.DS.'dompdf_config.inc.php');
 
 class Setting{
 	function __construct(){
@@ -15,6 +16,17 @@ class Setting{
 			// echo '<!-- function not found -->';
 		}
 		
+	}
+	function initSmarty(){
+		$smarty = new Smarty();
+		$smarty->caching = false;
+		// $smarty->debugging = true;
+		$smarty->setTemplateDir(DOC_DIR.DS.'smarty'.DS.'templates');
+		$smarty->setCompileDir(DOC_DIR.DS.'smarty'.DS.'templates_c');
+		$smarty->setCacheDir(DOC_DIR.DS.'smarty'.DS.'cache');
+		$smarty->setConfigDir(DOC_DIR.DS.'smarty'.DS.'configs');				
+		
+		return $smarty;
 	}
 	function gensetting(){
 		global $HTML,$DB;
@@ -36,7 +48,7 @@ class Setting{
 		$themeselected = $DB->GetOne("select set_val from fcsetting where set_code = :0",array('THEME'));
 		// get the theme option
 		$themeoption = $DB->GetArray("select lu_code,lu_title from fclookup where lu_cat = :0",array('THEME'));
-		$langoption = $DB->GetArray("select lang_code,lang_name from fclang");
+		$langoption = $DB->GetArray("select lu_code,lu_title from fclookup where lu_cat = :0",array('LANGUAGE'));
 
 		$smarty->assign('sessiontime',$sessiontime);
 		$smarty->assign('themeoption',$themeoption);
@@ -108,6 +120,27 @@ class Setting{
 		global $HTML;
 		html_header();
 		$dbo = dbo_include('permission');
+	}
+	function printShelfLabel(){
+		global $DB;
+		$smarty = $this->initSmarty();
+
+		$sfidarr = explode(",",$_GET['sfiarr']);
+
+		$result = array();
+
+		foreach($sfidarr as $key => $val){
+			$shelfinfo[] = $DB->GetRow("Select * from smshelfsetting where sf_id = :0",array($val));
+		}
+		foreach($shelfinfo as $key => $val){
+			$shelfinfo[$key]['slotinfo'] = $DB->GetArray("Select * from smplateslot where ps_sfid = :0",array($val['sf_id']));
+		}
+	
+		html_header('header.nh.html');
+		#vd($shelfinfo);die();
+		$smarty->assign('shelfinfo',$shelfinfo);
+ 		$smarty->display('printlabel.html');
+
 	}
 	
 }

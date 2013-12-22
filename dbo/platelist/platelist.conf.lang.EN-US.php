@@ -16,7 +16,7 @@ $dbo->cols['cus_name']->caption->set('default', 'Customer Name', 'text');
 $dbo->cols['cus_regno']->caption->set('default', 'cus_regno', 'text');
 $dbo->cols['cus_masterid']->caption->set('default', 'MasterID', 'text');
 $dbo->cols['cus_contactno']->caption->set('default', 'cus_contactno', 'text');
-$dbo->cols['sf_id']->caption->set('default', 'sf_id', 'text');
+$dbo->cols['sf_id']->caption->set('default', 'Shelf', 'text');
 $dbo->cols['sf_sgid']->caption->set('default', 'sf_sgid', 'text');
 $dbo->cols['sf_code']->caption->set('default', 'sf_code', 'text');
 $dbo->cols['sf_desc']->caption->set('default', 'sf_desc', 'text');
