@@ -1,30 +1,22 @@
-<<<<<<< HEAD
-<?php /* Smarty version Smarty-3.1.13, created on 2013-12-15 17:30:24
-=======
-<?php /* Smarty version Smarty-3.1.13, created on 2013-12-19 15:16:00
->>>>>>> 417abe41e85513deae865b7977fe963c13464614
+<?php /* Smarty version Smarty-3.1.13, created on 2013-12-22 15:48:47
          compiled from "C:\Zend\Apache2\htdocs\pndrack\smarty\templates\header.html" */ ?>
-<?php /*%%SmartyHeaderCode:1066952ac0330688a70-10879320%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:1599552b69189715400-95878418%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '3b953143e95062e8da29a7561667d202a06e436b' => 
     array (
       0 => 'C:\\Zend\\Apache2\\htdocs\\pndrack\\smarty\\templates\\header.html',
-<<<<<<< HEAD
-      1 => 1387099823,
-=======
-      1 => 1387437354,
->>>>>>> 417abe41e85513deae865b7977fe963c13464614
+      1 => 1387698524,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '1066952ac0330688a70-10879320',
+  'nocache_hash' => '1599552b69189715400-95878418',
   'function' => 
   array (
   ),
   'version' => 'Smarty-3.1.13',
-  'unifunc' => 'content_52ac03306e8b61_54808000',
+  'unifunc' => 'content_52b69189934407_94824102',
   'variables' => 
   array (
     'charset' => 0,
@@ -33,16 +25,12 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'jslist' => 0,
     'js' => 0,
     'title' => 0,
-<<<<<<< HEAD
     'APP' => 0,
-=======
-    'logouturl' => 0,
->>>>>>> 417abe41e85513deae865b7977fe963c13464614
     'Menu' => 0,
   ),
   'has_nocache_code' => false,
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_52ac03306e8b61_54808000')) {function content_52ac03306e8b61_54808000($_smarty_tpl) {?><!DOCTYPE html>
+<?php if ($_valid && !is_callable('content_52b69189934407_94824102')) {function content_52b69189934407_94824102($_smarty_tpl) {?><!DOCTYPE html>
 <html>
 <head>
 	<meta charset="<?php echo $_smarty_tpl->tpl_vars['charset']->value;?>
@@ -76,13 +64,9 @@ $_smarty_tpl->tpl_vars["js"]->_loop = true;
       <span class="icon-bar"></span>
     </button>
   </div>
-<<<<<<< HEAD
-	<a class="navbar-right" href="/<?php echo $_smarty_tpl->tpl_vars['APP']->value;?>
-/login.php?logout=1">Log Out</a>
-=======
-	<a class="navbar-right" href="<?php echo $_smarty_tpl->tpl_vars['logouturl']->value;?>
-">Log Out</a>
->>>>>>> 417abe41e85513deae865b7977fe963c13464614
+	<div class="navbar-right"><a href="/<?php echo $_smarty_tpl->tpl_vars['APP']->value;?>
+/web/Setting/profile">Profile</a> &nbsp; <a href="/<?php echo $_smarty_tpl->tpl_vars['APP']->value;?>
+/login.php?logout=1">Log Out</a></div>
 	<div class="nav-collapse" >
 		<?php echo $_smarty_tpl->tpl_vars['Menu']->value->renderMenu();?>
 
