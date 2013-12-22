@@ -1,0 +1,42 @@
+<html>
+<head>
+  <title>Print Label</title>
+</head>
+<body>
+{foreach from=$shelfinfo item="si"}  
+  <table class="table table-bordered">
+    <caption style="background-color:black;color:white;font-weight:bold">Shelf: {$si.sf_desc}</caption>
+    <tbody>
+    <tr>
+      {assign var="i" value=0}
+      {foreach from=$si.slotinfo item="slinfo"}
+        {if $i %7==0}
+        </tr><tr>
+        {/if}
+        <td>
+          {$slinfo.ps_code}
+        </td>      
+        {assign var="i" value=$i+1}
+      {/foreach}
+    </tr>
+    </tbody>
+  </table>
+{/foreach} <!-- end of from=$shelfinfo  -->
+
+
+<!-- {foreach from=$shelfslot item="sl"}
+    {foreach from=$sl item="sldet"}
+      {if $si.sf_id eq $sldet.ps_sfid}
+      <table class="table table-bordered">
+        <tr>
+          {for $i=1 to 10}
+            <td>{$sldet.ps_code}</td>
+          {/for}
+        </tr>
+      </table>
+      {/if}
+    {/foreach}
+  {/foreach} -->
+
+</body>
+</html>
