@@ -1,4 +1,4 @@
-<?php/*Last Modified by admin on 16-12-2013 00:10:49*/$translate = array (
+<?php/*Last Modified by admin on 22-12-2013 22:00:48*/$translate = array (
   'Shelf' => 'Shelf',
   'Report' => 'Report',
   'Revenue Report' => 'Revenue Report',
@@ -22,4 +22,5 @@
   'Role Setup' => 'Role Setup',
   'Permission Setup' => 'Permission Setup',
   'Org Setting' => 'Org Setting',
+  'Package Setup' => 'Package Setup',
 );?>

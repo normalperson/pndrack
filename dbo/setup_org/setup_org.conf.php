@@ -54,6 +54,8 @@ $dbo->cols['org_id']->option->detailMethod = 'text';
 $dbo->cols['org_id']->option->newMethod = 'text';
 $dbo->cols['org_id']->option->editMethod = 'text';
 $dbo->cols['org_code'] = new DBO_COL('org_code', 'VAR_STRING', '150', '0');
+$dbo->cols['org_code']->defaultNewValueMethod = 'phps';
+$dbo->cols['org_code']->defaultNewValue = 'dbo_setup_org_uniqueorgcode()';
 $dbo->cols['org_code']->inputTypeDefault = 'text';
 $dbo->cols['org_code']->searchMode = 'matchany';
 $dbo->cols['org_code']->capContClassDefault = array();
@@ -121,6 +123,8 @@ $dbo->cols['org_contactno']->option->detailMethod = 'text';
 $dbo->cols['org_contactno']->option->newMethod = 'text';
 $dbo->cols['org_contactno']->option->editMethod = 'text';
 $dbo->cols['org_status'] = new DBO_COL('org_status', 'VAR_STRING', '36', '0');
+$dbo->cols['org_status']->defaultNewValueMethod = 'text';
+$dbo->cols['org_status']->defaultNewValue = 'ACTIVE';
 $dbo->cols['org_status']->inputTypeDefault = 'radio';
 $dbo->cols['org_status']->size = 2;
 $dbo->cols['org_status']->searchMode = 'exact';
@@ -149,8 +153,8 @@ $dbo->saveDir = dirname(dirname(__FILE__));
 $dbo->run();
 
 /*
-$dbo->newModifier = 'setup_org_custom_new';
-function setup_org_custom_new($table, $cols){
+$dbo->newModifier = 'dbo_setup_org_custom_new';
+function dbo_setup_org_custom_new($table, $cols){
 	global $DB;
 	$ret = array();
 	$ok = $DB->doInsert($table, $cols);
@@ -160,8 +164,8 @@ function setup_org_custom_new($table, $cols){
 	return $ret;
 }
 
-$dbo->editModifier = 'setup_org_custom_edit';
-function setup_org_custom_edit($table, $cols, $wheres){
+$dbo->editModifier = 'dbo_setup_org_custom_edit';
+function dbo_setup_org_custom_edit($table, $cols, $wheres){
 	global $DB;
 	$ret = array();
 	$ok = $DB->doUpdate($table, $cols, $wheres);
@@ -171,12 +175,12 @@ function setup_org_custom_edit($table, $cols, $wheres){
 	return $ret;
 }
 
-$dbo->searchModifier = 'setup_org_custom_search';
-function setup_org_custom_search(&$search){
+$dbo->searchModifier = 'dbo_setup_org_custom_search';
+function dbo_setup_org_custom_search(&$search){
 }
 
-$dbo->deleteModifier = 'setup_org_custom_delete';
-function setup_org_custom_delete($table, $wheres){
+$dbo->deleteModifier = 'dbo_setup_org_custom_delete';
+function dbo_setup_org_custom_delete($table, $wheres){
 	global $DB;
 	$ret = array();
 	$ok = $DB->doDelete($table, $wheres);
@@ -186,7 +190,7 @@ function setup_org_custom_delete($table, $wheres){
 	return $ret;
 }
 
-function setup_org_display_modifier($col, $colVal, $data=array(), $html=null){
+function dbo_setup_org_display_modifier($col, $colVal, $data=array(), $html=null){
 }
 */
 ?>
