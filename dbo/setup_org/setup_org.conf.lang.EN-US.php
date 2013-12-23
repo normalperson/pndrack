@@ -2,13 +2,13 @@
 require_once(dirname(__FILE__).DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'init.inc.php');
 
 $dbo->cols['org_id']->caption->set('default', 'org_id', 'text');
-$dbo->cols['org_code']->caption->set('default', 'org_code', 'text');
-$dbo->cols['org_name']->caption->set('default', 'org_name', 'text');
-$dbo->cols['org_parentid']->caption->set('default', 'org_parentid', 'text');
+$dbo->cols['org_code']->caption->set('default', 'Org Code', 'text');
+$dbo->cols['org_name']->caption->set('default', 'Org Name', 'text');
+$dbo->cols['org_parentid']->caption->set('default', 'Parent', 'text');
 $dbo->cols['org_primaryid']->caption->set('default', 'org_primaryid', 'text');
-$dbo->cols['org_address']->caption->set('default', 'org_address', 'text');
-$dbo->cols['org_contactno']->caption->set('default', 'org_contactno', 'text');
-$dbo->cols['org_status']->caption->set('default', 'org_status', 'text');
+$dbo->cols['org_address']->caption->set('default', 'Address', 'text');
+$dbo->cols['org_contactno']->caption->set('default', 'Contact No', 'text');
+$dbo->cols['org_status']->caption->set('default', 'Status', 'text');
 
 $dbo->titleList = 'List Record';
 $dbo->titleDetail = 'Detail';

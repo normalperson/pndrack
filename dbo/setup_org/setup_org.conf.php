@@ -149,8 +149,8 @@ $dbo->saveDir = dirname(dirname(__FILE__));
 $dbo->run();
 
 /*
-$dbo->newModifier = 'setup_org_custom_new';
-function setup_org_custom_new($table, $cols){
+$dbo->newModifier = 'dbo_setup_org_custom_new';
+function dbo_setup_org_custom_new($table, $cols){
 	global $DB;
 	$ret = array();
 	$ok = $DB->doInsert($table, $cols);
@@ -160,8 +160,8 @@ function setup_org_custom_new($table, $cols){
 	return $ret;
 }
 
-$dbo->editModifier = 'setup_org_custom_edit';
-function setup_org_custom_edit($table, $cols, $wheres){
+$dbo->editModifier = 'dbo_setup_org_custom_edit';
+function dbo_setup_org_custom_edit($table, $cols, $wheres){
 	global $DB;
 	$ret = array();
 	$ok = $DB->doUpdate($table, $cols, $wheres);
@@ -171,12 +171,12 @@ function setup_org_custom_edit($table, $cols, $wheres){
 	return $ret;
 }
 
-$dbo->searchModifier = 'setup_org_custom_search';
-function setup_org_custom_search(&$search){
+$dbo->searchModifier = 'dbo_setup_org_custom_search';
+function dbo_setup_org_custom_search(&$search){
 }
 
-$dbo->deleteModifier = 'setup_org_custom_delete';
-function setup_org_custom_delete($table, $wheres){
+$dbo->deleteModifier = 'dbo_setup_org_custom_delete';
+function dbo_setup_org_custom_delete($table, $wheres){
 	global $DB;
 	$ret = array();
 	$ok = $DB->doDelete($table, $wheres);
@@ -186,7 +186,7 @@ function setup_org_custom_delete($table, $wheres){
 	return $ret;
 }
 
-function setup_org_display_modifier($col, $colVal, $data=array(), $html=null){
+function dbo_setup_org_display_modifier($col, $colVal, $data=array(), $html=null){
 }
 */
 ?>
