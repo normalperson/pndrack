@@ -16,7 +16,7 @@ function dbo_profile_custom_edit($table, $cols, $wheres){
 	}
 	if(isset($cols['pass1']) && !empty($cols['pass1'])){
 		if($cols['pass1']!=$cols['pass2']){
-			return array('Password do not match!');
+			return array('Password does not match!');
 		}
 		$cols['usr_password'] = User::genPassword($cols['pass1']);
 	}
