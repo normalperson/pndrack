@@ -5,6 +5,7 @@ require(DOC_DIR.'/inc/pndFunction.php');
 
 # customization
 $topOrgID = userTopOrgID();
+/*vd($topOrgID);*/
 $dbo->whereSQL = "cus_orgid = ".($topOrgID?$topOrgID:0);
 
 $dbo->newModifier = 'setup_customer_custom_new';

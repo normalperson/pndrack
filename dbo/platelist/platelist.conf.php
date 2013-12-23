@@ -6,13 +6,13 @@ $dbo = DBO_init($dboID);
 $dbo->id = $dboID;
 $dbo->table = 'smcustomer ';
 $dbo->key = array('sp_id');
-$dbo->sql = 'select sp_id,cus_masterid, cus_name, sp_platename, sp_platemodel, ps_code,sf_id
+$dbo->sql = 'select sp_id,cus_masterid, cus_name, sp_platename, sp_platemodel, ps_code,sf_id,sp_orgid
 from smplate 
 join smplateslot on sp_psid = ps_id
 join smcustomer on sp_cusid = cus_id
 join smshelfsetting on sp_sfid = sf_id
 join smshelfgroup on sf_sgid = sg_id';
-$dbo->col = array('sp_id', 'cus_masterid', 'cus_name', 'sp_platename', 'sp_platemodel', 'ps_code', 'sf_id');
+$dbo->col = array('sp_id', 'cus_masterid', 'cus_name', 'sp_platename', 'sp_platemodel', 'ps_code', 'sf_id', 'sp_orgid');
 $dbo->colList = array('cus_masterid', 'cus_name', 'sp_platename', 'sp_platemodel', 'sf_id', 'ps_code');
 $dbo->colDetail = array('cus_masterid', 'cus_name', 'sp_platename', 'sp_platemodel', 'ps_code', 'sf_id');
 $dbo->colNew = array('cus_masterid', 'cus_name', 'sp_platename', 'sp_platemodel', 'ps_code', 'sf_id');
@@ -357,6 +357,9 @@ $dbo->cols['ps_available']->option->listMethod = 'text';
 $dbo->cols['ps_available']->option->detailMethod = 'text';
 $dbo->cols['ps_available']->option->newMethod = 'text';
 $dbo->cols['ps_available']->option->editMethod = 'text';
+$dbo->cols['sp_orgid'] = new DBO_COL('sp_orgid', 'LONG', '11', '0');
+$dbo->cols['sp_orgid']->capContClassDefault = array();
+$dbo->cols['sp_orgid']->valContClassDefault = array();
 
 // support multiple language. only caption
 global $LANG;
@@ -372,8 +375,8 @@ $dbo->saveDir = dirname(dirname(__FILE__));
 $dbo->run();
 
 /*
-$dbo->newModifier = 'platelist_custom_new';
-function platelist_custom_new($table, $cols){
+$dbo->newModifier = 'dbo_platelist_custom_new';
+function dbo_platelist_custom_new($table, $cols){
 	global $DB;
 	$ret = array();
 	$ok = $DB->doInsert($table, $cols);
@@ -383,8 +386,8 @@ function platelist_custom_new($table, $cols){
 	return $ret;
 }
 
-$dbo->editModifier = 'platelist_custom_edit';
-function platelist_custom_edit($table, $cols, $wheres){
+$dbo->editModifier = 'dbo_platelist_custom_edit';
+function dbo_platelist_custom_edit($table, $cols, $wheres){
 	global $DB;
 	$ret = array();
 	$ok = $DB->doUpdate($table, $cols, $wheres);
@@ -394,12 +397,12 @@ function platelist_custom_edit($table, $cols, $wheres){
 	return $ret;
 }
 
-$dbo->searchModifier = 'platelist_custom_search';
-function platelist_custom_search(&$search){
+$dbo->searchModifier = 'dbo_platelist_custom_search';
+function dbo_platelist_custom_search(&$search){
 }
 
-$dbo->deleteModifier = 'platelist_custom_delete';
-function platelist_custom_delete($table, $wheres){
+$dbo->deleteModifier = 'dbo_platelist_custom_delete';
+function dbo_platelist_custom_delete($table, $wheres){
 	global $DB;
 	$ret = array();
 	$ok = $DB->doDelete($table, $wheres);
@@ -409,7 +412,7 @@ function platelist_custom_delete($table, $wheres){
 	return $ret;
 }
 
-function platelist_display_modifier($col, $colVal, $data=array(), $html=null){
+function dbo_platelist_display_modifier($col, $colVal, $data=array(), $html=null){
 }
 */
 ?>

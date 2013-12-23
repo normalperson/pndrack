@@ -2,14 +2,11 @@ $span = {
   newcust: $('#newcust'),
   npcustname : $('#npcustname'),
   npcreatdby : $('#npcreatdby'),
-  nplocation : $('#nplocation'),
-  print      : $('#printlocation')
+  nplocation : $('#nplocation')
 };
 $div = {
   mdcust : $('#mdnewcust'),
-  mdplatelocation : $('#mdplatelocation'),
-  npbarcode : $('#npbarcode'),
-  pcontent  : $('#mdplatelocation .modal-body')
+  mdplatelocation : $('#mdplatelocation')
 };
 $btn = {
   savenewcust    : $('#savenewcust'),
@@ -68,30 +65,12 @@ function getPlateInfo(){
 
   return formArr;
 }
- function Popup(data) 
-{
-    var mywindow = window.open('', 'my div', 'height=400,width=600');
-    mywindow.document.write('<html><head><title>my div</title>');
-    /*optional stylesheet*/ //mywindow.document.write('<link rel="stylesheet" href="main.css" type="text/css" />');
-    mywindow.document.write('</head><body >');
-    mywindow.document.write(data);
-    mywindow.document.write('</body></html>');
-
-    mywindow.print();
-    mywindow.close();
-
-    return true;
-}
 $( document ).ready(function() {
   
   $span.newcust.tooltip('hide');
   $span.newcust.click(function(){
     clearNCmodal();
     $div.mdcust.modal('show');
-  });
-  // print button click
-  $span.print.click(function(){
-    Popup($div.pcontent.html());
   });
   $btn.savenewcust.click(function(){
     // get the value and save into database
@@ -122,6 +101,7 @@ $( document ).ready(function() {
   });
 
   $btn.savenewplate.click(function(){
+    console.log('save plate button click');
     // save into database
      $.ajax({
       url: "newplate",
@@ -134,9 +114,6 @@ $( document ).ready(function() {
         $span.nplocation.text(data.location);
         $span.npcreatdby.text(data.createdby);
         $span.npcustname.text($input.custname.val());
-        //$div.npbarcode.text(data.location);
-        $div.npbarcode.html(DrawCode39Barcode(data.location,1));
-        //get_object("inputdata").innerHTML=DrawCode39Barcode(get_object("inputdata").innerHTML,1);
         $div.mdplatelocation.modal('show');
 
         clearForm();

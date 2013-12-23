@@ -49,21 +49,14 @@
 	};
 
 	$(document).ready(function(){
-		// initialise plugin
-/*		var example = $('#menu').superfish({
-			delay:       1000,                            // one second delay on mouseout
-			animation:   {opacity:'show',height:'show'},  // fade-in and slide-down animation
-			speed:       'fast',                          // faster animation speed
-			autoArrows:  false
-		});
+		// add a checking....
 
-		$("ul.sf-menu li").addClass("ui-state-default");
+		$('.nav li.dropdown').hover(function() {
+	        $(this).addClass('open');
+	    }, function() {
+	        $(this).removeClass('open');
+	    });
 
-		$("ul.sf-menu li").hover(function () { $(this).addClass('ui-state-hover'); },
-                 function () { $(this).removeClass('ui-state-hover'); });
-
-		$(".current").addClass("ui-state-active");
-*/
 		refreshAutotime();
 		window.setInterval(refreshAutotime, 1000);
 		function refreshAutotime(){
@@ -80,6 +73,8 @@
 			$('#autotime').text(str);
 		}
 	});
+
+
 })(jQuery);
 </script>
 {/literal}

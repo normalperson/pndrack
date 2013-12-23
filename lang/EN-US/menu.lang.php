@@ -1,4 +1,6 @@
-<?php/*Last Modified by admin on 22-12-2013 22:00:48*/$translate = array (
+<?php
+/*Last Modified by deswell on 23-12-2013 15:28:30*/
+$translate = array (
   'Shelf' => 'Shelf',
   'Report' => 'Report',
   'Revenue Report' => 'Revenue Report',
@@ -23,4 +25,7 @@
   'Permission Setup' => 'Permission Setup',
   'Org Setting' => 'Org Setting',
   'Package Setup' => 'Package Setup',
-);?>
+  'Client User Menu' => 'Client User Menu',
+  'Aging Report' => 'Aging Report',
+);
+?>

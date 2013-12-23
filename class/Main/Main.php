@@ -1,5 +1,6 @@
 <?php
 require_once(dirname(__FILE__).'/../../init.inc.php');
+require(DOC_DIR.'/inc/pndFunction.php');
 
 class Main{
 	function __construct(){
@@ -37,13 +38,15 @@ class Main{
 
 	}
 	function newcustomer(){
-		global $DB;
+		global $DB,$USER;
 		extract($_POST);
+		$topOrgID = userTopOrgID();
 		$table = "smcustomer";
 		$data = array("cus_name" => $companyname,
 		              "cus_regno" => (trim($companyregno))==''?null:trim($companyregno),
 		              "cus_contactno" => (trim($contactno))==''?null:trim($contactno),
-		              "cus_masterid" => (trim($masterid))==''?null:trim($masterid));
+		              "cus_masterid" => (trim($masterid))==''?null:trim($masterid),
+		              "cus_orgid" => $topOrgID);
 		$DB->doInsert($table, $data);
 		$cusid = $DB->lastInsertId();
 
@@ -62,7 +65,8 @@ class Main{
 			'sp_psid'       => $slotid,
 			'sp_platename'  => (trim($platename))==''?null:trim($platename),
 		    'sp_platemodel' => (trim($platemodel))==''?null:trim($platemodel),
-		    'sp_createdby'  => $USER->userid
+		    'sp_createdby'  => $USER->userid,
+		    'sp_orgid'      => $USER->orgid
 		    );
 		$table = 'smplate';
 		$DB->doInsert($table, $data);
@@ -87,6 +91,7 @@ class Main{
 	}
 	function createplate(){
 		global $HTML,$DB;
+		$HTML->addJS('js/code39.js');
 		html_header();
 		$shelf = $DB->GetArray("select * from smshelfsetting order by sf_seq,sf_code,sf_desc");
 

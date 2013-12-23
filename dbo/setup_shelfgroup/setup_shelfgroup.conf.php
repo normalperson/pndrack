@@ -7,10 +7,10 @@ $dbo->id = $dboID;
 $dbo->table = 'smshelfgroup';
 $dbo->key = array('sg_id');
 $dbo->sql = 'select * from smshelfgroup';
-$dbo->col = array('sg_id', 'sg_code', 'sg_groupname', 'sg_seq');
+$dbo->col = array('sg_id', 'sg_code', 'sg_groupname', 'sg_orgid', 'sg_seq');
 $dbo->colList = array('sg_code', 'sg_groupname', 'sg_seq');
 $dbo->colDetail = array('sg_id', 'sg_groupname', 'sg_seq');
-$dbo->colNew = array('sg_code', 'sg_groupname', 'sg_seq');
+$dbo->colNew = array('sg_groupname', 'sg_seq');
 $dbo->colEdit = array('sg_groupname', 'sg_seq');
 $dbo->colSearch = array('sg_groupname');
 $dbo->colExport = array('sg_id', 'sg_groupname', 'sg_seq');
@@ -85,6 +85,9 @@ $dbo->cols['sg_code']->option->listMethod = 'text';
 $dbo->cols['sg_code']->option->detailMethod = 'text';
 $dbo->cols['sg_code']->option->newMethod = 'text';
 $dbo->cols['sg_code']->option->editMethod = 'text';
+$dbo->cols['sg_orgid'] = new DBO_COL('sg_orgid', 'LONG', '11', '0');
+$dbo->cols['sg_orgid']->capContClassDefault = array();
+$dbo->cols['sg_orgid']->valContClassDefault = array();
 
 // support multiple language. only caption
 global $LANG;
@@ -100,8 +103,8 @@ $dbo->saveDir = dirname(dirname(__FILE__));
 $dbo->run();
 
 /*
-$dbo->newModifier = 'setup_shelfgroup_custom_new';
-function setup_shelfgroup_custom_new($table, $cols){
+$dbo->newModifier = 'dbo_setup_shelfgroup_custom_new';
+function dbo_setup_shelfgroup_custom_new($table, $cols){
 	global $DB;
 	$ret = array();
 	$ok = $DB->doInsert($table, $cols);
@@ -111,8 +114,8 @@ function setup_shelfgroup_custom_new($table, $cols){
 	return $ret;
 }
 
-$dbo->editModifier = 'setup_shelfgroup_custom_edit';
-function setup_shelfgroup_custom_edit($table, $cols, $wheres){
+$dbo->editModifier = 'dbo_setup_shelfgroup_custom_edit';
+function dbo_setup_shelfgroup_custom_edit($table, $cols, $wheres){
 	global $DB;
 	$ret = array();
 	$ok = $DB->doUpdate($table, $cols, $wheres);
@@ -122,12 +125,12 @@ function setup_shelfgroup_custom_edit($table, $cols, $wheres){
 	return $ret;
 }
 
-$dbo->searchModifier = 'setup_shelfgroup_custom_search';
-function setup_shelfgroup_custom_search(&$search){
+$dbo->searchModifier = 'dbo_setup_shelfgroup_custom_search';
+function dbo_setup_shelfgroup_custom_search(&$search){
 }
 
-$dbo->deleteModifier = 'setup_shelfgroup_custom_delete';
-function setup_shelfgroup_custom_delete($table, $wheres){
+$dbo->deleteModifier = 'dbo_setup_shelfgroup_custom_delete';
+function dbo_setup_shelfgroup_custom_delete($table, $wheres){
 	global $DB;
 	$ret = array();
 	$ok = $DB->doDelete($table, $wheres);
@@ -137,7 +140,7 @@ function setup_shelfgroup_custom_delete($table, $wheres){
 	return $ret;
 }
 
-function setup_shelfgroup_display_modifier($col, $colVal, $data=array(), $html=null){
+function dbo_setup_shelfgroup_display_modifier($col, $colVal, $data=array(), $html=null){
 }
 */
 ?>

@@ -9,7 +9,7 @@
             data-toggle="tooltip" data-placement="bottom" data-original-title="Click here to create new customer"></span>
             <input type="text" class="form-control" id="custname" name="custname" placeholder="Enter customer name" data-required="true">     
           </div>
-          <span class="help-block">Note......</span>       
+          <!-- <span class="help-block">Note......</span>        -->
         </div>
       </div>      
       <div class="form-group">
@@ -101,26 +101,23 @@
         <h4 class="modal-title">New plate created!</h4>
       </div>
       <div class="modal-body">
-        <form class="form-horizontal" role="form" id="newplateInfo">
-        <div class="form-group">
-          <div class="col-lg-10">      
-            <label for="nplocation">Location</label>
-            <span id="nplocation" style="font-size:1.5em;font-weight:bold"></span>
-          </div>
-        </div> 
-        <div class="form-group">
-          <div class="col-lg-10">      
-            <label for="npcustname">Customer Name</label>
-            <span id="npcustname"></span>
-          </div>
-        </div>
-        <div class="form-group">
-          <div class="col-lg-10">      
-            <label for="npcreatdby">Created By</label>
-            <span id="npcreatdby"></span>
-          </div>
-        </div>
-        </form>
+        <table class="table table-bordered" style="width:100%">
+          <tr>
+            <td>Location</td>
+            <td> <span id="nplocation" style="font-size:1.5em;font-weight:bold"></span></td>
+          </tr>
+          <tr>
+            <div id="npbarcode"></div>
+          </tr>
+          <tr>
+            <td>Customer Name</td>
+            <td><span id="npcustname"></span></td>
+          </tr>
+           <tr>
+            <td>Created By</td>
+            <td><span id="npcreatdby"></span></td>
+          </tr>
+        </table>        
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>

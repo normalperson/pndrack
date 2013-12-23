@@ -7,7 +7,7 @@ body{
 .dropdown-submenu{
     position:relative;
 }
- 
+
 .dropdown-submenu > .dropdown-menu
 {
     top:0;
@@ -20,7 +20,7 @@ body{
 }
  
 .dropdown-submenu:hover > .dropdown-menu{
-    display:block;
+    display:inline;
 }
  
 .dropdown-submenu > a:after{

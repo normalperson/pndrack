@@ -29,6 +29,7 @@ class rackOperation{
 
 		$smarty = $this->initSmarty();
 		html_header();
+		$dbo = dbo_include('plate_multiedit');
 
 	}
 	
