@@ -8,7 +8,7 @@ $dbo->table = 'fcuser';
 $dbo->key = array('usr_userid');
 $dbo->sql = 'select fcuser.*,\'\' userRole from fcuser
 order by usr_userid';
-$dbo->col = array('usr_userid', 'usr_password', 'usr_created', 'usr_name', 'usr_email', 'usr_last_active', 'usr_last_success_login', 'usr_last_fail_login', 'usr_group', 'usr_sessiondata', 'usr_langid', 'usr_status', 'usr_orgid', 'userRole');
+$dbo->col = array('usr_userid', 'usr_password', 'usr_created', 'usr_name', 'usr_email', 'usr_last_active', 'usr_last_success_login', 'usr_last_fail_login', 'usr_group', 'usr_sessiondata', 'usr_langid', 'usr_status', 'userRole');
 $dbo->colList = array('usr_userid', 'usr_name', 'usr_email', 'usr_status');
 $dbo->colDetail = array('usr_password', 'usr_name', 'usr_email', 'usr_status');
 $dbo->colNew = array('usr_userid', 'usr_password', 'usr_name', 'usr_email', 'userRole');
@@ -19,7 +19,7 @@ $dbo->colSort = array('usr_userid', 'usr_name');
 $dbo->canSearch = true;
 $dbo->canNew = true;
 $dbo->canEdit = true;
-$dbo->canDelete = false;
+$dbo->canDelete = true;
 $dbo->canDetail = true;
 $dbo->canListEdit = false;
 $dbo->canListNew = false;
@@ -324,8 +324,8 @@ $dbo->saveDir = dirname(dirname(__FILE__));
 $dbo->run();
 
 /*
-$dbo->newModifier = 'user_custom_new';
-function user_custom_new($table, $cols){
+$dbo->newModifier = 'dbo_user_custom_new';
+function dbo_user_custom_new($table, $cols){
 	global $DB;
 	$ret = array();
 	$ok = $DB->doInsert($table, $cols);
@@ -335,8 +335,8 @@ function user_custom_new($table, $cols){
 	return $ret;
 }
 
-$dbo->editModifier = 'user_custom_edit';
-function user_custom_edit($table, $cols, $wheres){
+$dbo->editModifier = 'dbo_user_custom_edit';
+function dbo_user_custom_edit($table, $cols, $wheres){
 	global $DB;
 	$ret = array();
 	$ok = $DB->doUpdate($table, $cols, $wheres);
@@ -346,12 +346,12 @@ function user_custom_edit($table, $cols, $wheres){
 	return $ret;
 }
 
-$dbo->searchModifier = 'user_custom_search';
-function user_custom_search(&$search){
+$dbo->searchModifier = 'dbo_user_custom_search';
+function dbo_user_custom_search(&$search){
 }
 
-$dbo->deleteModifier = 'user_custom_delete';
-function user_custom_delete($table, $wheres){
+$dbo->deleteModifier = 'dbo_user_custom_delete';
+function dbo_user_custom_delete($table, $wheres){
 	global $DB;
 	$ret = array();
 	$ok = $DB->doDelete($table, $wheres);
@@ -361,7 +361,7 @@ function user_custom_delete($table, $wheres){
 	return $ret;
 }
 
-function user_display_modifier($col, $colVal, $data=array(), $html=null){
+function dbo_user_display_modifier($col, $colVal, $data=array(), $html=null){
 }
 */
 ?>

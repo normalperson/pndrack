@@ -11,6 +11,7 @@ $dbo->cols['sf_code']->caption->set('default', 'Shelf Code', 'text');
 $dbo->cols['sf_desc']->caption->set('default', 'Description', 'text');
 $dbo->cols['sf_seq']->caption->set('default', 'Sequence', 'text');
 $dbo->cols['sf_totalplate']->caption->set('default', 'Total Slot', 'text');
+$dbo->cols['sf_orgid']->caption->set('default', 'sf_orgid', 'text');
 
 $dbo->titleList = 'List Record';
 $dbo->titleDetail = 'Detail';

@@ -5,6 +5,18 @@ require(dirname(__FILE__).DIRECTORY_SEPARATOR.'setup_shelf.conf.php');
 function setup_shelf_customize(&$dbo){
 }
 
+/*function getShelfGroup(){
+	global $DB,$USER;
+	$sql = "select sg_id,sg_groupname
+		from smshelfgroup
+		where sg_orgid = '".$USER->orgid."'
+		order by sg_seq";
+	
+	$result = $DB->GetArray($sql);
+	vd($result);
+	return $result;		
+}*/
+
 $dbo->newModifier = 'setup_shelf_custom_new';
 function setup_shelf_custom_new($table, $cols){
 	global $DB,$USER;
@@ -65,13 +77,15 @@ function setup_shelf_custom_delete($table, $wheres){
 	return $ret;
 }
 global $USER;
-
+/*
+vd($USER->userid);
+global $DB;
+$DB->showsql = true;*/
 if($USER->userid != 'admin') $dbo->whereSQL = "sf_orgid = '".$USER->orgid."'";
 
-$dbo->cols['sf_group']->option->default = 'select sg_id,sg_groupname
-from smshelfgroup
-where smshelfgroup = \''.$USER->orgid.'\'
-order by sg_seq';
+#$dbo->cols['op_packageid']->option->default = 'select pk_id, pk_description from smpackage where pk_id = 2 order by 2 asc';
+
+$dbo->cols['sf_sgid']->option->default = 'select sg_id,sg_groupname from smshelfgroup where sg_orgid = '.$USER->orgid.' order by sg_seq';
 # final rendering
 $dbo->render();
 echo '<input type="button" id="printlabel" class="btn btn-primary" value="Print Label" />';
