@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jan 04, 2014 at 08:40 PM
+-- Generation Time: Jan 04, 2014 at 08:50 PM
 -- Server version: 5.5.35
 -- PHP Version: 5.4.21
 
@@ -19,8 +19,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `pflex`
 --
-CREATE DATABASE IF NOT EXISTS `pflex` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-USE `pflex`;
 
 DELIMITER $$
 --
