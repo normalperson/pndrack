@@ -15,7 +15,6 @@ if(!empty($_POST['username'])){
 }else if(isset($_GET['forgot'])){
 	$forgotMessage = '';
 	$User->loginForm = 'forgot.html';
-	pr($_POST);
 	if(!empty($_POST['forgotemail'])){
 		$userid = $DB->getOne("select usr_userid from ".$DB->prefix."user where usr_email = :0", array($_POST['forgotemail']));
 		if($userid){
