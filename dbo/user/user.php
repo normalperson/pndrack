@@ -216,7 +216,7 @@ function user_custom_new($table, $cols){
 
 $dbo->editModifier = 'user_custom_edit';
 function user_custom_edit($table, $cols, $wheres){
-	global $DB;
+	global $DB, $USER;
 	$ret = array();
 	$rolecount=0;
 	$orgpostname = 'org';
@@ -242,13 +242,26 @@ function user_custom_edit($table, $cols, $wheres){
 
 	$userid = $cols['usr_userid'];
 	unset($cols['userRole']);
-	if(isset($cols['usr_password'])){
+	/* if(isset($cols['usr_password'])){
 		$oripassword = $DB->getOne("select usr_password from ".$DB->prefix."user where usr_userid = :0", array($wheres['usr_userid']));
 		if($oripassword==$cols['usr_password'] || empty($cols['usr_password'])){
 			unset($cols['usr_password']);
 		}
 	}
-	$cols['usr_password'] = User::genPassword($cols['usr_password']);
+	$cols['usr_password'] = User::genPassword($cols['usr_password']); */
+	if(isset($cols['currpassword'])){
+		$p = $DB->getOne("select usr_password from ".$DB->prefix."user where usr_userid = :0", array($USER->userid));
+		if(User::genPassword($cols['currpassword'])!=$p) return array("Invalid password");
+		if(isset($cols['newpassword'])){
+			if($cols['newpassword']!==$cols['newpassword2'])
+				return array('New password not match');
+			else
+				$cols['usr_password'] = User::genPassword($cols['newpassword']);
+		}
+	}
+	foreach(array('currpassword', 'newpassword', 'newpassword2') as $tmp){
+		if(array_key_exists($tmp, $cols)) unset($cols[$tmp]);
+	}
 	$ok = $DB->doUpdate($table, $cols, $wheres);
 	if($ok){
 		$sql = "Delete from $tblrel where uor_usrid = :0";
