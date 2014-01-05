@@ -40,6 +40,9 @@ $dbo->cols['usr_status']->caption->set('default', 'Status', 'text');
 $dbo->cols['usr_langid']->caption->set('default', 'usr_langid', 'text');
 $dbo->cols['userRole']->caption->set('default', 'userRole', 'text');
 $dbo->cols['usr_orgid']->caption->set('default', 'usr_orgid', 'text');
+$dbo->cols['currpassword']->caption->set('default', 'currpassword', 'text');
+$dbo->cols['newpassword']->caption->set('default', 'newpassword', 'text');
+$dbo->cols['newpassword2']->caption->set('default', 'newpassword2', 'text');
 
 $dbo->titleList = 'List User';
 $dbo->titleDetail = 'Detail';
