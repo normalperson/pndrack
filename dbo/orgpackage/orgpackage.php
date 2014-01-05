@@ -26,16 +26,59 @@ function dbo_orgpackage_custom_new($table, $cols){
 }
 
 function dbo_orgpackage_custom_edit($table, $cols, $wheres){
-	global $DB;
-	pr($cols);
-	pr($wheres);
-	$oriRS = $DB->getRow("select * from smorgpackage join smpackage on op_packageid = pk_id where op_id = :0", array($wheres['op_id']));
-	$newpackageRS = $DB->getRow("select * from smpackage where pk_id = :0", array($cols['op_packageid']));
+	global $DB, $USER;
+	$oriRS = $DB->getRow("select * from smorgpackage join smpackage on op_packageid = pk_id where op_id = :0", array($wheres['op_id']), PDO::FETCH_ASSOC);
+	$updateCols = $cols;
+	
+	$ret = $newCols = array();
+	
+	# check upgrade	
+	# package changed
+	if($cols['op_packageid']!=$oriRS['op_packageid']){
+		$newpackageRS = $DB->getRow("select * from smpackage where pk_id = :0", array($cols['op_packageid']));	
+		$enddate = date('Y-m-d', strtotime("+".$cols['months']." months", strtotime($cols['op_startdate'])-86400));
+		$newCols = array('op_orgid'=>$oriRS['op_orgid'], 'op_packageid'=>$cols['op_packageid'], 'op_created'=>date('Y-m-d H:i:s'), 'op_createby'=>$USER->userid, 'op_status'=>1, 'op_startdate'=>$cols['op_startdate'], 'op_enddate'=>$enddate, 'op_enddateori'=>$enddate, 'op_previd'=>$oriRS['op_id']);
+		# must upgrade only
+		if($newpackageRS['pk_price']<$oriRS['pk_price']){
+			return array('Downgrade is not allowed');
+		}
+		# if upgrade, new package startdate must within current package tenure
+		if(strtotime($newCols['op_startdate'])<strtotime($oriRS['op_startdate']) 
+		|| strtotime($newCols['op_startdate'])>strtotime($oriRS['op_enddate'])){
+			return array('Upgrade package not within current package tenure');
+		}
+		if(strtotime($enddate)<strtotime($oriRS['op_enddate'])){
+			return array('New package must not end earlier than current package');
+		}
+		//op_orid, op_packageid, op_created, op_createby, op_status, op_startdate, op_enddate, op_enddateori, op_previd
+		
+		$updateCols['op_enddate'] = date('Y-m-d', strtotime($newCols['op_startdate'])-86400);
+		foreach(array('months', 'op_packageid', 'op_startdate') as $tmp){
+			if(array_key_exists($tmp, $updateCols)) unset($updateCols[$tmp]);
+		}
+	}else{ # package no changed
+		if($updateCols['op_startdate']!=$oriRS['op_startdate'] || date('Y-m-d', strtotime("+".$cols['months']." months", strtotime($cols['op_startdate'])-86400))!=$oriRS['op_enddate']){
+			return array('Tenure is not modifiable');
+		}
+		foreach(array('months', 'op_packageid', 'op_startdate', 'op_enddate') as $tmp){
+			if(array_key_exists($tmp, $updateCols)) unset($updateCols[$tmp]);
+		}
+	}
+	/* d('oriRS : ');
 	pr($oriRS);
-	pr($newpackageRS);
-	return array('test');
-	$ret = array();
-	$ok = $DB->doUpdate($table, $cols, $wheres);
+	d('cols : ');
+	pr($cols);
+	d('newCols : ');
+	pr($newCols);
+	d('updateCols : ');
+	pr($updateCols);
+	return array('test'); */
+	
+	$ok = $DB->doUpdate($table, $updateCols, $wheres);
+	if(!$ok){
+		$ret[] = $DB->lastError;
+	}
+	$ok = $DB->doInsert($table, $newCols);
 	if(!$ok){
 		$ret[] = $DB->lastError;
 	}
