@@ -1,5 +1,5 @@
 <?php
-/*Last Modified by deswell on 23-12-2013 15:28:30*/
+/*Last Modified by admin on 05-01-2014 21:26:01*/
 $translate = array (
   'Shelf' => 'Shelf',
   'Report' => 'Report',
@@ -27,5 +27,9 @@ $translate = array (
   'Package Setup' => 'Package Setup',
   'Client User Menu' => 'Client User Menu',
   'Aging Report' => 'Aging Report',
+  'Menu Setup' => 'Menu Setup',
+  'Client Setting' => 'Client Setting',
+  'Admin Setting' => 'Admin Setting',
+  'New Org' => 'New Org',
 );
 ?>
