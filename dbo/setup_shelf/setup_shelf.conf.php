@@ -8,7 +8,7 @@ $dbo->table = 'smshelfsetting';
 $dbo->key = array('sf_id');
 $dbo->sql = 'select * from smshelfsetting
 order by sf_sgid, sf_seq';
-$dbo->col = array('sf_id', 'sf_sgid', 'sf_code', 'sf_desc', 'sf_totalplate', 'sf_seq');
+$dbo->col = array('sf_id', 'sf_sgid', 'sf_code', 'sf_desc', 'sf_totalplate', 'sf_orgid', 'sf_seq');
 $dbo->colList = array('sf_sgid', 'sf_code', 'sf_desc', 'sf_totalplate', 'sf_seq');
 $dbo->colDetail = array('sf_sgid', 'sf_code', 'sf_desc');
 $dbo->colNew = array('sf_sgid', 'sf_code', 'sf_desc', 'sf_totalplate', 'sf_seq');
@@ -119,8 +119,6 @@ $dbo->cols['sf_sgid']->inputTypeDefault = 'select';
 $dbo->cols['sf_sgid']->searchMode = 'exact';
 $dbo->cols['sf_sgid']->capContClassDefault = array();
 $dbo->cols['sf_sgid']->valContClassDefault = array();
-$dbo->cols['sf_sgid']->option->default = 'select sg_id, sg_groupname from smshelfgroup
-order by sg_seq';
 $dbo->cols['sf_sgid']->option->defaultMethod = 'sql';
 $dbo->cols['sf_sgid']->option->searchMethod = 'text';
 $dbo->cols['sf_sgid']->option->listMethod = 'text';
@@ -171,6 +169,17 @@ $dbo->cols['sf_totalplate']->option->listMethod = 'text';
 $dbo->cols['sf_totalplate']->option->detailMethod = 'text';
 $dbo->cols['sf_totalplate']->option->newMethod = 'text';
 $dbo->cols['sf_totalplate']->option->editMethod = 'text';
+$dbo->cols['sf_orgid'] = new DBO_COL('sf_orgid', 'LONG', '11', '0');
+$dbo->cols['sf_orgid']->inputTypeDefault = 'text';
+$dbo->cols['sf_orgid']->searchMode = 'exact';
+$dbo->cols['sf_orgid']->capContClassDefault = array();
+$dbo->cols['sf_orgid']->valContClassDefault = array();
+$dbo->cols['sf_orgid']->option->defaultMethod = 'text';
+$dbo->cols['sf_orgid']->option->searchMethod = 'text';
+$dbo->cols['sf_orgid']->option->listMethod = 'text';
+$dbo->cols['sf_orgid']->option->detailMethod = 'text';
+$dbo->cols['sf_orgid']->option->newMethod = 'text';
+$dbo->cols['sf_orgid']->option->editMethod = 'text';
 
 // support multiple language. only caption
 global $LANG;
@@ -186,8 +195,8 @@ $dbo->saveDir = dirname(dirname(__FILE__));
 $dbo->run();
 
 /*
-$dbo->newModifier = 'setup_shelf_custom_new';
-function setup_shelf_custom_new($table, $cols){
+$dbo->newModifier = 'dbo_setup_shelf_custom_new';
+function dbo_setup_shelf_custom_new($table, $cols){
 	global $DB;
 	$ret = array();
 	$ok = $DB->doInsert($table, $cols);
@@ -197,8 +206,8 @@ function setup_shelf_custom_new($table, $cols){
 	return $ret;
 }
 
-$dbo->editModifier = 'setup_shelf_custom_edit';
-function setup_shelf_custom_edit($table, $cols, $wheres){
+$dbo->editModifier = 'dbo_setup_shelf_custom_edit';
+function dbo_setup_shelf_custom_edit($table, $cols, $wheres){
 	global $DB;
 	$ret = array();
 	$ok = $DB->doUpdate($table, $cols, $wheres);
@@ -208,12 +217,12 @@ function setup_shelf_custom_edit($table, $cols, $wheres){
 	return $ret;
 }
 
-$dbo->searchModifier = 'setup_shelf_custom_search';
-function setup_shelf_custom_search(&$search){
+$dbo->searchModifier = 'dbo_setup_shelf_custom_search';
+function dbo_setup_shelf_custom_search(&$search){
 }
 
-$dbo->deleteModifier = 'setup_shelf_custom_delete';
-function setup_shelf_custom_delete($table, $wheres){
+$dbo->deleteModifier = 'dbo_setup_shelf_custom_delete';
+function dbo_setup_shelf_custom_delete($table, $wheres){
 	global $DB;
 	$ret = array();
 	$ok = $DB->doDelete($table, $wheres);
@@ -223,7 +232,7 @@ function setup_shelf_custom_delete($table, $wheres){
 	return $ret;
 }
 
-function setup_shelf_display_modifier($col, $colVal, $data=array(), $html=null){
+function dbo_setup_shelf_display_modifier($col, $colVal, $data=array(), $html=null){
 }
 */
 ?>

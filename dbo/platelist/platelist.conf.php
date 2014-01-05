@@ -358,8 +358,16 @@ $dbo->cols['ps_available']->option->detailMethod = 'text';
 $dbo->cols['ps_available']->option->newMethod = 'text';
 $dbo->cols['ps_available']->option->editMethod = 'text';
 $dbo->cols['sp_orgid'] = new DBO_COL('sp_orgid', 'LONG', '11', '0');
+$dbo->cols['sp_orgid']->inputTypeDefault = 'text';
+$dbo->cols['sp_orgid']->searchMode = 'exact';
 $dbo->cols['sp_orgid']->capContClassDefault = array();
 $dbo->cols['sp_orgid']->valContClassDefault = array();
+$dbo->cols['sp_orgid']->option->defaultMethod = 'text';
+$dbo->cols['sp_orgid']->option->searchMethod = 'text';
+$dbo->cols['sp_orgid']->option->listMethod = 'text';
+$dbo->cols['sp_orgid']->option->detailMethod = 'text';
+$dbo->cols['sp_orgid']->option->newMethod = 'text';
+$dbo->cols['sp_orgid']->option->editMethod = 'text';
 
 // support multiple language. only caption
 global $LANG;

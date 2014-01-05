@@ -10,11 +10,11 @@ class VMenu extends Menu{
 		$this->function = isset($_GET['webf'])?$_GET['webf']:'';
 	}
 	function renderMenu(){
-		global $DB,$parentMenuIds;
+		global $DB,$parentMenuIds,$USER;
 		$sql = "SELECT  menu_level,menu.mn_id, menu.mn_code, menu.mn_parentid, menu.mn_title, 
 				menu.mn_status, menu.mn_order, menu.mn_group, menu.mn_url, 
 				menu.mn_webflag, menu.mn_class, menu.mn_classlist, menu.mn_func, 
-				menu.mn_funclist, menu.mn_param
+				menu.mn_funclist, menu.mn_param,mn_pmscode
 				FROM    (
 				        SELECT  menu_hierarchy(mn_id) AS id, @level AS menu_level
 				        FROM    (
@@ -29,10 +29,14 @@ class VMenu extends Menu{
 				where mn_status = :0 order by mn_order ";
 		$menuArr = $DB->GetArray($sql,array('ACTIVE'));
 
-		foreach($menuArr as $menuitem){
+		foreach($menuArr as $i=>$menuitem){
+			if ($menuitem['mn_pmscode'] && !$USER->inGroup($menuitem['mn_pmscode'])) {
+				unset($menuArr[$i]);
+				continue;
+			}
           $parentMenuIds[] = $menuitem['mn_parentid'];
         }
-		
+	
 		$this->createTreeView($menuArr,1);
 	
 	}

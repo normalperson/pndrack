@@ -90,10 +90,10 @@ class Main{
 
 	}
 	function createplate(){
-		global $HTML,$DB;
+		global $HTML,$DB,$USER;
 		$HTML->addJS('js/code39.js');
 		html_header();
-		$shelf = $DB->GetArray("select * from smshelfsetting order by sf_seq,sf_code,sf_desc");
+		$shelf = $DB->GetArray("select * from smshelfsetting where sf_orgid = :0 order by sf_seq,sf_code,sf_desc",array($USER->orgid));
 
 		$smarty = $this->initSmarty();
 		$smarty->assign('shelf',$shelf);

@@ -108,11 +108,11 @@ function editorgrole($param1,$param12,$param3){
 
 			if($val['uor_seq'] == '1') {
 				$checked = 'checked';
-				$bgcolor = 'red';
+				$bgcolor = '#428bca';
 			}
 			else {
 				$checked = null;
-				$bgcolor = '#282D3C';
+				$bgcolor = '#FFFFFF';
 			}
 
 			$htmltr .= "<tr id='userorgrolerow_$num' style='background-color:$bgcolor'><td><input type='checkbox' id='checkbox_$num' name='checkbox_$num' value='1' $checked/></td>
@@ -417,9 +417,9 @@ usrVal.init({
 		$tablerow = $('#userorgrole tr');
 		$this = $(this);				
 		$tablerow.find(':checkbox').not(this).prop('checked', false);
-		$tablerow.not(this).css('background-color','#282D3C');
-		if($this.prop('checked')) $this.closest('tr').css('background-color','red');
-		else $this.closest('tr').css('background-color','#282D3C');
+		$tablerow.not(this).css('background-color','#FFFFFF');
+		if($this.prop('checked')) $this.closest('tr').css('background-color','#428bca');
+		else $this.closest('tr').css('background-color','#FFFFFF');
 	});
 })();
 function addrow(){
@@ -481,7 +481,7 @@ function addTableRow(table)
 	});
 	$tr.find("select [id^=userrole_]").removeAttr('value');
 	$tr.find(":checkbox").attr('checked', false);
-	$tr.css('background-color','#282D3C');	
+	$tr.css('background-color','#FFFFFF');	
 
 	// append the new row to the table
 	$(table).find("tbody tr:last").after($tr);

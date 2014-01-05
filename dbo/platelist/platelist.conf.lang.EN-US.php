@@ -31,6 +31,7 @@ $dbo->cols['ps_sfid']->caption->set('default', 'ps_sfid', 'text');
 $dbo->cols['ps_slotno']->caption->set('default', 'ps_slotno', 'text');
 $dbo->cols['ps_code']->caption->set('default', 'Location', 'text');
 $dbo->cols['ps_available']->caption->set('default', 'ps_available', 'text');
+$dbo->cols['sp_orgid']->caption->set('default', 'sp_orgid', 'text');
 
 $dbo->titleList = 'List Record';
 $dbo->titleDetail = 'Detail';
