@@ -21,7 +21,7 @@ if(!empty($_POST['username'])){
 			$newpassword = randomString(8);
 			$DB->execute("update ".$DB->prefix."user set usr_password = :0 where usr_userid = :1", array($User->genPassword($newpassword), $userid));
 			mail($_POST['forgotemail'], "New password for PND", "New password : ".$newpassword, "From: pndhelpdesk@pnd.com");
-			pr(array($_POST['forgotemail'], "New password for PND", "New password : ".$newpassword));
+			// pr(array($_POST['forgotemail'], "New password for PND", "New password : ".$newpassword));
 			$forgotMessage = 'Password reset. Please check email for new password.';
 		}else{
 			$forgotMessage = 'User not found!';
