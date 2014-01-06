@@ -26,6 +26,7 @@ $dbo->canNewGroup = array();
 $dbo->canEditGroup = array();
 $dbo->canDeleteGroup = array();
 $dbo->showSearch = true;
+$dbo->newModifier = 'dbo_setup_org_custom_new';
 $dbo->titleList = 'List Record';
 $dbo->titleDetail = 'Detail';
 $dbo->titleNew = 'New Record';

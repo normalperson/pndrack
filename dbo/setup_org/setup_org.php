@@ -26,6 +26,13 @@ function dbo_setup_org_custom_new($table, $cols){
 	$ok = $DB->doInsert($table, $cols);
 	if(!$ok){
 		$ret[] = $DB->lastError;
+	}else{
+		# create default user for new org. userid and password default to org code
+		$userCols = array('usr_userid'=>$cols['org_code'], 'usr_password'=>User::genPassword($cols['org_code']), 'usr_created'=>date('Y-m-d H:i:s'), 'usr_name'=>$cols['org_code'], 'usr_status'=>'ACTIVE');
+		$ok2 = $DB->doInsert($DB->prefix.'user', $userCols);
+		if(!$ok2){
+			$ret[] = $DB->lastError;
+		}
 	}
 	return $ret;
 }

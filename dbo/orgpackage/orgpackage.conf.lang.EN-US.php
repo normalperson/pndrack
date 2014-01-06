@@ -9,6 +9,8 @@ $dbo->cols['op_createby']->caption->set('default', 'op_createby', 'text');
 $dbo->cols['op_status']->caption->set('default', 'op_status', 'text');
 $dbo->cols['op_startdate']->caption->set('default', 'op_startdate', 'text');
 $dbo->cols['op_enddate']->caption->set('default', 'op_enddate', 'text');
+$dbo->cols['months']->caption->set('default', 'months', 'text');
+$dbo->cols['op_enddateori']->caption->set('default', 'op_enddateori', 'text');
 
 $dbo->titleList = 'List Record';
 $dbo->titleDetail = 'Detail';
