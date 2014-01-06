@@ -27,16 +27,25 @@ class VMenu extends Menu{
 				JOIN    fcmenu menu
 				ON      menu.mn_id = ho.id 
 				where mn_status = :0 order by mn_order ";
-		$menuArr = $DB->GetArray($sql,array('ACTIVE'));
+		/*$menuArr = $DB->GetArray($sql,array('ACTIVE'));
 
 		foreach($menuArr as $i=>$menuitem){
 			if ($menuitem['mn_pmscode'] && !$USER->inGroup($menuitem['mn_pmscode'])) {
-				unset($menuArr[$i]);
+				//unset($menuArr[$i]);
 				continue;
 			}
           $parentMenuIds[] = $menuitem['mn_parentid'];
+        }*/
+
+        $menuArr = $DB->GetArray($sql,array('ACTIVE'));
+		foreach($menuArr as $i=>$menuitem){
+			$grouparr = explode(",",$menuitem['mn_pmscode']);
+			if(!$USER->inGroup($grouparr)) {
+				unset($menuArr[$i]);
+				continue;
+			}
+           $parentMenuIds[] = $menuitem['mn_parentid'];
         }
-	
 		$this->createTreeView($menuArr,1);
 	
 	}
@@ -60,6 +69,7 @@ class VMenu extends Menu{
 				if ($currLevel == $prevLevel) echo " </li> ";
 
 				$url = '';
+				$classList = '';
 				if($menu['mn_webflag']=='Y'){
 					$classList = array($menu['mn_class']);
 					if($menu['mn_classlist']){
@@ -78,7 +88,7 @@ class VMenu extends Menu{
 					$url = $menu['mn_url'];
 				}
 				$class = '';
-				if(isset($_GET['webc']) && in_array($_GET['webc'], $classList)){
+				if(isset($_GET['webc']) &&$classList !='' && in_array($_GET['webc'], $classList)){
 					$class = "current";
 					$this->class = $_GET['webc'];
 					$this->classMenuCode = $menu['mn_code'];

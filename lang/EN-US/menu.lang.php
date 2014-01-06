@@ -1,5 +1,5 @@
 <?php
-/*Last Modified by deswell on 05-01-2014 21:29:03*/
+/*Last Modified by pndadmin on 06-01-2014 19:02:38*/
 $translate = array (
   'Main' => 'Main',
   'Create Plate' => 'Create Plate',
@@ -8,20 +8,18 @@ $translate = array (
   'Operation' => 'Operation',
   'Check In/Out' => 'Check In/Out',
   'Stock Count' => 'Stock Count',
-  'Report' => 'Report',
-  'Aging Report' => 'Aging Report',
   'Setting' => 'Setting',
+  'User Setup' => 'User Setup',
   'General Setting' => 'General Setting',
   'Shelf Setting' => 'Shelf Setting',
   'Shelf Group Setting' => 'Shelf Group Setting',
-  'User Setting' => 'User Setting',
-  'Client User Menu' => 'Client User Menu',
-  'User Setup' => 'User Setup',
+  'Primary User Setting' => 'Primary User Setting',
   'Role Setup' => 'Role Setup',
   'Permission Setup' => 'Permission Setup',
   'Org Setting' => 'Org Setting',
   'Package Setup' => 'Package Setup',
   'Menu Setup' => 'Menu Setup',
-  'Client Setting' => 'Client Setting',
+  'Report' => 'Report',
+  'Aging Report' => 'Aging Report',
 );
 ?>
