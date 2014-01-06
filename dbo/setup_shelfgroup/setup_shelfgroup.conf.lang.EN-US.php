@@ -5,6 +5,7 @@ $dbo->cols['sg_id']->caption->set('default', 'ID', 'text');
 $dbo->cols['sg_groupname']->caption->set('default', 'Group Name', 'text');
 $dbo->cols['sg_seq']->caption->set('default', 'Sequence', 'text');
 $dbo->cols['sg_code']->caption->set('default', 'Code', 'text');
+$dbo->cols['sg_orgid']->caption->set('default', 'sg_orgid', 'text');
 
 $dbo->titleList = 'List Record';
 $dbo->titleDetail = 'Detail';
