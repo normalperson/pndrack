@@ -1,5 +1,5 @@
 <?php
-/*Last Modified by pndadmin on 05-01-2014 18:45:49*/
+/*Last Modified by admin on 06-01-2014 14:46:13*/
 $translate = array (
   'Shelf' => 'Shelf',
   'Report' => 'Report',
@@ -30,5 +30,9 @@ $translate = array (
   'Client Setting' => 'Client Setting',
   'Admin Setting' => 'Admin Setting',
   'New Org' => 'New Org',
+  'Menu Setup' => 'Menu Setup',
+  'Admin User Setup' => 'Admin User Setup',
+  'Admin User Setting' => 'Admin User Setting',
+  'Primary User Setting' => 'Primary User Setting',
 );
 ?>

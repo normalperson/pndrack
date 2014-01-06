@@ -120,6 +120,11 @@ class Setting{
 		html_header();
 		$dbo = dbo_include('permission');
 	}
+	function menusetup(){
+		global $HTML;
+		html_header();
+		$dbo = dbo_include('menu');	
+	}
 	function printShelfLabel(){
 		global $DB;
 		$smarty = $this->initSmarty();
