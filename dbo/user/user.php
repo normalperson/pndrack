@@ -5,7 +5,7 @@ global $HTML;
 /*$HTML->addJS('js/jquery.min.js');*/
 $HTML->addJS('js/popup.js');
 function neworgrole(){
-	global $DB;
+	global $DB,$USER;
 
 	$orgpostname = 'org';
 	$tableprefix = $DB->prefix;
@@ -23,7 +23,8 @@ function neworgrole(){
 	$tableprefix = $DB->prefix;
 	$tblrole = $tableprefix.$rolepostname;
 
-	$roledata = $DB->GetArray("select rol_id,rol_code,rol_desc from $tblrole where rol_status = :0 ",array('ACTIVE'));
+	if($USER->userid == 'admin') $roledata = $DB->GetArray("select rol_id,rol_code,rol_desc from $tblrole where rol_status = :0 ",array('ACTIVE'));
+	else $roledata = $DB->GetArray("select rol_id,rol_code,rol_desc from $tblrole where rol_status = :0 and rol_code not in (:1,:2)",array('ACTIVE','admin','PNDADMIN'));
 
 	$roleHTML = "<select id='userrole_1' name='userrole_1'><option value='default'>--Select Role--</option>";
 	foreach ($roledata as $data){
@@ -97,7 +98,9 @@ function editorgrole($param1,$param12,$param3){
 			}
 			$orgHTML .= "</select>"; 
 
-			$roledata = $DB->GetArray("select rol_id,rol_code,rol_desc from $tblrole where rol_status = :0 ",array('ACTIVE'));
+			if($USER->userid == 'admin') $roledata = $DB->GetArray("select rol_id,rol_code,rol_desc from $tblrole where rol_status = :0 ",array('ACTIVE'));
+			else $roledata = $DB->GetArray("select rol_id,rol_code,rol_desc from $tblrole where rol_status = :0 and rol_code not in (:1,:2)",array('ACTIVE','admin','PNDADMIN'));
+			#$roledata = $DB->GetArray("select rol_id,rol_code,rol_desc from $tblrole where rol_status = :0 ",array('ACTIVE'));
 
 			$roleHTML = "<select id='userrole_$num' name='userrole_$num'><option value='default'>--Select Role--</option>";
 			foreach ($roledata as $data){

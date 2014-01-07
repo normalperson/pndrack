@@ -58,6 +58,7 @@ div.loginFormContainer span.company{
 }
 #captionContainer{
 	font-size:1.4em;
+	color:red;
 }
 #usernameContainer{
 	width:408px;

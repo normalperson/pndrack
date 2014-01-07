@@ -13,7 +13,8 @@
 		<td rowspan="2" class="formContainer">
 			<div class="loginFormContainer">
 				<form method="post">
-					<div id="captionContainer">Sign in with <span class="company">Phi Orion</span> account</div>
+<!-- 					<div id="captionContainer">Sign in with <span class="company">Phi Orion</span> account</div> -->
+					<div id="captionContainer">{$loginMessage}</div>
 					<div id="usernameContainer" onclick="document.getElementById('username').focus();">
 						<input type="text" name="username" id="username" autocomplete="off"  />
 					</div>
@@ -27,7 +28,7 @@
 						</label>
 					</div>-->
 					<div id="submitContainer">
-						<input type="submit" name="submit" id="submit" value=" "/> {$loginMessage}
+						<input type="submit" name="submit" id="submit" value=" "/> 
 					</div>
 					<div id="helpContainer">
 						<a href="/{$APP}/login.php?forgot=1">Can't sign in to your account?</a>

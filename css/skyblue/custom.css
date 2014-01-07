@@ -58,3 +58,7 @@ input.noborder{
 .settingtbl > tbody > tr > td {
     padding: 5px 5px 2px 2px;
 }
+span.mandatory:after {
+    content:" *";
+    color:red;
+}

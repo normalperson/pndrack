@@ -6,6 +6,8 @@ $dbo->cols['cus_name']->caption->set('default', 'Customer Name', 'text');
 $dbo->cols['cus_regno']->caption->set('default', 'Company Registration Number', 'text');
 $dbo->cols['cus_masterid']->caption->set('default', 'Master ID', 'text');
 $dbo->cols['noofplate']->caption->set('default', 'No. Of Plate', 'text');
+$dbo->cols['cus_contactno']->caption->set('default', 'Contact No', 'text');
+$dbo->cols['cus_orgid']->caption->set('default', 'cus_orgid', 'text');
 
 $dbo->titleList = 'Customer List';
 $dbo->titleDetail = 'Detail';
