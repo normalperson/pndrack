@@ -44,6 +44,7 @@ $dbo->lang = 'EN-US';
 $dbo->render = array();
 $dbo->detailBack = 'Back';
 $dbo->listEditSubmit = 'Submit';
+$dbo->whereSQL = 'usr_userid in (\'admin\', \'pndadmin\', \'userid\')';
 
 $dbo->cols['usr_userid'] = new DBO_COL('usr_userid', 'VAR_STRING', '150', '0');
 $dbo->cols['usr_userid']->inputTypeDefault = 'text';
@@ -173,7 +174,7 @@ $dbo->cols['usr_langid']->option->detailMethod = 'text';
 $dbo->cols['usr_langid']->option->newMethod = 'text';
 $dbo->cols['usr_langid']->option->editMethod = 'text';
 $dbo->cols['usr_status'] = new DBO_COL('usr_status', 'VAR_STRING', '96', '0');
-$dbo->cols['usr_status']->inputTypeDefault = 'text';
+$dbo->cols['usr_status']->inputTypeDefault = 'select';
 $dbo->cols['usr_status']->searchMode = 'exact';
 $dbo->cols['usr_status']->capContClassDefault = array();
 $dbo->cols['usr_status']->valContClassDefault = array();
