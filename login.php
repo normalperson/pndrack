@@ -58,7 +58,7 @@ function login_extra_check($userid){
 		}
 	}
 	$topOrgID = orgTopOrgID($orgID);
-	$cnt = $DB->getOne("select count(*) from smorgpackage where op_status = 1 and '".date('Y-m-d')."' between op_startdate and op_enddate");
+	$cnt = $DB->getOne("select count(*) from smorgpackage where op_orgid = :0 and op_status = 1 and '".date('Y-m-d')."' between op_startdate and op_enddate", array($topOrgID));
 	if(!$cnt)
 		return 'Package expired';
 }
