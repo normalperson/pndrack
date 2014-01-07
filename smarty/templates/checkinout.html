@@ -1,145 +1,76 @@
-<div id="content" class="content dbo_container dbo_theme_skyblue">
-<div class="container-fluid">
-  <div class="row-fluid">
-
-  <div>&nbsp;</div>
-
-    <div class="span2">
-      <button class="btn btn-primary" id="checkbtn" data-state="checkin">Check In</button>
+<form class="form-horizontal" role="form" id="frmcheckinout">
+    <div class="form-group ">
+    <div class="col-lg-12">        
+      <label for="barcode">Barcode</label>
+      <div id="searchdiv" class="input-group" style="padding-bottom:5px;width:100%">  
+        <input type="text" class="form-control" id="barcode" name="barcode" placeholder="Enter barcode" data-required="true">               
+        <span class="input-group-addon glyphicon glyphicon-barcode"></span>
+      </div>         
     </div>
-
-    <div class="control-group span4">
-      <label class="control-label" for="search">Manual Search</label>
-      <div class="controls">
-        <div class="input-prepend">
-          <span class="add-on"><i class="icon-search" ></i></span>
-          <input id="search"  name="search" type="text" placeholder="search">
-        </div>
-      </div>
+    </div>     
+    <div class="form-group ">
+    <div class="col-lg-12">        
+      <label for="msearch">Manual Search</label>
+      <div id="searchdiv" class="input-group" style="padding-bottom:5px;width:100%">  
+        <input type="text" class="form-control" id="msearch" name="msearch" placeholder="Enter plate name" data-required="true">         
+        <span class="input-group-addon glyphicon glyphicon-search"></span>
+      </div>         
+      <!-- <span class="help-block">Note......</span>        -->
     </div>
+    </div>   
 
-    <div class="control-group span4">
-      <label class="control-label" for="barcode">Barcode</label>
-      <div class="controls">
-        <div class="input-prepend">
-          <span class="add-on"><i class="icon-barcode" ></i></span>
-          <input id="barcode"  name="barcode" type="text" placeholder="barcode">
-        </div>
-      </div>
-    </div>
-
-    <div id="checkindiv" class="span10">
-      <fieldset>
-      <legend>Check In Info</legend>
-      <table width="100%" style="border:2px solid #006dcc">
-        <tr>
-          <td>Customer Name:</td>
-          <td>Sony</td>
-          <td>Last printed date:</td>
-          <td>14-Nov-2013</td>
-        </tr>
-        <tr>
-          <td>Board Barcode:</td>
-          <td>1650-A2-00000005</td>
-          <td>Board Created Date:</td>
-          <td>13-Nov-2013</td>
-        </tr>
-        <tr>
-          <td>Shelf Group:</td>
-          <td>1650</td>
-          <td>Printed Time:</td>
-          <td>1</td>
-        </tr>
-        <tr>
-          <td>Shelf:</td>
-          <td>A2</td>
-          <td>Printed Quantity:</td>
-          <td>1000</td>
-        </tr>
-      </table>
-      <br>
-
-      <table width="100%">
-        <tr>
-          <td>Print Quantity:</td>
-          <td><input type="text"> </td>
-        </tr>
-        <tr>
-          <td>Remark:</td>
-          <td><textarea rows="4" cols="100">
-          </textarea>
-          </td>
-        </tr>
-        <tfoot>
+    <div id="plateinfo" style="display:none">
+    <div class="form-group">
+      <div class="col-lg-12">
+        <fieldset>
+        <legend>Check In Info</legend>
+        <table width="100%" style="border:2px solid #006dcc">
           <tr>
-            <td colspan="2">
-              <button class="btn btn-primary">Save</button>
-              <button class="btn btn-primary">Clear</button>
-            </td>
+            <td>Customer Name:</td>
+            <td><span id="custname"></span></td>
+            <td>Last printed date:</td>
+            <td><span id="lastprintdate"></span></td>
           </tr>
-        </tfoot>
-      </table>
-      </fieldset>
+          <tr>
+            <td>Plate Name:</td>
+            <td><span id="platename"></span></td>
+            <td>Board Created Date:</td>
+            <td><span id="platecreateddate"></span></td>
+          </tr>
+          <tr>
+            <td>Barcode:</td>
+            <td><span id="pibarcode"></span></td>
+            <td>Printed Time:</td>
+            <td><span id="printedtime"></span></td>
+          </tr>
+          <tr>
+            <td>Shelf:</td>
+            <td><span id="shelf"></span></td>
+            <td>Printed Quantity:</td>
+            <td><span id="printedqty"></span></td>
+          </tr>
+        </table>      
+        </fieldset>
+      </div>
     </div>
-
-     <div id="checkoutdiv" class="span10 hide">
-      <fieldset>
-      <legend>Check Out Info</legend>      
-      <table width="100%" style="border:2px solid #006dcc">
-        <tr>
-          <td>Customer Name:</td>
-          <td>Sony</td>
-          <td>Last printed date:</td>
-          <td>14-Nov-2013</td>
-        </tr>
-        <tr>
-          <td>Board Barcode:</td>
-          <td>1650-A2-00000005</td>
-          <td>Board Created Date:</td>
-          <td>13-Nov-2013</td>
-        </tr>
-        <tr>
-          <td>Shelf Group:</td>
-          <td>1650</td>
-          <td>Printed Time:</td>
-          <td>1</td>
-        </tr>
-        <tr>
-          <td>Shelf:</td>
-          <td>A2</td>
-          <td>Printed Quantity:</td>
-          <td>1000</td>
-        </tr>
-      </table>
-      </fieldset>
+      
+    <div class="form-group ">
+      <div class="col-lg-12">        
+        <label for="printqty">Print Quantity</label>
+        <input type="text" class="form-control" id="printqty" name="printqty" placeholder="Enter quantity" data-required="true">         
+      </div>
+    </div>        
+    <div class="form-group ">
+      <div class="col-lg-12">        
+        <label for="remark">Remark</label>
+        <textarea class="form-control" rows="4" cols="100" id="remark"></textarea>
+      </div>
+    </div>     
+    <div class="form-group ">
+      <div class="col-lg-6">        
+      <button class="btn btn-lg btn-primary" id="btnclear" type="button">Clear</button>
+      <button class="btn btn-lg btn-primary" id="btnsave" type="button">Save</button>
+      </div>
     </div>
-</div><!-- end of row-fluid -->
-</div><!-- end of container-fluid -->
-
-</div><!-- end of container-fluid -->
-<script type="text/javascript">
-$btn = {
-  'checkinout' : $('#checkbtn')
-};
-$div = {
-  'checkindiv'   : $('#checkindiv'),
-  'checkoutdiv'  : $('#checkoutdiv')
-};
-
-$btn.checkinout.click(function(){
-  $this = $(this);
-  $state = $this.data('state');
-
-  if($state == 'checkin'){
-    $div.checkoutdiv.hide();
-    $div.checkindiv.show();
-    $this.data('state','checkout');
-    $this.html('Check Out');
-  }else{
-    $div.checkoutdiv.show();
-    $div.checkindiv.hide();
-    $this.data('state','checkin');
-    $this.html('Check In');
-  }
-});
-</script>
+    </div> <!-- end of plate info -->
+</form>

@@ -63,8 +63,9 @@ function setup_shelf_custom_delete($table, $wheres){
 	$cnt = $DB->GetOne($sql,array($wheres['sf_id'],'N'));
 
 	if($cnt > 0){
-		echo '<script>alert("You are not allow to delete shelf with board");</script>';
-		return;
+		//echo '<script>alert("You are not allow to delete shelf with board");</script>';
+		$ret = 'You are not allow to delete shelf with board';
+		return $ret;
 	}
 
 

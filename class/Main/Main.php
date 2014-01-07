@@ -112,7 +112,6 @@ class Main{
 	}*/
 	function getCustInfo(){
 		global $DB;
-		//sleep( 3 );
 		extract($_POST);
 		if (empty($term)) exit ;
 
@@ -128,6 +127,7 @@ class Main{
 		echo json_encode($custInfo);
 
 	}
+	
 
 	
 }
