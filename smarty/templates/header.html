@@ -9,6 +9,12 @@
 	<script type="text/javascript" src="{$js}"></script>
 {/foreach}
 	<title>{$title}</title>
+	<style type="text/css">
+		span.expiring{
+			color:red;
+			padding-right:10px;
+		}
+	</style>
 </head>
 <body>
 <nav class="navbar navbar-inverse navbar-fixed-top" >
@@ -20,7 +26,7 @@
       <span class="icon-bar"></span>
     </button>
   </div>
-	<div class="navbar-right">abc<a href="/{$APP}/web/Setting/profile">Profile</a> &nbsp; <a href="/{$APP}/login.php?logout=1">Log Out</a></div>
+	<div class="navbar-right"><span class="expiring">{$expiring}</span> <a href="/{$APP}/web/Setting/profile">Profile</a> &nbsp; <a href="/{$APP}/login.php?logout=1">Log Out</a></div>
 	<div class="nav-collapse" >
 		{$Menu->renderMenu()}
 	</div>
