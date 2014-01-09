@@ -47,7 +47,8 @@ function setup_shelf_custom_new($table, $cols){
 			$data = array( 
 				'ps_sfid' => $sfid,
 				'ps_slotno' => $slotno,
-				'ps_code' => $pscode
+				'ps_code' => $pscode,
+				'ps_orgid' => $USER->orgid
 				);
 			$ok = $DB->doInsert("smplateslot", $data);
 		}		

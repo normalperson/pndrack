@@ -24,6 +24,18 @@ class Report{
 		html_header();
 		$dbo = dbo_include('rpt_aging');
 	}
+	function rptsummbyplate(){
+		global $HTML,$DB;
+		
+		html_header();
+		$dbo = dbo_include('rpt_summbyplate');
+	}
+	function rptsummbycus(){
+		global $HTML,$DB;
+		
+		html_header();
+		$dbo = dbo_include('rpt_summbycustomer');
+	}
 	
 }
 
