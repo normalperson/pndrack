@@ -1,0 +1,82 @@
+<div class="col-lg-6">    
+  <table class="table table-striped">
+    <tbody>
+      <tr>
+        <td>Total Shelf</td>
+        <td style='text-align:right'>{$totalshelf}</td>
+      </tr>
+       <tr>
+        <td>Total Slot</td>
+        <td style='text-align:right'>{$summinfo.totalslot}</td>
+      </tr>
+      <tr>
+        <td>Total Available Slot</td>
+        <td style='text-align:right'>{$summinfo.availableslot}</td>
+      </tr>
+      <tr>
+        <td>Total Plate</td>
+        <td style='text-align:right'>{$summinfo.totalplate}</td>
+      </tr>   
+      <tr>
+        <td>Total Print Time</td>
+        <td style='text-align:right'>{$plateinfo.printtime}</td>
+      </tr>    
+      <tr>
+        <td>Total Quantity</td>
+        <td style='text-align:right'>{$plateinfo.printqty}</td>
+      </tr>    
+      <tr>
+        <td>Total Customer</td>
+        <td style='text-align:right'>{$totalcust}</td>
+      </tr>          
+    </tbody>  
+  </table>    
+</div>
+<div class="col-lg-6">   
+  <div id="slotsumm" style="min-width: 310px; height: 400px; margin: 0 auto">
+  </div>
+</div>
+<script type="text/javascript">
+var $piedata = {
+  'totalplate'     : parseInt({$summinfo.totalplate}),
+  'avaslot'    : parseInt({$summinfo.availableslot})  
+};
+{literal}
+$(document).ready(function() {
+  console.log($piedata);
+  // Build the chart
+    $('#slotsumm').highcharts({
+        chart: {
+            plotBackgroundColor: null,
+            plotBorderWidth: null,
+            plotShadow: false
+
+        },
+        title: {
+            text: 'Plate Summary'
+        },
+        tooltip: {
+          pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        },
+        plotOptions: {
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                dataLabels: {
+                    enabled: false
+                },
+                showInLegend: true
+            }
+        },
+         series: [{
+            type: 'pie',
+            name: 'Plate Summary',
+            data: [
+                ['Total Plates',   $piedata.totalplate],
+                ['Available Slot',      $piedata.avaslot]
+            ]
+        }]
+    });
+});
+{/literal}
+</script>

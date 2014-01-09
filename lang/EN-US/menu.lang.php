@@ -1,5 +1,5 @@
 <?php
-/*Last Modified by pndadmin on 06-01-2014 19:02:38*/
+/*Last Modified by admin on 09-01-2014 13:54:47*/
 $translate = array (
   'Main' => 'Main',
   'Create Plate' => 'Create Plate',
@@ -21,5 +21,8 @@ $translate = array (
   'Menu Setup' => 'Menu Setup',
   'Report' => 'Report',
   'Aging Report' => 'Aging Report',
+  'Dashboard' => 'Dashboard',
+  'Summary by plate report' => 'Summary by plate report',
+  'Summary by customer report' => 'Summary by customer report',
 );
 ?>

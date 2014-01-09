@@ -111,17 +111,17 @@ class Main{
 
 	}*/
 	function getCustInfo(){
-		global $DB;
+		global $DB,$USER;
 		extract($_POST);
 		if (empty($term)) exit ;
 
 		$sql = "select
 				*
 				from smcustomer
-				where ( cus_name COLLATE UTF8_GENERAL_CI like concat('%',:0,'%') 
-					  or cus_regno COLLATE UTF8_GENERAL_CI like concat( '%',:0,'%' ) )";
+				where cus_orgid = :0 and ( cus_name COLLATE UTF8_GENERAL_CI like concat('%',:1,'%') 
+					  or cus_regno COLLATE UTF8_GENERAL_CI like concat( '%',:1,'%' ) )";
 
-		$custInfo = $DB->GetArray($sql,array($term));
+		$custInfo = $DB->GetArray($sql,array($USER->orgid,$term));
 
 		// json_encode is available in PHP 5.2 and above, or you can install a PECL module in earlier versions
 		echo json_encode($custInfo);
