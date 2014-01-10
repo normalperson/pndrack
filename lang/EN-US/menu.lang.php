@@ -1,5 +1,5 @@
 <?php
-/*Last Modified by admin on 09-01-2014 13:54:47*/
+/*Last Modified by admin on 10-01-2014 13:54:04*/
 $translate = array (
   'Main' => 'Main',
   'Create Plate' => 'Create Plate',
@@ -24,5 +24,6 @@ $translate = array (
   'Dashboard' => 'Dashboard',
   'Summary by plate report' => 'Summary by plate report',
   'Summary by customer report' => 'Summary by customer report',
+  'Customer Demo Data' => 'Customer Demo Data',
 );
 ?>

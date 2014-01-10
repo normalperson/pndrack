@@ -146,6 +146,11 @@ class Setting{
  		$smarty->display('printlabel.html');
 
 	}
+	function democustdata(){
+		global $HTML;
+		html_header();
+		$dbo = dbo_include('demo_customerdata');	
+	}
 	
 }
 
