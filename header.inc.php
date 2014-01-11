@@ -1,7 +1,7 @@
 <?php
 require_once(dirname(__FILE__).DIRECTORY_SEPARATOR.'init.inc.php');
 function html_header($headerTemplate='header.html', $showAutoTime = true){
-	global $HTML,$THEME;
+	global $HTML, $THEME, $DB, $USER;
 	if($HTML->smarty){
 		require_once('inc/VMenu.inc.php');
 		$Menu = new VMenu();
@@ -23,6 +23,39 @@ function html_header($headerTemplate='header.html', $showAutoTime = true){
 		$HTML->smarty->assign('Menu', $Menu);
 		$HTML->smarty->assign('ShowAutoTime', $showAutoTime);
 		$HTML->smarty->assign('APP', APP);
+		
+		# pndrack package expiring
+		$expiring = '';
+		$cnt = $DB->getOne("select count(*) from fcuserorgrole where uor_usrid = :0 and uor_rolid in (1, 2)", array($USER->userid));
+		if(!$cnt){
+			require_once(DOC_DIR.'/inc/pndFunction.php');
+			$toporgID = userTopOrgID();
+			$rs = $DB->getArray("select op_id, op_startdate, op_enddate from smorgpackage where op_orgid = :0 and op_status = 1 and (('".date('Y-m-d')."' between op_startdate and op_enddate) or (op_startdate >= '".date('Y-m-d')."')) order by op_startdate asc", array($toporgID));
+			if(!$rs){
+				die('Invalid access. Package expired.');
+			}
+			$starttime = strtotime($rs[0]['op_startdate']);			
+			$maxendtime = $endtime = strtotime($rs[0]['op_enddate']);
+			$nowtime = strtotime(date('Y-m-d'));
+			if($nowtime < $starttime){
+				die('Invalid access. Package expired.');
+			}
+			for($i=1;$i<count($rs);$i++){
+				if(strtotime($rs[$i]['op_startdate'])==$maxendtime+86400){
+					$maxendtime = strtotime($rs[$i]['op_enddate']);
+				}
+			}
+			$timeleft = $maxendtime - $nowtime;
+			$dayleft = $timeleft/86400;
+			if($dayleft==0){
+				$expiring = 'Package is expiring today';
+			}else if($dayleft<=10){
+				$expiring = 'Package is expiring in '.$dayleft.' days';
+			}
+			// $expiring = date('Y-m-d', $maxendtime);
+		}		
+		$HTML->smarty->assign('expiring', $expiring);
+		
 		$HTML->genHeader($headerTemplate);
 	}
 }

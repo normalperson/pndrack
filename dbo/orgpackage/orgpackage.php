@@ -78,9 +78,11 @@ function dbo_orgpackage_custom_edit($table, $cols, $wheres){
 	if(!$ok){
 		$ret[] = $DB->lastError;
 	}
-	$ok = $DB->doInsert($table, $newCols);
-	if(!$ok){
-		$ret[] = $DB->lastError;
+	if($newCols){
+		$ok = $DB->doInsert($table, $newCols);
+		if(!$ok){
+			$ret[] = $DB->lastError;
+		}
 	}
 	return $ret;
 }
