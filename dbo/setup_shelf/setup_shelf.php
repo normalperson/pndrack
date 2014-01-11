@@ -69,12 +69,13 @@ function setup_shelf_custom_delete($table, $wheres){
 		return $ret;
 	}
 
-
 	$ok = $DB->doDelete($table, $wheres);
 	if(!$ok){
 		$ret[] = $DB->lastError;
 	}else{
-		//$sql ="delete from smplateslot where ps_sfid = :0"
+		// delete the plate info
+		$sql = "delete from smplateslot where ps_sfid =:0";
+		$ok = $DB->Execute($sql,array($wheres['sf_id']));
 	}
 	return $ret;
 }

@@ -11,7 +11,7 @@ $dbo->cols['sp_platename']->caption->set('default', 'Plate Name', 'text');
 $dbo->cols['sp_platemodel']->caption->set('default', 'Plate Model', 'text');
 $dbo->cols['sp_createddate']->caption->set('default', 'sp_createddate', 'text');
 $dbo->cols['sp_createdby']->caption->set('default', 'sp_createdby', 'text');
-$dbo->cols['cus_id']->caption->set('default', 'cus_id', 'text');
+$dbo->cols['cus_id']->caption->set('default', 'Customer', 'text');
 $dbo->cols['cus_name']->caption->set('default', 'Customer Name', 'text');
 $dbo->cols['cus_regno']->caption->set('default', 'cus_regno', 'text');
 $dbo->cols['cus_masterid']->caption->set('default', 'MasterID', 'text');
