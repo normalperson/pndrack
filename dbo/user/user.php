@@ -51,7 +51,7 @@ function neworgrole(){
 	return $html;
 }
 function editorgrole($param1,$param12,$param3){
-	global $DB;
+	global $DB, $USER;
 	// selected userid
 	$selecteduserid = $param3['usr_userid'];
 
