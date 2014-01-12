@@ -24,8 +24,8 @@ function setup_shelf_custom_new($table, $cols){
 	// validation
 	$cnt = $DB->GetOne("select count(*) from smshelfsetting where sf_code = :0 and sf_sgid = :1",array($cols['sf_code'],$cols['sf_sgid']));
 	if($cnt > 0){
-		echo '<script>alert("You are not allow to have duplicated shelf code in the same group");</script>';
-		return;
+		$ret = 'You are not allow to have duplicated shelf code in the same group';
+		return $ret;
 	}
 
 	// get shelf group code
