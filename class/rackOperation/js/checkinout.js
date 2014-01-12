@@ -12,7 +12,8 @@ $span = {
   pibarcode         : $('#pibarcode'),
   printednotime     : $('#printedtime'),
   shelf             : $('#shelf'),
-  printedqty        : $('#printedqty')
+  printedqty        : $('#printedqty'),
+  advsearch         : $('#advsearch')
 };
 $div = {
   plateinfo : $('#plateinfo')
@@ -42,6 +43,9 @@ function clearPlateInfo(){
   $div.plateinfo.slideUp( "slow" );
 }
 function populatePlateInfo(plateinfo, platesumm){
+  $input.barcode.val(plateinfo.ps_code);
+  $input.msearch.data('plateid', plateinfo.sp_id);
+  $input.msearch.val(plateinfo.sp_platename);
   $span.custname.text(plateinfo.cus_name);
   $span.lastprintdate.text(platesumm.lastprinteddate);
   $span.platename.text(plateinfo.sp_platename);
@@ -60,9 +64,36 @@ function getFormInfo(){
 
   return retArr;
 }
+function getParameterByName(name) {
+    name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+        results = regex.exec(location.search);
+    return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+}
+function selectplateinfo(plateid){
+  $.ajax({
+      url: "selectPlateInfo",
+      data: {plateid :plateid },
+      dataType: "json",
+      type: 'post',
+      success: function( data ) {
+        // populate the plate info table
+        populatePlateInfo(data.plateinfo[0],data.tranSumm[0]);     
+        // show the div
+        //console.log($div.plateinfo);
+        $div.plateinfo.slideDown( "slow");
+        //console.log('after show');
+      }
+  });
+}
 $( document ).ready(function() {
   $btn.btnclear.click(function(){
     clearPlateInfo();
+  });
+  $span.advsearch.click(function(){
+     if(window.location.href.indexOf("?") > 0) url = window.location.href.substring(0,window.location.href.indexOf("?"))+'/../../Main/searchplate';
+     else url = window.location.href  +'/../../Main/searchplate';
+     document.location = url;
   });
   $btn.btnsave.click(function(){
     console.log('save button');
@@ -75,6 +106,23 @@ $( document ).ready(function() {
           }
       });
       clearPlateInfo();
+  });
+  if(getParameterByName('psid') != ''){
+    var plateid = getParameterByName('psid');
+    selectplateinfo(plateid);
+  }
+  $input.barcode.keypress(function(e){
+    if(e.which == 13) {
+       $.ajax({
+          url: "barcodescan",
+          data: {barcode :$(this).val() },
+          type: 'post',
+          success: function( data ) {
+            // return plateid
+            selectplateinfo(data);
+          }
+      });
+    }
   });
   // search by company name or busines registration number
   $input.msearch.autocomplete({
@@ -98,22 +146,10 @@ $( document ).ready(function() {
     },
     select: function( event, ui ) {
       console.log('selected id = '+ui.item.plateid)
-      $input.msearch.data('plateid', ui.item.plateid);
+      
       // get plate info...
-      $.ajax({
-            url: "selectPlateInfo",
-            data: {plateid :ui.item.plateid },
-            dataType: "json",
-            type: 'post',
-            success: function( data ) {
-              // populate the plate info table
-              populatePlateInfo(data.plateinfo[0],data.tranSumm[0]);     
-              // show the div
-              console.log($div.plateinfo);
-              $div.plateinfo.slideDown( "slow");
-              console.log('after show');
-            }
-        });
+      selectplateinfo(ui.item.plateid);
+      
     }
   }); 
 });  

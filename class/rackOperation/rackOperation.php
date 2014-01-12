@@ -28,7 +28,7 @@ class rackOperation{
 	function stockcount(){
 		global $HTML;
 
-		$smarty = $this->initSmarty();
+		#$smarty = $this->initSmarty();
 		html_header();
 		$dbo = dbo_include('plate_multiedit');
 
@@ -53,7 +53,7 @@ class rackOperation{
 
 		$ret = array();
 		$sql = "select cus_name, sp_platename, date_format(sp_createddate, '%d-%M-%Y')  as createddate,
-					   ps_code, sf_desc
+					   ps_code, sf_desc,sp_id
 		        from smplate 
 		        join smcustomer on sp_cusid = cus_id 
 		        join smplateslot on sp_psid = ps_id 
@@ -90,6 +90,20 @@ class rackOperation{
 		$ok = $DB->doInsert('smbtransaction', $data);
 
 		echo $ok;
+	}
+	function barcodescan(){
+		global $DB,$USER;
+
+		extract($_POST);
+		$sql = "select sp_id from smplate join smplateslot on sp_psid = ps_id
+				where ps_code = :0 and ps_orgid = :1";
+		$plateid = $DB->GetOne($sql,array($barcode,$USER->orgid));
+
+		echo $plateid;
+	}
+	function transactionhistory(){
+		html_header();
+		$dbo = dbo_include('transaction_history');
 	}
 
 	
