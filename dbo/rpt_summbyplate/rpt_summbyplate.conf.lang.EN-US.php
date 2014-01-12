@@ -4,6 +4,7 @@ require_once(dirname(__FILE__).DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'ini
 $dbo->cols['totalqty']->caption->set('default', 'Total Print Quantity', 'text');
 $dbo->cols['totalprint']->caption->set('default', 'Count', 'text');
 $dbo->cols['sp_platename']->caption->set('default', 'Plate Name', 'text');
+$dbo->cols['sp_orgid']->caption->set('default', 'sp_orgid', 'text');
 
 $dbo->titleList = 'List Record';
 $dbo->titleDetail = 'Detail';

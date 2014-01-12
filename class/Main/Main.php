@@ -127,6 +127,16 @@ class Main{
 		echo json_encode($custInfo);
 
 	}
+	function getslot(){
+		global $DB;
+
+		extract($_POST);
+		$sql = "select min(ps_id) from smplateslot where ps_sfid = :0 and ps_available = :1";
+		$slotid = $DB->GetOne($sql,array($shelfid,'Y'));  
+		$pscode = $DB->GetOne("select ps_code from smplateslot where ps_id = :0",array($slotid));
+
+		echo $pscode;
+	}
 	
 
 	

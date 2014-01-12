@@ -135,7 +135,7 @@ $( document ).ready(function() {
         $span.npcreatdby.text(data.createdby);
         $span.npcustname.text($input.custname.val());
         //$div.npbarcode.text(data.location);
-        console.log(DrawCode39Barcode(data.location,1));
+        //console.log(DrawCode39Barcode(data.location,1));
         $div.npbarcode.html(DrawCode39Barcode(data.location,1));
         //get_object("inputdata").innerHTML=DrawCode39Barcode(get_object("inputdata").innerHTML,1);
         $div.mdplatelocation.modal('show');
