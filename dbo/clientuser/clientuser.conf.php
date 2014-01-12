@@ -44,7 +44,7 @@ $dbo->lang = 'EN-US';
 $dbo->render = array();
 $dbo->detailBack = 'Back';
 $dbo->listEditSubmit = 'Submit';
-$dbo->whereSQL = 'usr_userid in (\'admin\', \'user1\')';
+$dbo->whereSQL = 'usr_userid in (\'admin\', \'pndadmin\')';
 
 $dbo->cols['usr_userid'] = new DBO_COL('usr_userid', 'VAR_STRING', '150', '0');
 $dbo->cols['usr_userid']->inputTypeDefault = 'text';
