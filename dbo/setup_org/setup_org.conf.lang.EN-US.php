@@ -9,6 +9,10 @@ $dbo->cols['org_primaryid']->caption->set('default', 'org_primaryid', 'text');
 $dbo->cols['org_address']->caption->set('default', 'Address', 'text');
 $dbo->cols['org_contactno']->caption->set('default', 'Contact No', 'text');
 $dbo->cols['org_status']->caption->set('default', 'Status', 'text');
+$dbo->cols['packageid']->caption->set('default', 'packageid', 'text');
+$dbo->cols['month']->caption->set('default', 'month', 'text');
+$dbo->cols['startdate']->caption->set('default', 'startdate', 'text');
+$dbo->cols['months']->caption->set('default', 'months', 'text');
 
 $dbo->titleList = 'List Record';
 $dbo->titleDetail = 'Detail';
