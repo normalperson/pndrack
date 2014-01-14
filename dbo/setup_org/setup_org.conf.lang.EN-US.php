@@ -25,6 +25,8 @@ $dbo->text->editCancel = 'Cancel';
 $dbo->text->editSubmit = 'Edit';
 $dbo->text->newCancel = 'Cancel';
 $dbo->text->newSubmit = 'Save';
+$dbo->text->listNewEditSubmit = 'Submit';
 $dbo->text->detailCancel = 'Back';
+$dbo->text->detailDelete = 'Delete';
 
 ?>
