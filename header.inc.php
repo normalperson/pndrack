@@ -47,9 +47,12 @@ function html_header($headerTemplate='header.html', $showAutoTime = true){
 			}
 			$timeleft = $maxendtime - $nowtime;
 			$dayleft = $timeleft/86400;
+			$daycheck = 10;
+			$rs = $DB->getOne("select set_val from fcsetting where set_code = 'PNDEXPIRYDAYS'");
+			if($rs!==false) $daycheck = $rs;
 			if($dayleft==0){
 				$expiring = 'Package is expiring today';
-			}else if($dayleft<=10){
+			}else if($dayleft<=$daycheck){
 				$expiring = 'Package is expiring in '.$dayleft.' days';
 			}
 			// $expiring = date('Y-m-d', $maxendtime);
