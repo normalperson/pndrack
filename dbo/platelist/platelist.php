@@ -72,12 +72,20 @@ if($USER->userid != 'admin'){
 
 # final rendering
 $dbo->render();
+if($dbo->state == 'list') echo '<input type="button" id="printbarcode" class="btn btn-primary" value="Print Barcode" />';
 ?>
 <script type="text/javascript">
 $div = {
 	location : $('#dbo_platelist_edit_cont_ps_code')
 };
-
+$tbl = {
+	plateedit : $('#dbo_platelist_edittable tfoot .form_button')
+};
+/*$findparent = $('<input type="button" style="margin-right:5px" class="edit_cancel button" value="Find parent" id="findparent"/>');
+$findchild = $('<input type="button" style="margin-right:5px" class="edit_cancel button" value="Find child" id="findchild"/>');
+$tbl.plateedit.prepend($findparent);
+$tbl.plateedit.prepend($findchild);
+*/
 $btnLoadSlot = $('<a href="#" id="loadslot">Load Slot</a>');
 
 $div.location.append($btnLoadSlot);
@@ -101,5 +109,38 @@ $('#loadslot').click(function(){
 	      }
 	    });  
 	}
+});
+function fullScreenPopUp(url){
+	var params = [
+    'height='+screen.height,
+    'width='+screen.width,
+    'fullscreen=yes' // only works in IE, but here for completeness
+	].join(',');
+
+	var popup = window.open(url, 'popup_window', params); 
+	popup.moveTo(0,0);
+}
+$('#printbarcode').click(function(){
+	var plidarr = [], count=0;
+
+	$("input:checkbox:checked").each(function(){
+		if($(this).attr('id') != 'dboform_platelist_list_cb_toggle'){
+			plidarr.push($(this).val().split('=')[1]);
+		}
+		count++;
+	});
+/*	console.log('count = '+count);
+	console.log(plidarr);*/
+
+	if(count>0){
+		if(window.location.href.indexOf("?") > 0) url = window.location.href.substring(0,window.location.href.indexOf("?"))+'/../printBarcode?plidarr='+plidarr;
+		else url = window.location.href  +'/../printBarcode?plidarr='+plidarr;
+		
+
+		fullScreenPopUp(url);
+	}else{
+		alert('Please select at least one plate');
+	}
+
 });
 </script>

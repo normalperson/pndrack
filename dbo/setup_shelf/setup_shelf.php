@@ -16,6 +16,9 @@ function setup_shelf_customize(&$dbo){
 	vd($result);
 	return $result;		
 }*/
+/*function validation($data){
+	
+}*/
 
 $dbo->newModifier = 'setup_shelf_custom_new';
 function setup_shelf_custom_new($table, $cols){
@@ -27,6 +30,7 @@ function setup_shelf_custom_new($table, $cols){
 		$ret = 'You are not allow to have duplicated shelf code in the same group';
 		return $ret;
 	}
+
 
 	// get shelf group code
 	$sgname = $DB->GetOne("select sg_groupname from smshelfgroup where sg_id = :0",array($cols['sf_sgid']));
@@ -90,8 +94,10 @@ if($USER->userid != 'admin') $dbo->whereSQL = "sf_orgid = '".$USER->orgid."'";
 
 $dbo->cols['sf_sgid']->option->default = 'select sg_id,sg_groupname from smshelfgroup where sg_orgid = '.$USER->orgid.' order by sg_seq';
 # final rendering
+#vd($dbo);
 $dbo->render();
-echo '<input type="button" id="printlabel" class="btn btn-primary" value="Print Label" />';
+#vd($dbo->state);
+if($dbo->state == 'list') echo '<input type="button" id="printlabel" class="btn btn-primary" value="Print Label" />';
 ?>
 <script type="text/javascript">
 $btn = {
@@ -136,8 +142,9 @@ $btn.printlabel.click(function(){
 	});
 
 	if(count>0){
-		url = window.location.href  +'/../printShelfLabel?sfiarr='+sfidarr;
-
+		if(window.location.href.indexOf("?") > 0) url = window.location.href.substring(0,window.location.href.indexOf("?"))+'/../printShelfLabel?sfiarr='+sfidarr;
+		else url = window.location.href  +'/../printShelfLabel?sfiarr='+sfidarr;
+		//console.log(url);
 		fullScreenPopUp(url);
 	}else{
 		alert('Please select at least one shelf');

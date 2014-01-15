@@ -15,6 +15,8 @@ join smshelfgroup on sf_sgid = sg_id
 where sp_status = \'ACTIVE\'';
 $dbo->col = array('sp_id', 'cus_masterid', 'cus_name', 'sp_platename', 'sp_platemodel', 'ps_code', 'sf_id', 'sp_orgid', 'sp_status');
 $dbo->colList = array('cus_masterid', 'cus_name', 'sp_platename', 'sp_platemodel', 'ps_code', 'sp_status');
+$dbo->colListEdit = array('sp_status');
+$dbo->colListNew = array();
 $dbo->colDetail = array('cus_masterid', 'cus_name', 'sp_platename', 'sp_platemodel', 'ps_code', 'sp_status');
 $dbo->colNew = array('cus_masterid', 'cus_name', 'sp_platename', 'sp_platemodel', 'ps_code', 'sp_status');
 $dbo->colEdit = array('cus_masterid', 'cus_name', 'sp_platename', 'sp_platemodel', 'ps_code', 'sp_status');
@@ -45,6 +47,8 @@ $dbo->defaultState = 'list';
 $dbo->maxSortCount = 9;
 $dbo->lang = 'EN-US';
 $dbo->render = array();
+$dbo->colListedit = array('sp_status');
+$dbo->colListnew = array();
 $dbo->detailBack = 'Back';
 $dbo->listEditSubmit = 'Submit';
 

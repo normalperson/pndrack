@@ -137,7 +137,29 @@ class Main{
 
 		echo $pscode;
 	}
+	function printBarcode(){
+		global $DB,$HTML;
+		$smarty = $this->initSmarty();
+		$HTML->addJS('js/code39.js');
+
+		$plidarr = explode(",",$_GET['plidarr']);
+
+		$plateinfo = array();
+		// location, customer name, created by
+		$sql = "select ps_code,cus_name,sp_createdby,sp_id from smplate 
+				join smcustomer on sp_cusid = cus_id
+				join smplateslot on sp_psid = ps_id
+				where sp_id = :0";
+		foreach($plidarr as $key => $val){
+			$plateinfo[] = $DB->GetRow($sql,array($val));
+		}
 	
+		html_header('header.nh.html');
+		#vd($shelfinfo);die();
+		$smarty->assign('plateinfo',$plateinfo);
+ 		$smarty->display('printbarcode.html');
+
+	}
 
 	
 }
