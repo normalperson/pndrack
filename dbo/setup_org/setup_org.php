@@ -18,11 +18,15 @@ function dbo_setup_org_uniqueorgcode(){
 }
 
 function dbo_setup_org_custom_new($table, $cols){
-	global $DB;
+	global $DB, $USER;
+	$cols2 = $cols;
 	$cnt = $DB->getOne("select count(*) from ".$DB->prefix."org where org_code = :0", array($cols['org_code']));
 	if($cnt)
 		return array('Org Code not available');
 	$ret = array();
+	foreach(array('packageid', 'startdate', 'months') as $tmp){
+		if(array_key_exists($tmp, $cols)) unset($cols[$tmp]);
+	}
 	$ok = $DB->doInsert($table, $cols);
 	if(!$ok){
 		$ret[] = $DB->lastError;
@@ -30,13 +34,23 @@ function dbo_setup_org_custom_new($table, $cols){
 		$lastorgid = $DB->lastID();
 		# create default user for new org. userid and password default to org code
 		$userCols = array('usr_userid'=>$cols['org_code'], 'usr_password'=>User::genPassword($cols['org_code']), 'usr_created'=>date('Y-m-d H:i:s'), 'usr_name'=>$cols['org_code'], 'usr_status'=>'ACTIVE');
-		$ok2 = $DB->doInsert($DB->prefix.'user', $userCols);
-		if(!$ok2){
+		$ok = $DB->doInsert($DB->prefix.'user', $userCols);
+		if(!$ok){
 			$ret[] = $DB->lastError;
 		}else{
 			# default client admin
 			$ok = $DB->doInsert($DB->prefix.'userorgrole', array('uor_usrid'=>$cols['org_code'], 'uor_orgid'=>$lastorgid, 'uor_rolid'=>3, 'uor_seq'=>1));
 			if(!$ok) $ret[] = $DB->lastError;
+			# package
+			if(!$cols2['org_parentid'] && $cols2['packageid']){
+				$enddate = date('Y-m-d', strtotime("+".$cols2['months']." months", strtotime($cols2['startdate'])-86400));
+				$sql = "insert into smorgpackage (op_orgid, op_packageid, op_created, op_createby, op_status, op_startdate, op_enddate, op_enddateori) values (:0, :1, '".date('Y-m-d H:i:s')."', '".$USER->userid."', 1, ".$DB->quote($cols2['startdate']).", '".$enddate."', '".$enddate."')";
+				$bind = array($lastorgid, $cols2['packageid']);
+				$ok = $DB->execute($sql, $bind);
+				if(!$ok){
+					$ret[] = $DB->lastError;
+				}
+			}
 		}
 	}
 	return $ret;
