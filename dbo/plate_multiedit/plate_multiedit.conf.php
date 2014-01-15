@@ -146,7 +146,6 @@ $dbo->cols['sp_status']->searchMode = 'exact';
 $dbo->cols['sp_status']->capContClassDefault = array();
 $dbo->cols['sp_status']->valContClassDefault = array();
 $dbo->cols['sp_status']->option->default = 'ACTIVE|Active
-DAMAGE|Damage
 THROW|Throw';
 $dbo->cols['sp_status']->option->defaultMethod = 'text';
 $dbo->cols['sp_status']->option->searchMethod = 'text';

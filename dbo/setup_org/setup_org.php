@@ -20,10 +20,30 @@ function dbo_setup_org_uniqueorgcode(){
 function dbo_setup_org_custom_new($table, $cols){
 	global $DB, $USER;
 	$cols2 = $cols;
-	$cnt = $DB->getOne("select count(*) from ".$DB->prefix."org where org_code = :0", array($cols['org_code']));
-	if($cnt)
-		return array('Org Code not available');
+
+	
+	/*validation*/
+	// check duplicate org code
 	$ret = array();
+	$cnt = $DB->getOne("select count(*) from ".$DB->prefix."org where org_code = :0", array($cols['org_code']));
+	if($cnt) 	$ret = array('Org Code not available');
+
+	// check is there space between org code
+	if(preg_match('/\s/',$cols['org_code'])>0) $ret = array_merge($ret,array('Org code does not allow to have space in between.'));
+
+	// if package choice is not null 
+	if($cols['packageid'] != ''){
+		//check start date, month cannot be null
+		if($cols['startdate'] == null){
+			$ret = array_merge($ret,array('If you choose a package, package start date cannot be null'));
+		}
+		if($cols['months'] == null){
+			$ret = array_merge($ret,array('If you choose a package, package duration cannot be null'));	
+		}
+	}
+
+	if(count($ret) > 0) return $ret;
+
 	foreach(array('packageid', 'startdate', 'months') as $tmp){
 		if(array_key_exists($tmp, $cols)) unset($cols[$tmp]);
 	}
