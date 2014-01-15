@@ -36,11 +36,22 @@ function dbo_clientuser_custom_new($table, $cols){
 	global $DB;
 	$ret = array();
 	// $DB->showsql=1;
-	// pr($cols);
 	// pr($_POST);
+
+	/*validation*/
+	// check is there space between userid
+	if(preg_match('/\s/',$cols['usr_userid'])>0) $ret = array('Userid does not allow to have space in between.');
+
+	// validate email address format
+	if(!filter_var($cols['usr_email'], FILTER_VALIDATE_EMAIL)) $ret =  array_merge($ret,array('Invalid email address format.')); 
+
+	if(count($ret) > 0) return $ret;
+
 	# check userid availability
 	$cnt = $DB->getOne("select count(*) from ".$DB->prefix."user where usr_userid = :0", array($cols['usr_userid']));
 	if($cnt) return array('Userid not available');
+
+
 	if(!strlen(trim($cols['password1']))) return array('Password is mandatory');
 	if($cols['password1']!=$cols['password2']) return array('Password not match');
 	$cols['usr_password'] = User::genPassword($cols['password1']);
@@ -173,8 +184,8 @@ function neworgrole(){
 	$roleHTML .= "</select>"; 
 	$html = "<table id='userorgrole'>
 				<tr>
-				<th>Pri</th>
-				<th>Org</th>
+				<th>Primary</th>
+				<th>Organization</th>
 				<th>Role</th>
 				<th></th>
 				</tr>
@@ -215,8 +226,8 @@ function editorgrole($param1,$param12,$param3){
 
 	$htmlth = "<table id='userorgrole'>
 				<tr>
-				<th>Pri</th>
-				<th>Org</th>
+				<th>Primary</th>
+				<th>Organization</th>
 				<th>Role</th>
 				<th></th>
 				</tr>
@@ -228,7 +239,8 @@ function editorgrole($param1,$param12,$param3){
 		$i = 0;
 		foreach($relationshiparr as $key => $val){
 			$num = $i+1;
-			$orgdata = $DB->GetArray("select org_id,org_code,org_name from $tblorg where org_status = :0",array('ACTIVE'));
+			$toporgid = userTopOrgID();
+			$orgdata = $DB->GetArray("select org_id,org_code,org_name from $tblorg where org_status = :0 and org_id = :1",array('ACTIVE',$toporgid));
 
 			$orgHTML = "<select id='userorg_$num' name='userorg_$num'><option value='default'>--Select Org--</option>";
 			foreach ($orgdata as $data){

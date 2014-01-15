@@ -8,7 +8,7 @@ $dbo->cols['sp_parentid']->caption->set('default', 'sp_parentid', 'text');
 $dbo->cols['sp_psid']->caption->set('default', 'sp_psid', 'text');
 $dbo->cols['sp_masterid']->caption->set('default', 'sp_masterid', 'text');
 $dbo->cols['sp_platename']->caption->set('default', 'Plate Name', 'text');
-$dbo->cols['sp_platemodel']->caption->set('default', 'Plate Model', 'text');
+$dbo->cols['sp_platemodel']->caption->set('default', 'Other Description', 'text');
 $dbo->cols['sp_createddate']->caption->set('default', 'sp_createddate', 'text');
 $dbo->cols['sp_createdby']->caption->set('default', 'sp_createdby', 'text');
 $dbo->cols['cus_id']->caption->set('default', 'Customer', 'text');

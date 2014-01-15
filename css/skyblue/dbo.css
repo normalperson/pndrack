@@ -695,6 +695,17 @@ div.dbo_theme_skyblue td.dbo_container_search td.form_button input.search_submit
 div.dbo_theme_skyblue td.dbo_container_new{
 }
 
+div.dbo_theme_skyblue td.dbo_container_new pre.dbo_error_new{
+	color:red;
+	padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    color: #a94442;
+    background-color: #f2dede;
+    border-color: #ebccd1;
+}
+
 div.dbo_theme_skyblue td.dbo_container_new th.caption{
 	font-weight:normal;
 	text-align:left;
@@ -783,7 +794,16 @@ div.dbo_theme_skyblue td.dbo_container_new td.form_button input.new_submit:hover
 /* edit */
 div.dbo_theme_skyblue td.dbo_container_edit{
 }
-
+div.dbo_theme_skyblue td.dbo_container_edit pre.dbo_error_new{
+	color:red;
+	padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    color: #a94442;
+    background-color: #f2dede;
+    border-color: #ebccd1;
+}
 
 div.dbo_theme_skyblue td.dbo_container_edit th.caption{
 	font-weight:normal;
@@ -876,6 +896,17 @@ div.dbo_theme_skyblue td.dbo_container_edit td.form_button input.edit_submit:hov
 
 /* delete */
 div.dbo_theme_skyblue td.dbo_container_delete{
+}
+
+div.dbo_theme_skyblue td.dbo_container_delete pre.dbo_error_new{
+	color:red;
+	padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    color: #a94442;
+    background-color: #f2dede;
+    border-color: #ebccd1;
 }
 
 .dbo-icon {

@@ -9,7 +9,9 @@ $div = {
   mdcust : $('#mdnewcust'),
   mdplatelocation : $('#mdplatelocation'),
   npbarcode : $('#npbarcode'),
-  pcontent  : $('#mdplatelocation .modal-body')
+  pcontent  : $('#mdplatelocation .modal-body'),
+  alert     : $('#alertmsg'),
+  mdalert   : $('#mdalertmsg')
 };
 $btn = {
   savenewcust    : $('#savenewcust'),
@@ -82,8 +84,36 @@ function getPlateInfo(){
 
     return true;
 }
+function valNewPlate(){
+  var msg = '';
+  // if cusname is null 
+  if($.trim($input.custname.val()) == '') msg += '<p> Customer name cannot be null. </p>';
+
+  // if master card id is null 
+  if($.trim($input.mastercardid.val()) == '') msg += '<p>Master card id cannot be null. </p>';
+
+  // if shelf is null 
+  if($select.shelf.val() == 'default') msg += '<p>Shelf cannot be empty. </p>';
+
+  // if platename is null 
+  if($.trim($input.platename.val()) == '') msg += '<p>Plate name cannot be null. </p>';
+
+  return msg;
+}
+function valNewCust(){
+  var msg = '';
+  // if companyname is null 
+  if($.trim($input.companyname.val()) == '') msg += '<p> Company name cannot be null. </p>';
+
+  // if company regno is null 
+  if($.trim($input.compregno.val()) == '') msg += '<p> Company registration no cannot be null. </p>';
+
+  // if master card id is null 
+  if($.trim($input.mdmasterid.val()) == '') msg += '<p>Master card id cannot be null. </p>';  
+
+  return msg;
+}
 $( document ).ready(function() {
-  
   $span.newcust.tooltip('hide');
   $span.newcust.click(function(){
     clearNCmodal();
@@ -94,25 +124,33 @@ $( document ).ready(function() {
     Popup($div.pcontent.html());
   });
   $btn.savenewcust.click(function(){
-    // get the value and save into database
-    $.ajax({
-      url: "newcustomer",
-      type: "post",
-      async:false,
-      data: getModalVal(),
-      success: function (data,textStatus,jqXHR) {
-        // get the name and cus_id and assign back to input box        
-        $input.custname.val($input.companyname.val());
-        $input.mastercardid.val($input.mdmasterid.val());
-        $input.custname.data('cusid',data);
+    // validation    
+    var valmsg = valNewCust();
+    if(valmsg != ''){
+      $div.mdalert.html(valmsg);
+      $div.mdalert.show();
+      return ;
+    }
+    $div.mdalert.hide();
+      // get the value and save into database
+      $.ajax({
+        url: "newcustomer",
+        type: "post",
+        async:false,
+        data: getModalVal(),
+        success: function (data,textStatus,jqXHR) {
+          // get the name and cus_id and assign back to input box        
+          $input.custname.val($input.companyname.val());
+          $input.mastercardid.val($input.mdmasterid.val());
+          $input.custname.data('cusid',data);
 
-        // close the modal
-        $div.mdcust.modal('hide');
-      },
-      error: function (){
-        showAlert('Error in creating new customer');
-      }
-    });  
+          // close the modal
+          $div.mdcust.modal('hide');
+        },
+        error: function (){
+          showAlert('Error in creating new customer');
+        }
+      });  
   });
   // make auto complete and search by customer name
 
@@ -122,6 +160,14 @@ $( document ).ready(function() {
   });
 
   $btn.savenewplate.click(function(){
+    var valmsg = valNewPlate();
+    if(valmsg != ''){
+      $div.alert.html(valmsg);
+      $div.alert.show();
+      return ;
+    }
+    $div.alert.hide();
+
     // save into database
      $.ajax({
       url: "newplate",
@@ -136,14 +182,14 @@ $( document ).ready(function() {
         $span.npcustname.text($input.custname.val());
         //$div.npbarcode.text(data.location);
         //console.log(DrawCode39Barcode(data.location,1));
-        $div.npbarcode.html(DrawCode39Barcode(data.location,1));
+        $div.npbarcode.html(DrawCode39Barcode(data.location,0));
         //get_object("inputdata").innerHTML=DrawCode39Barcode(get_object("inputdata").innerHTML,1);
         $div.mdplatelocation.modal('show');
 
         clearForm();
       },
       error: function (){
-        showAlert('Error in creating new customer');
+        showAlert('Error in creating new plate');
       }
     }); 
   });

@@ -77,6 +77,10 @@ class Setting{
 		html_header();
 		$dbo = dbo_include('setup_shelfgroup');
 	}
+	function corgsetup(){
+		html_header();
+		$dbo = dbo_include('clientorg');
+	}
 	function updSetting(){
 		global $DB;
 

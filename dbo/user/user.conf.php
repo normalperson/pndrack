@@ -10,6 +10,8 @@ $dbo->sql = 'select fcuser.*,\'\' userRole, \'\' currpassword, \'\' as newpasswo
 order by usr_userid';
 $dbo->col = array('usr_userid', 'usr_password', 'usr_created', 'usr_name', 'usr_email', 'usr_last_active', 'usr_last_success_login', 'usr_last_fail_login', 'usr_group', 'usr_sessiondata', 'usr_langid', 'usr_status', 'userRole', 'currpassword', 'newpassword', 'newpassword2');
 $dbo->colList = array('usr_userid', 'usr_name', 'usr_email', 'usr_status');
+$dbo->colListEdit = array();
+$dbo->colListNew = array();
 $dbo->colDetail = array('usr_password', 'usr_name', 'usr_email', 'usr_status');
 $dbo->colNew = array('usr_userid', 'usr_password', 'usr_name', 'usr_email', 'userRole');
 $dbo->colEdit = array('usr_userid', 'usr_name', 'usr_email', 'usr_status', 'newpassword', 'newpassword2', 'userRole');
@@ -40,6 +42,8 @@ $dbo->defaultState = 'list';
 $dbo->maxSortCount = 9;
 $dbo->lang = 'EN-US';
 $dbo->render = array();
+$dbo->colListedit = array();
+$dbo->colListnew = array();
 $dbo->detailBack = 'Back';
 
 $dbo->cols['usr_userid'] = new DBO_COL('usr_userid', 'VAR_STRING', '150', '0');

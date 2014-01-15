@@ -1,0 +1,49 @@
+<html>
+<head>
+  <title>Print Barcode</title>
+</head>
+<body>
+<table class="table table-bordered">
+  <tbody>
+  <tr>
+  {assign var="i" value=0}
+  {foreach from=$plateinfo item="pi"}  
+      {if $i %2==0}
+      </tr><tr>
+      {/if}
+      <td>
+        <table class="table table-bordered" style="width:100%">
+        <tr>
+          <div id="npbarcode_{$pi.sp_id}"></div>
+        </tr>
+        <tr>
+          <td>Location</td>
+          <td><span id="location_{$pi.sp_id}">{$pi.ps_code}</span></td>
+        </tr>
+        <tr>
+          <td>Customer Name</td>
+          <td>{$pi.cus_name}</td>
+        </tr>
+         <tr>
+          <td>Created By</td>
+          <td>{$pi.sp_createdby}</td>
+        </tr>
+      </table>   
+      </td>      
+      {assign var="i" value=$i+1}
+  {/foreach} <!-- end of from=$plateinfo  -->
+  </tr>
+  </tbody>
+</table>
+</body>
+</html>
+<script type="text/javascript">
+$('span[id^=location_]').each(function(){
+  console.log('inside here');
+  var $this = $(this);
+  var barcodeval = $this.text();
+  var spid = $this.attr('id').split('_')[1];
+  $('#npbarcode_'+spid).html(DrawCode39Barcode(barcodeval,0));
+  
+});
+</script>
