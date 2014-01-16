@@ -26,19 +26,19 @@ function dbo_setup_org_custom_new($table, $cols){
 	// check duplicate org code
 	$ret = array();
 	$cnt = $DB->getOne("select count(*) from ".$DB->prefix."org where org_code = :0", array($cols['org_code']));
-	if($cnt) 	$ret = array('Org Code not available');
+	if($cnt) 	$ret = array(tl('Org Code not available',false,'valmessage'));
 
 	// check is there space between org code
-	if(preg_match('/\s/',$cols['org_code'])>0) $ret = array_merge($ret,array('Org code does not allow to have space in between.'));
+	if(preg_match('/\s/',$cols['org_code'])>0) $ret = array_merge($ret,array(tl('Org code does not allow to have space in between',false,'valmessage')));
 
 	// if package choice is not null 
 	if($cols['packageid'] != ''){
 		//check start date, month cannot be null
 		if($cols['startdate'] == null){
-			$ret = array_merge($ret,array('If you choose a package, package start date cannot be null'));
+			$ret = array_merge($ret,array( tl('If you choose a package, package start date cannot be null',false,'valmessage') ));
 		}
 		if($cols['months'] == null){
-			$ret = array_merge($ret,array('If you choose a package, package duration cannot be null'));	
+			$ret = array_merge($ret,array( tl('If you choose a package, package duration cannot be null',false,'valmessage') ));	
 		}
 	}
 

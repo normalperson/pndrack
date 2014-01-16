@@ -40,6 +40,7 @@ function clearForm(){
   $input.platemodel.val('');
   // make the select the first option
   $select.shelf.val('default');
+  $div.alert.hide();
 }
 function clearNCmodal(){
   $input.companyname.val('');
@@ -87,29 +88,29 @@ function getPlateInfo(){
 function valNewPlate(){
   var msg = '';
   // if cusname is null 
-  if($.trim($input.custname.val()) == '') msg += '<p> Customer name cannot be null. </p>';
+  if($.trim($input.custname.val()) == '') msg += '<p>'+$jsmsg.valcustname+' </p>';
 
   // if master card id is null 
-  if($.trim($input.mastercardid.val()) == '') msg += '<p>Master card id cannot be null. </p>';
+  if($.trim($input.mastercardid.val()) == '') msg += '<p>'+$jsmsg.mastercardid+' </p>';
 
   // if shelf is null 
-  if($select.shelf.val() == 'default') msg += '<p>Shelf cannot be empty. </p>';
+  if($select.shelf.val() == 'default') msg += '<p>'+$jsmsg.shelf+'</p>';
 
   // if platename is null 
-  if($.trim($input.platename.val()) == '') msg += '<p>Plate name cannot be null. </p>';
+  if($.trim($input.platename.val()) == '') msg += '<p>'+$jsmsg.platename+' </p>';
 
   return msg;
 }
 function valNewCust(){
   var msg = '';
   // if companyname is null 
-  if($.trim($input.companyname.val()) == '') msg += '<p> Company name cannot be null. </p>';
+  if($.trim($input.companyname.val()) == '') msg += '<p>'+$jsmsg.companyname+'</p>';
 
   // if company regno is null 
-  if($.trim($input.compregno.val()) == '') msg += '<p> Company registration no cannot be null. </p>';
+  if($.trim($input.compregno.val()) == '') msg += '<p> '+$jsmsg.compregno+'</p>';
 
   // if master card id is null 
-  if($.trim($input.mdmasterid.val()) == '') msg += '<p>Master card id cannot be null. </p>';  
+  if($.trim($input.mdmasterid.val()) == '') msg += '<p>'+$jsmsg.mastercardid+'</p>';  
 
   return msg;
 }

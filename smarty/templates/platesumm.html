@@ -2,31 +2,31 @@
   <table class="table table-striped">
     <tbody>
       <tr>
-        <td>Total Shelf</td>
+        <td>{'Total Shelf'|tl:true:'dashboard'} </td>
         <td style='text-align:right'>{$totalshelf}</td>
       </tr>
        <tr>
-        <td>Total Slot</td>
+        <td>{'Total Slot'|tl:true:'dashboard'}</td>
         <td style='text-align:right'>{$summinfo.totalslot}</td>
       </tr>
       <tr>
-        <td>Total Available Slot</td>
+        <td>{'Total Available Slot'|tl:true:'dashboard'}</td>
         <td style='text-align:right'>{$summinfo.availableslot}</td>
       </tr>
       <tr>
-        <td>Total Plate</td>
+        <td>{'Total Plate'|tl:true:'dashboard'}</td>
         <td style='text-align:right'>{$summinfo.totalplate}</td>
       </tr>   
       <tr>
-        <td>Total Print Time</td>
+        <td>{'Total Print Time'|tl:true:'dashboard'}</td>
         <td style='text-align:right'>{$plateinfo.printtime}</td>
       </tr>    
       <tr>
-        <td>Total Quantity</td>
+        <td>{'Total Quantity'|tl:true:'dashboard'}</td>
         <td style='text-align:right'>{$plateinfo.printqty}</td>
       </tr>    
       <tr>
-        <td>Total Customer</td>
+        <td>{'Total Customer'|tl:true:'dashboard'}</td>
         <td style='text-align:right'>{$totalcust}</td>
       </tr>          
     </tbody>  
@@ -40,6 +40,9 @@
 var $piedata = {
   'totalplate'     : parseInt({$summinfo.totalplate}),
   'avaslot'    : parseInt({$summinfo.availableslot})  
+};
+var chartmsg = {
+  'title'  : '{"Plate Summary"|tl:false:"dashboard"}'
 };
 {literal}
 $(document).ready(function() {
@@ -56,7 +59,7 @@ $(document).ready(function() {
           enabled: false
         },
         title: {
-            text: 'Plate Summary'
+            text: chartmsg.title
         },
         tooltip: {
           pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'

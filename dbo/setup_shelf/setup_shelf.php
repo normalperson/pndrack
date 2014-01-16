@@ -27,7 +27,7 @@ function setup_shelf_custom_new($table, $cols){
 	// validation
 	$cnt = $DB->GetOne("select count(*) from smshelfsetting where sf_code = :0 and sf_sgid = :1",array($cols['sf_code'],$cols['sf_sgid']));
 	if($cnt > 0){
-		$ret = 'You are not allow to have duplicated shelf code in the same group';
+		$ret = array( tl('You are not allow to have duplicated shelf code in the same group',false,'valmessage') );
 		return $ret;
 	}
 
@@ -69,7 +69,7 @@ function setup_shelf_custom_delete($table, $wheres){
 
 	if($cnt > 0){
 		//echo '<script>alert("You are not allow to delete shelf with board");</script>';
-		$ret = 'You are not allow to delete shelf with board';
+		$ret = array( tl('You are not allow to delete shelf with board',false,'valmessage') );
 		return $ret;
 	}
 

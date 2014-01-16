@@ -1,2 +1,2 @@
-ALTER TABLE pflex.smbtransaction
- CHANGE smb_sbid smb_spid INT(11);
+ALTER TABLE pflex.smshelfsetting
+ ADD sf_freeslot VARCHAR(20) DEFAULT 'Y' AFTER sf_orgid;

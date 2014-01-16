@@ -33,8 +33,8 @@ function neworgrole(){
 	$roleHTML .= "</select>"; 
 	$html = "<table id='userorgrole'>
 				<tr>
-				<th>Pri</th>
-				<th>Org</th>
+				<th>Primary</th>
+				<th>Organization</th>
 				<th>Role</th>
 				<th></th>
 				</tr>
@@ -75,8 +75,8 @@ function editorgrole($param1,$param12,$param3){
 
 	$htmlth = "<table id='userorgrole'>
 				<tr>
-				<th>Pri</th>
-				<th>Org</th>
+				<th>Primary</th>
+				<th>Organization</th>
 				<th>Role</th>
 				<th></th>
 				</tr>
@@ -166,6 +166,19 @@ function user_custom_new($table, $cols){
 	global $DB;
 	$ret = array();
 	$rolecount=0;
+
+	/*validation*/
+	// check is there space between userid
+	if(preg_match('/\s/',$cols['usr_userid'])>0) $ret = array( tl('Userid does not allow to have space in between',false,'valmessage') );
+
+	// validate email address format
+	if(!filter_var($cols['usr_email'], FILTER_VALIDATE_EMAIL)) $ret =  array_merge($ret,array( tl('Invalid email address format',false,'valmessage') )); 
+
+	if(count($ret) > 0) return $ret;
+
+	# check userid availability
+	$cnt = $DB->getOne("select count(*) from ".$DB->prefix."user where usr_userid = :0", array($cols['usr_userid']));
+	if($cnt) return array( tl('Userid not available',false,'valmessage') );
 
 	$orgpostname = 'org';
 	$tableprefix = $DB->prefix;

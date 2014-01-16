@@ -1,7 +1,7 @@
 <form class="form-horizontal" role="form" id="frmcheckinout">
     <div class="form-group ">
     <div class="col-lg-12">        
-      <label for="barcode">Barcode</label>
+      <label for="barcode">{'Barcode'|tl:true:'transaction'}</label>
       <div id="searchdiv" class="input-group" style="padding-bottom:5px;width:100%">  
         <input type="text" class="form-control" id="barcode" name="barcode" placeholder="Enter barcode" data-required="true">               
         <span class="input-group-addon glyphicon glyphicon-barcode"></span>
@@ -10,7 +10,7 @@
     </div>     
     <div class="form-group ">
     <div class="col-lg-12">        
-      <label for="msearch">Manual Search</label>
+      <label for="msearch">{'Manual Search'|tl:true:'transaction'}</label>
       <div id="searchdiv" class="input-group" style="padding-bottom:5px;width:100%">  
         <input type="text" class="form-control" id="msearch" name="msearch" placeholder="Enter plate name" data-required="true">         
         <span class="input-group-addon glyphicon glyphicon-search" id="advsearch"></span>
@@ -23,30 +23,30 @@
     <div class="form-group">
       <div class="col-lg-12">
         <fieldset>
-        <legend>Check In Info</legend>
+        <legend>{'Check In Info'|tl:true:'transaction'}</legend>
         <table width="100%" style="border:2px solid #006dcc">
           <tr>
-            <td>Customer Name:</td>
+            <td>{'Customer Name'|tl:true:'transaction'}:</td>
             <td><span id="custname"></span></td>
-            <td>Last printed date:</td>
+            <td>{'Last printed date'|tl:true:'transaction'}:</td>
             <td><span id="lastprintdate"></span></td>
           </tr>
           <tr>
-            <td>Plate Name:</td>
+            <td>{'Plate Name'|tl:true:'transaction'}:</td>
             <td><span id="platename"></span></td>
-            <td>Board Created Date:</td>
+            <td>{'Board Created Date'|tl:true:'transaction'}:</td>
             <td><span id="platecreateddate"></span></td>
           </tr>
           <tr>
-            <td>Barcode:</td>
+            <td>{'Barcode'|tl:true:'transaction'}:</td>
             <td><span id="pibarcode"></span></td>
-            <td>Printed Time:</td>
+            <td>{'Printed Time'|tl:true:'transaction'}:</td>
             <td><span id="printedtime"></span></td>
           </tr>
           <tr>
-            <td>Shelf:</td>
+            <td>{'Shelf'|tl:true:'transaction'}:</td>
             <td><span id="shelf"></span></td>
-            <td>Printed Quantity:</td>
+            <td>{'Printed Quantity'|tl:true:'transaction'}:</td>
             <td><span id="printedqty"></span></td>
           </tr>
         </table>      
@@ -56,20 +56,20 @@
       
     <div class="form-group ">
       <div class="col-lg-12">        
-        <label for="printqty">Print Quantity</label>
+        <label for="printqty">{'Print Quantity'|tl:true:'transaction'}</label>
         <input type="text" class="form-control" id="printqty" name="printqty" placeholder="Enter quantity" data-required="true">         
       </div>
     </div>        
     <div class="form-group ">
       <div class="col-lg-12">        
-        <label for="remark">Remark</label>
+        <label for="remark">{'Remark'|tl:true:'transaction'}</label>
         <textarea class="form-control" rows="4" cols="100" id="remark"></textarea>
       </div>
     </div>     
     <div class="form-group ">
       <div class="col-lg-6">        
-      <button class="btn btn-lg btn-primary" id="btnclear" type="button">Clear</button>
-      <button class="btn btn-lg btn-primary" id="btnsave" type="button">Save</button>
+      <button class="btn btn-lg btn-primary" id="btnclear" type="button">{'Clear'|tl:false:'transaction'}</button>
+      <button class="btn btn-lg btn-primary" id="btnsave" type="button">{'Save'|tl:false:'transaction'}</button>
       </div>
     </div>
     </div> <!-- end of plate info -->

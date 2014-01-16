@@ -40,20 +40,20 @@ function dbo_clientuser_custom_new($table, $cols){
 
 	/*validation*/
 	// check is there space between userid
-	if(preg_match('/\s/',$cols['usr_userid'])>0) $ret = array('Userid does not allow to have space in between.');
+	if(preg_match('/\s/',$cols['usr_userid'])>0) $ret = array( tl('Userid does not allow to have space in between',false,'valmessage') );
 
 	// validate email address format
-	if(!filter_var($cols['usr_email'], FILTER_VALIDATE_EMAIL)) $ret =  array_merge($ret,array('Invalid email address format.')); 
+	if(!filter_var($cols['usr_email'], FILTER_VALIDATE_EMAIL)) $ret =  array_merge($ret,array( tl('Invalid email address format',false,'valmessage') )); 
 
 	if(count($ret) > 0) return $ret;
 
 	# check userid availability
 	$cnt = $DB->getOne("select count(*) from ".$DB->prefix."user where usr_userid = :0", array($cols['usr_userid']));
-	if($cnt) return array('Userid not available');
+	if($cnt) return array( tl('Userid not available',false,'valmessage') );
 
 
-	if(!strlen(trim($cols['password1']))) return array('Password is mandatory');
-	if($cols['password1']!=$cols['password2']) return array('Password not match');
+	if(!strlen(trim($cols['password1']))) return array( tl('Password is mandatory',false,'valmessage') );
+	if($cols['password1']!=$cols['password2']) return array( tl('Password not match',false,'valmessage') );
 	$cols['usr_password'] = User::genPassword($cols['password1']);
 	foreach(array('password1', 'password2', 'userRole') as $tmp){
 		if(array_key_exists($tmp, $cols)) unset($cols[$tmp]);
@@ -71,7 +71,7 @@ function dbo_clientuser_custom_new($table, $cols){
 			if(strpos($key, 'userorg_')!==false){
 				$no = str_replace('userorg_', '', $key);
 				if($_POST[$key]=='default' || $_POST['userrole_'.$no]=='default'){
-					return array('Invalid organization or role');
+					return array( tl('Invalid organization or role',false,'valmessage') );
 				}
 				if(isset($_POST['checkbox_'.$no])){
 					$seq = '1';
@@ -103,7 +103,7 @@ function dbo_clientuser_custom_edit($table, $cols, $wheres){
 	$ret = array();
 	if(isset($cols['password1']) && strlen($cols['password1'])){
 		if($cols['password1']!==$cols['password2'])
-			return array('New password not match');
+			return array( tl('New password not match',false,'valmessage') );
 		else
 			$cols['usr_password'] = User::genPassword($cols['password1']);
 	}
