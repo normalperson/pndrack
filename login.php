@@ -61,5 +61,23 @@ function login_extra_check($userid){
 	$cnt = $DB->getOne("select count(*) from smorgpackage where op_orgid = :0 and op_status = 1 and '".date('Y-m-d')."' between op_startdate and op_enddate", array($topOrgID));
 	if(!$cnt)
 		return 'Package expired';
+		
+	# check org status
+	$rs = $DB->getArray("select orga.org_id, orga.org_parentid, orga.org_status, orgb.org_status as parent_org_status from fcuser join fcuserorgrole on usr_userid = uor_usrid join fcorg orga on uor_orgid = orga.org_id left join fcorg orgb on orga.org_parentid = orgb.org_id where uor_usrid = :0", array($userid));
+	if(!$rs){
+		return 'Invalid organization / role';
+	}else{
+		$hasActiveOrg = false;
+		foreach($rs as $row){
+			if($row['org_parentid']){
+				if($row['org_status']=='ACTIVE' && $row['parent_org_status']=='ACTIVE')
+					$hasActiveOrg = true;
+			}else{
+				if($row['org_status']=='ACTIVE')
+					$hasActiveOrg = true;
+			}
+		}
+		if(!$hasActiveOrg) return 'Inactive Organization';
+	}
 }
 ?>
