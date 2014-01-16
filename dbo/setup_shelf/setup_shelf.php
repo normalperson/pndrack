@@ -23,6 +23,7 @@ function setup_shelf_customize(&$dbo){
 $dbo->newModifier = 'setup_shelf_custom_new';
 function setup_shelf_custom_new($table, $cols){
 	global $DB,$USER;
+	$toporgid = userTopOrgID();
 	$ret = array();
 	// validation
 	$cnt = $DB->GetOne("select count(*) from smshelfsetting where sf_code = :0 and sf_sgid = :1",array($cols['sf_code'],$cols['sf_sgid']));
@@ -30,6 +31,25 @@ function setup_shelf_custom_new($table, $cols){
 		$ret = array( tl('You are not allow to have duplicated shelf code in the same group',false,'valmessage') );
 		return $ret;
 	}
+	// total slot cannot be more then their license
+	if($USER->userid !='admin' || $USER->userid != 'pndadmin'){
+		$maxplate = $DB->GetOne("select pk_maxplate from smpackage where pk_id = :0",array($USER->packageID));
+		$sql = "select sum(sf_totalplate) from fcorg join smshelfsetting on sf_orgid = org_id
+				where org_id = :0
+				or org_parentid = :1 ";
+		$totalplate = $DB->GetOne($sql,array($USER->orgid,$toporgid));
+
+		$newtotalplate = $totalplate + $cols['sf_totalplate'];
+		if($newtotalplate > $maxplate ) {
+			$ret = array( tl('Your package does not allow to create more shelf with this amount of slot',false,'valmessage') );
+			return $ret;
+		}
+
+
+	}
+	
+
+
 
 
 	// get shelf group code

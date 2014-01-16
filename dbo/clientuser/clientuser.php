@@ -28,22 +28,45 @@ function dbo_clientuser_custom_delete($table, $wheres){
 	$ok = $DB->doDelete($table, $wheres);
 	if(!$ok){
 		$ret[] = $DB->lastError;
+	}else{
+		// need to delete the same thing in fcuserorgrole
+		$sql = "delete from fcuserorgrole where uor_usrid = :0";
+		$ok = $DB->Execute($sql,array($wheres['usr_userid']));
+		if(!$ok) $ret[] = $DB->lastError;
 	}
 	return $ret;
 }
 
 function dbo_clientuser_custom_new($table, $cols){
-	global $DB;
+	global $DB,$USER;
 	$ret = array();
 	// $DB->showsql=1;
 	// pr($_POST);
-
+	$toporgid = userTopOrgID();
 	/*validation*/
 	// check is there space between userid
 	if(preg_match('/\s/',$cols['usr_userid'])>0) $ret = array( tl('Userid does not allow to have space in between',false,'valmessage') );
 
 	// validate email address format
 	if(!filter_var($cols['usr_email'], FILTER_VALIDATE_EMAIL)) $ret =  array_merge($ret,array( tl('Invalid email address format',false,'valmessage') )); 
+
+	// check total user on their package
+	if($USER->userid !='admin' || $USER->userid != 'pndadmin'){
+		$maxuser = $DB->GetOne("select pk_maxuser from smpackage where pk_id = :0",array($USER->packageID));
+		$sql = "select count(*) from fcorg join fcuserorgrole on uor_orgid = org_id
+				where org_id = :0
+				or org_parentid = :1 ";
+		$totaluser = $DB->GetOne($sql,array($USER->orgid,$toporgid));
+
+		$newtotaluser = $totaluser + 1;
+		if($newtotaluser > $maxuser ) {
+			$ret = array( tl('Your package does not allow to create more user',false,'valmessage') );
+			return $ret;
+		}
+
+
+	}
+	
 
 	if(count($ret) > 0) return $ret;
 

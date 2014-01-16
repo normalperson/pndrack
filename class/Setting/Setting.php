@@ -155,6 +155,11 @@ class Setting{
 		html_header();
 		$dbo = dbo_include('demo_customerdata');	
 	}
+	function contentmanagement(){
+		global $HTML, $DB;
+		html_header();		
+		$dbo = dbo_include('content_management');
+	}
 	
 }
 

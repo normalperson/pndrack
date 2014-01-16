@@ -1,5 +1,5 @@
 <?php
-/*Last Modified by darun on 15-01-2014 16:01:01*/
+/*Last Modified by darun on 16-01-2014 13:00:46*/
 $translate = array (
   'Org Code not available' => 'Org Code not available',
   'Org code does not allow to have space in between' => 'Org code does not allow to have space in between',
@@ -14,5 +14,8 @@ $translate = array (
   'Plate name cannot be null' => 'Plate name cannot be null',
   'Company name cannot be null' => 'Company name cannot be null',
   'Company registration no cannot be null' => 'Company registration no cannot be null',
+  'Your package does not allow to create more shelf' => 'Your package does not allow to create more shelf',
+  'Your package does not allow to create more shelf with this amount of slot' => 'Your package does not allow to create more shelf with this amount of slot',
+  'Your package does not allow to create more user' => 'Your package does not allow to create more user',
 );
 ?>

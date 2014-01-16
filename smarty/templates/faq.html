@@ -1,0 +1,187 @@
+<div>&nbsp;</div>
+<div class="row" >    
+  <div class="col col-lg-12 ">
+	<div class="contentWrapper">
+		<div id="processcontent" class="col col-lg-9">
+
+{if $news|count > 0}
+			<button id='newPostLink' type="button" class="btn btn-default pull-left">Newer Post</button>
+			<button id='oldPostLink' type="button" class="btn btn-default pull-right">Earlier Post</button>
+			
+			<div class="clearfix"></div>
+			<br><br>
+			<div id='newsContainer'>
+{foreach from=$news item=n}
+				<div class="newsWrapper">
+					<h3>{$n.ct_title} &nbsp;&nbsp;<div class='title-small'>Published on {$n.ct_created_date_char} by <b>{$n.ct_created_role}</b></div></h3>
+					<p>{$n.ct_content}</p>
+					<br/>
+{if $n.ct_last_modified_date}
+					<h5><small>Last modified on {$n.ct_last_modified_date_char} by <b>{$n.ct_last_modified_role}</b></small></h5>
+{/if}
+					<a href='#top' class="pull-right">Go to top</a>
+					<div class="clearfix"></div>
+				</div>
+{/foreach}
+			</div>
+{else}
+			<div class="newsWrapper">
+				<h3 style='color:gray; text-align:center'>No News Available</h3>
+			</div>
+{/if}		
+		 </div>
+		 
+		<div class="col col-lg-3" >
+		<div class="panel panel-primary">
+		  <div class="panel-heading">Latest Event(s)</div>
+		  <div class="panel-body">
+{if $events|count > 0}
+			<div id="eventsContainer" class="list-group">
+{foreach from=$events item=e}
+				<a href="javascript:void(0)" class="event-link list-group-item" data-ctid='{$e.ct_id}' >{$e.ct_title}</a>
+{/foreach}
+			</div>
+				<a id="newEventLink" href="javascript:void(0)" class="pull-left" >Show Newer Events</a>
+				<a id="oldEventLink" href="javascript:void(0)" class="pull-right" >Show Earlier Events</a>
+{else}
+	<h3 style='color:gray; text-align:center'>No Event</h3>
+{/if}
+		  </div>
+		</div>     
+		</div>
+		
+		
+			<div class="modal fade" id="eventModal" tabindex="-1" role="dialog" aria-labelledby="eventModalLabel" aria-hidden="true">
+			  <div class="modal-dialog" style='min-width:60%'>
+				<div class="modal-content">
+				  <div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="eventModalLabel"></h4>
+				  </div>
+				  <div class="modal-body" id="eventModalContent" style='overflow: scroll; margin : 5px;'>
+				  </div>
+				  <div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				  </div>
+				</div>
+			  </div>
+			</div>
+		
+	</div>
+</div><!-- end of row-fluid -->
+<script type='text/javascript'>
+$(function () {
+	var $oldlink = $('#oldPostLink'),
+		$newlink = $('#newPostLink'),
+		$oldEvent = $('#oldEventLink'),
+		$newEvent = $('#newEventLink'),
+		$newsContainer = $('#newsContainer'),
+		$eventsContainer = $('#eventsContainer'),
+		$eventModal = $('#eventModal'),
+		$eventTitle = $('#eventModalLabel'),
+		$eventContent = $('#eventModalContent'),
+		currnewspage = {$currnewspage},
+		totalnewspage = {$totalnewspage},
+		curreventspage = {$curreventspage},
+		totaleventsspage = {$totaleventspage};
+		
+	function loadNewsPost() {
+		$newsContainer.fadeOut(300, function () {
+			$.ajax({
+				url: "loadNewsPost",
+				type: "POST",
+				data: { currpage : currnewspage },
+				async: false,
+				dataType : "html",
+				success : function(r) {
+					$newsContainer.html(r);
+					$newsContainer.fadeIn(300);
+				}
+			});
+	
+		});
+	}
+	
+	function loadEvents() {
+		$eventsContainer.fadeOut(300, function () {
+			$.ajax({
+				url: "loadEvents",
+				type: "POST",
+				data: { currpage : curreventspage },
+				async: false,
+				dataType : "html",
+				success : function(r) {
+					$eventsContainer.html(r);
+					$eventsContainer.fadeIn(300);
+				}
+			});
+	
+		});
+	}
+	
+	$oldlink.click(function () {
+		++currnewspage;
+		loadNewsPost();
+		$(this).blur();
+		toggleNavButton();
+	});
+	
+	$newlink.click(function () {
+		--currnewspage;
+		loadNewsPost();
+		$(this).blur();
+		toggleNavButton();
+	});
+	
+	$oldEvent.click(function () {
+		++curreventspage;
+		loadEvents();
+		toggleEventButton();
+	})
+	
+	$newEvent.click(function () {
+		--curreventspage;
+		loadEvents();
+		toggleEventButton();
+	})
+	
+	function toggleEventButton() {
+		if (curreventspage == 1) $newEvent.hide();
+		else $newEvent.show();
+		if (curreventspage == totaleventsspage) $oldEvent.hide();
+		else $oldEvent.show();
+		
+	}
+	
+	function toggleNavButton() {
+		if (currnewspage == 1) $newlink.attr("disabled", true);
+		else $newlink.attr("disabled", false);
+		if (currnewspage == totalnewspage) $oldlink.attr("disabled", true);
+		else $oldlink.attr("disabled", false);
+	}
+	
+	toggleNavButton();
+	toggleEventButton();
+	
+	$(document).on("click", '.event-link', function () {
+		console.log($(this));
+		var ctid = $(this).attr('data-ctid');
+		
+		$.ajax({
+			url: "loadEventContent",
+			type: "POST",
+			data: { ctid : ctid },
+			async: false,
+			dataType : "json",
+			success : function(r) {
+				$eventTitle.html(r.title);
+				$eventContent.html(r.content);
+				$eventModal.modal('show')
+			}
+			
+		});
+	
+	})
+	
+})
+</script>
