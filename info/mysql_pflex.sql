@@ -833,6 +833,144 @@ LOCK TABLES `testtimezone` WRITE;
 INSERT INTO `testtimezone` VALUES (1,'2014-01-12 14:18:43','2014-01-12 09:18:43'),(2,'2014-01-12 14:18:43','2014-01-12 09:18:43'),(3,'2014-01-12 14:18:43','2014-01-12 09:18:43'),(4,'2014-01-12 14:18:43','2014-01-12 09:18:43');
 /*!40000 ALTER TABLE `testtimezone` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Dumping routines for database 'pflex'
+--
+/*!50003 DROP FUNCTION IF EXISTS `getslot` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` FUNCTION `getslot`(p_shelfid int) RETURNS int(11)
+BEGIN
+  DECLARE v_slotid int  DEFAULT 0;
+ 
+  select min(ps_id) into v_slotid from smplateslot where ps_sfid = p_shelfid and ps_available = 'Y';
+  
+  update smplateslot 
+  set ps_available = 'N'
+  where ps_id = v_slotid;
+
+  return v_slotid;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP FUNCTION IF EXISTS `menu_hierarchy` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` FUNCTION `menu_hierarchy`(value INT) RETURNS int(11)
+    READS SQL DATA
+BEGIN
+
+        DECLARE _id INT;
+
+        DECLARE _parent INT;
+
+        DECLARE _next INT;
+
+        DECLARE CONTINUE HANDLER FOR NOT FOUND SET @id = NULL;
+
+
+
+        SET _parent = @id;
+
+        SET _id = -1;
+
+
+
+        IF @id IS NULL THEN
+
+                RETURN NULL;
+
+        END IF;
+
+
+
+        LOOP
+
+                SELECT  MIN(mn_id)
+
+                INTO    @id
+
+                FROM    fcmenu
+
+                WHERE   mn_parentid = _parent
+
+                        AND mn_id > _id;
+
+                IF @id IS NOT NULL OR _parent = @start_with THEN
+
+                        SET @level = @level + 1;
+
+                        RETURN @id;
+
+                END IF;
+
+                SET @level := @level - 1;
+
+                SELECT  mn_id, mn_parentid
+
+                INTO    _id, _parent
+
+                FROM    fcmenu
+
+                WHERE   mn_id = _parent;
+
+        END LOOP;       
+
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `cleanup` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `cleanup`()
+BEGIN
+
+   delete from smshelfsetting;
+
+   delete from smshelfgroup;
+   
+   delete from smcustomer;
+   
+   delete from smplate;
+   
+   delete from smplateslot;
+
+     
+
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -843,4 +981,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-01-20 14:53:28
+-- Dump completed on 2014-01-20 15:00:52
