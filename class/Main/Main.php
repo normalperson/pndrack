@@ -1,6 +1,6 @@
 <?php
 require_once(dirname(__FILE__).'/../../init.inc.php');
-require(DOC_DIR.'/inc/pndFunction.php');
+require_once(DOC_DIR.'/inc/pndFunction.php');
 
 class Main{
 	function __construct(){
