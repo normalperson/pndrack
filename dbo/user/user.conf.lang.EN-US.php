@@ -37,7 +37,7 @@ $dbo->cols['last_synchronized_date']->caption->set('default', 'last_synchronized
 $dbo->cols['record_synchronized']->caption->set('default', 'record_synchronized', 'text');
 $dbo->cols['cloud_refid']->caption->set('default', 'cloud_refid', 'text');
 $dbo->cols['usr_status']->caption->set('default', 'Status', 'text');
-$dbo->cols['usr_langid']->caption->set('default', 'usr_langid', 'text');
+$dbo->cols['usr_langid']->caption->set('default', 'Language', 'text');
 $dbo->cols['userRole']->caption->set('default', 'userRole', 'text');
 $dbo->cols['usr_orgid']->caption->set('default', 'usr_orgid', 'text');
 $dbo->cols['currpassword']->caption->set('default', 'currpassword', 'text');
