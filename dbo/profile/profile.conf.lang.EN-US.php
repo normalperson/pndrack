@@ -11,7 +11,7 @@ $dbo->cols['usr_last_success_login']->caption->set('default', 'usr_last_success_
 $dbo->cols['usr_last_fail_login']->caption->set('default', 'usr_last_fail_login', 'text');
 $dbo->cols['usr_group']->caption->set('default', 'usr_group', 'text');
 $dbo->cols['usr_sessiondata']->caption->set('default', 'usr_sessiondata', 'text');
-$dbo->cols['usr_langid']->caption->set('default', 'usr_langid', 'text');
+$dbo->cols['usr_langid']->caption->set('default', 'Language', 'text');
 $dbo->cols['usr_status']->caption->set('default', 'usr_status', 'text');
 $dbo->cols['usr_password2']->caption->set('default', 'usr_password2', 'text');
 $dbo->cols['pass1']->caption->set('default', 'Password ', 'text');
