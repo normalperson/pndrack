@@ -5,7 +5,7 @@ function checkin($colname,$colval,$rowinfo){
 	//$rowinfo['hmc_receiptdt']
 	return "<a href='../rackOperation/checkinout?psid=".$rowinfo['sp_id']."'>$colval</a>";
 }
-$dbo->editModifier = 'dbo_platelist_custom_edit';
+
 function dbo_platelist_custom_edit($table, $cols, $wheres){
 	global $DB;
 	$ret = array();
@@ -59,6 +59,7 @@ function dbo_platelist_custom_edit($table, $cols, $wheres){
 
 # customization
 function platelist_customize(&$dbo){
+	$dbo->editModifier = 'dbo_platelist_custom_edit';
 }
 global $USER;
 
