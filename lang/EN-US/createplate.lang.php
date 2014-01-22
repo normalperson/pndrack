@@ -1,5 +1,5 @@
 <?php
-/*Last Modified by pndadmin on 15-01-2014 14:33:08*/
+/*Last Modified by admin on 22-01-2014 15:19:50*/
 $translate = array (
   'Customer Name' => 'Customer Name',
   'Master Card ID' => 'Master Card ID',

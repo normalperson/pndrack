@@ -6,12 +6,16 @@ $dbo = DBO_init($dboID);
 $dbo->id = $dboID;
 $dbo->table = 'smbtransaction ';
 $dbo->key = array();
-$dbo->sql = 'select sum(smb_printqty) as totalqty,count(*) as totalprint, cus_name
+$dbo->sql = 'select sum(smb_printqty) as totalqty,count(*) as totalprint, cus_name,
+round(sum(smb_printqty) /count(*),2) as ratio
 from smbtransaction join smplate on smb_spid = sp_id
 join smcustomer on sp_cusid = cus_id
 group by cus_name';
-$dbo->col = array('totalqty', 'totalprint', 'cus_name');
-$dbo->colList = array('cus_name', 'totalqty', 'totalprint');
+$dbo->col = array('totalqty', 'totalprint', 'cus_name', 'ratio');
+$dbo->colList = array('cus_name', 'totalqty', 'totalprint', 'ratio');
+$dbo->colListEdit = array();
+$dbo->colListNew = array();
+$dbo->colListGlobalInput = array();
 $dbo->colDetail = array('cus_name', 'totalqty', 'totalprint');
 $dbo->colNew = array('cus_name', 'totalqty', 'totalprint');
 $dbo->colEdit = array('cus_name', 'totalqty', 'totalprint');
@@ -78,6 +82,17 @@ $dbo->cols['cus_name']->option->listMethod = 'text';
 $dbo->cols['cus_name']->option->detailMethod = 'text';
 $dbo->cols['cus_name']->option->newMethod = 'text';
 $dbo->cols['cus_name']->option->editMethod = 'text';
+$dbo->cols['ratio'] = new DBO_COL('ratio', 'NEWDECIMAL', '37', '2');
+$dbo->cols['ratio']->inputTypeDefault = 'text';
+$dbo->cols['ratio']->searchMode = 'exact';
+$dbo->cols['ratio']->capContClassDefault = array();
+$dbo->cols['ratio']->valContClassDefault = array();
+$dbo->cols['ratio']->option->defaultMethod = 'text';
+$dbo->cols['ratio']->option->searchMethod = 'text';
+$dbo->cols['ratio']->option->listMethod = 'text';
+$dbo->cols['ratio']->option->detailMethod = 'text';
+$dbo->cols['ratio']->option->newMethod = 'text';
+$dbo->cols['ratio']->option->editMethod = 'text';
 
 // support multiple language. only caption
 global $LANG;

@@ -4,6 +4,7 @@ require_once(dirname(__FILE__).DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'ini
 $dbo->cols['totalqty']->caption->set('default', 'Total Print Quantity', 'text');
 $dbo->cols['totalprint']->caption->set('default', 'Count', 'text');
 $dbo->cols['cus_name']->caption->set('default', 'Customer Name', 'text');
+$dbo->cols['ratio']->caption->set('default', 'Print Ratio', 'text');
 
 $dbo->titleList = 'List Record';
 $dbo->titleDetail = 'Detail';
@@ -16,7 +17,7 @@ $dbo->text->editCancel = 'Cancel';
 $dbo->text->editSubmit = 'Save';
 $dbo->text->newCancel = 'Cancel';
 $dbo->text->newSubmit = 'Save';
-$dbo->text->listNewEditSubmit = 'Save';
 $dbo->text->detailCancel = 'Back';
+$dbo->text->listNewEditSubmit = 'Save';
 
 ?>

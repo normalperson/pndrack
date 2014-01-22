@@ -1,9 +1,34 @@
-<?php/*Last Modified by admin on 11-11-2013 14:24:37*/$translate = array (
-  'Shelf' => '货架',
+<?php
+/*Last Modified by admin on 22-01-2014 15:14:32*/
+$translate = array (
+  'Shelf' => '版架',
   'Report' => '报告',
   'Revenue Report' => 'Revenue Report',
   'Setting' => '设置',
   'General Setting' => 'General Setting',
-  'Shelf Setting' => 'Shelf Setting',
-  'Shelf Group Setting' => 'Shelf Group Setting',
-);?>
+  'Shelf Setting' => '版架设置',
+  'Shelf Group Setting' => '版组设置',
+  'Dashboard' => '总结',
+  'Main' => '主页',
+  'Create Plate' => '增加新版',
+  'Search Plate' => '寻找版',
+  'Customer List' => '顾客资料',
+  'Operation' => '每天工作',
+  'Check In/Out' => '印刷工作',
+  'Transaction History' => '印刷记录',
+  'Stock Count' => '货物点算',
+  'Aging Report' => '老龄化版报告',
+  'Summary by plate report' => '版片报告',
+  'Summary by customer report' => '顾客报告',
+  'User Setup' => '用户设置',
+  'Organization Setup' => '机构设置',
+  'Primary User Setting' => '主要用户设置',
+  'Role Setup' => '角色设置',
+  'Permission Setup' => '能力设置',
+  'Organization Setting' => '机构设置',
+  'Package Setup' => '配套设置',
+  'Menu Setup' => '目录设置',
+  'FAQ Setup' => '问答设置',
+  'Customer Demo Data' => '示范顾客资料',
+);
+?>

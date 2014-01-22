@@ -8,13 +8,16 @@ $dbo->table = 'smplate';
 $dbo->key = array();
 $dbo->sql = 'select sp_id,cus_masterid, cus_name, sp_platename, sp_platemodel, ps_code,sf_id,sp_orgid
 from smplate 
+join vw_agingtransaction on sp_id = smb_spid
 join smplateslot on sp_psid = ps_id
 join smcustomer on sp_cusid = cus_id
 join smshelfsetting on sp_sfid = sf_id
-join smshelfgroup on sf_sgid = sg_id
-where date_sub(smplate.sp_createddate, interval 365 day) > curdate()';
+join smshelfgroup on sf_sgid = sg_id';
 $dbo->col = array('sp_id', 'cus_masterid', 'cus_name', 'sp_platename', 'sp_platemodel', 'ps_code', 'sf_id', 'sp_orgid');
 $dbo->colList = array('cus_masterid', 'cus_name', 'sp_platename', 'sp_platemodel', 'ps_code');
+$dbo->colListEdit = array();
+$dbo->colListNew = array();
+$dbo->colListGlobalInput = array();
 $dbo->colDetail = array('cus_masterid', 'cus_name', 'sp_platename', 'sp_platemodel', 'ps_code');
 $dbo->colNew = array('cus_masterid', 'cus_name', 'sp_platename', 'sp_platemodel', 'ps_code');
 $dbo->colEdit = array('cus_masterid', 'cus_name', 'sp_platename', 'sp_platemodel', 'ps_code');

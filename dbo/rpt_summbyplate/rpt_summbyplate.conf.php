@@ -6,11 +6,15 @@ $dbo = DBO_init($dboID);
 $dbo->id = $dboID;
 $dbo->table = 'smbtransaction';
 $dbo->key = array();
-$dbo->sql = 'select sum(smb_printqty) as totalqty,count(*) as totalprint, sp_platename
+$dbo->sql = 'select sum(smb_printqty) as totalqty,count(*) as totalprint, sp_platename,
+round(sum(smb_printqty)/count(*),2) as ratio
 from smbtransaction join smplate on smb_spid = sp_id
 group by sp_platename';
-$dbo->col = array('totalqty', 'totalprint', 'sp_platename');
-$dbo->colList = array('sp_platename', 'totalqty', 'totalprint');
+$dbo->col = array('totalqty', 'totalprint', 'sp_platename', 'ratio');
+$dbo->colList = array('sp_platename', 'totalqty', 'totalprint', 'ratio');
+$dbo->colListEdit = array();
+$dbo->colListNew = array();
+$dbo->colListGlobalInput = array();
 $dbo->colDetail = array('sp_platename', 'totalqty', 'totalprint');
 $dbo->colNew = array('sp_platename', 'totalqty', 'totalprint');
 $dbo->colEdit = array('sp_platename', 'totalqty', 'totalprint');
@@ -48,7 +52,7 @@ $dbo->cols['totalqty'] = new DBO_COL('totalqty', 'NEWDECIMAL', '33', '0');
 $dbo->cols['totalqty']->inputTypeDefault = 'text';
 $dbo->cols['totalqty']->searchMode = 'exact';
 $dbo->cols['totalqty']->capContClassDefault = array();
-$dbo->cols['totalqty']->valContClassDefault = array();
+$dbo->cols['totalqty']->valContClassDefault = array('alignright');
 $dbo->cols['totalqty']->option->defaultMethod = 'text';
 $dbo->cols['totalqty']->option->searchMethod = 'text';
 $dbo->cols['totalqty']->option->listMethod = 'text';
@@ -59,7 +63,7 @@ $dbo->cols['totalprint'] = new DBO_COL('totalprint', 'LONGLONG', '21', '0');
 $dbo->cols['totalprint']->inputTypeDefault = 'text';
 $dbo->cols['totalprint']->searchMode = 'exact';
 $dbo->cols['totalprint']->capContClassDefault = array();
-$dbo->cols['totalprint']->valContClassDefault = array();
+$dbo->cols['totalprint']->valContClassDefault = array('alignright');
 $dbo->cols['totalprint']->option->defaultMethod = 'text';
 $dbo->cols['totalprint']->option->searchMethod = 'text';
 $dbo->cols['totalprint']->option->listMethod = 'text';
@@ -88,6 +92,17 @@ $dbo->cols['sp_orgid']->option->listMethod = 'text';
 $dbo->cols['sp_orgid']->option->detailMethod = 'text';
 $dbo->cols['sp_orgid']->option->newMethod = 'text';
 $dbo->cols['sp_orgid']->option->editMethod = 'text';
+$dbo->cols['ratio'] = new DBO_COL('ratio', 'NEWDECIMAL', '37', '2');
+$dbo->cols['ratio']->inputTypeDefault = 'text';
+$dbo->cols['ratio']->searchMode = 'exact';
+$dbo->cols['ratio']->capContClassDefault = array();
+$dbo->cols['ratio']->valContClassDefault = array('alignright');
+$dbo->cols['ratio']->option->defaultMethod = 'text';
+$dbo->cols['ratio']->option->searchMethod = 'text';
+$dbo->cols['ratio']->option->listMethod = 'text';
+$dbo->cols['ratio']->option->detailMethod = 'text';
+$dbo->cols['ratio']->option->newMethod = 'text';
+$dbo->cols['ratio']->option->editMethod = 'text';
 
 // support multiple language. only caption
 global $LANG;
