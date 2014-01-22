@@ -130,7 +130,8 @@ class Setting{
 		$dbo = dbo_include('menu');	
 	}
 	function printShelfLabel(){
-		global $DB;
+		global $DB,$HTML;
+		$HTML->showPageTime = false;
 		$smarty = $this->initSmarty();
 
 		$sfidarr = explode(",",$_GET['sfiarr']);
