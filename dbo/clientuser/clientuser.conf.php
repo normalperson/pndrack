@@ -176,7 +176,8 @@ $dbo->cols['usr_langid']->inputTypeDefault = 'select';
 $dbo->cols['usr_langid']->searchMode = 'exact';
 $dbo->cols['usr_langid']->capContClassDefault = array();
 $dbo->cols['usr_langid']->valContClassDefault = array();
-$dbo->cols['usr_langid']->option->default = 'select lang_id, lang_name from fclang where lang_status = \'ACTIVE\' order by lang_name';
+$dbo->cols['usr_langid']->option->default = 'select lu_code,lu_title from fclookup
+where lu_cat = \'LANGUAGE\'';
 $dbo->cols['usr_langid']->option->defaultMethod = 'sql';
 $dbo->cols['usr_langid']->option->searchMethod = 'text';
 $dbo->cols['usr_langid']->option->listMethod = 'text';
