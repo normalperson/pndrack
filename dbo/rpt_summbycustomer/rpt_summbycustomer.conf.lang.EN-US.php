@@ -5,6 +5,9 @@ $dbo->cols['totalqty']->caption->set('default', 'Total Print Quantity', 'text');
 $dbo->cols['totalprint']->caption->set('default', 'Count', 'text');
 $dbo->cols['cus_name']->caption->set('default', 'Customer Name', 'text');
 $dbo->cols['ratio']->caption->set('default', 'Print Ratio', 'text');
+$dbo->cols['datefrom']->caption->set('default', 'Date From', 'text');
+$dbo->cols['dateto']->caption->set('default', 'Date To', 'text');
+$dbo->cols['smb_pdinchar']->caption->set('default', 'Date', 'text');
 
 $dbo->titleList = 'List Record';
 $dbo->titleDetail = 'Detail';

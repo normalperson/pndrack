@@ -6,7 +6,8 @@ function dbo_rpt_aging_customize(&$dbo){
 	global $USER;
 
 	if($USER->userid != 'admin'){
-		$dbo->sql = "select sp_id,cus_masterid, cus_name, sp_platename, sp_platemodel, ps_code,sf_id,sp_orgid
+		$dbo->sql = "select sp_id,cus_masterid, cus_name, sp_platename, sp_platemodel, ps_code,sf_id,sp_orgid,
+					DATEDIFF(curdate(),maxdate) as daydiff, maxdate as lastprintdate
 					from smplate 
 					join vw_agingtransaction on sp_id = smb_spid
 					join smplateslot on sp_psid = ps_id
