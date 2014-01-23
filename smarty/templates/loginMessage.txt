@@ -1,5 +1,5 @@
 <h2>Message Board</h2>
-<div>Phi Orion wishes everyone a Merry Chrismas:</div>
+<div>Phi Orion wishes everyone a Happy Chinese New Year:</div>
 <div><br /></div>
 <div><br /></div>
 <div><br /></div>
