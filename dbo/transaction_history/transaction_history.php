@@ -3,6 +3,15 @@ require(dirname(__FILE__).DIRECTORY_SEPARATOR.'transaction_history.conf.php');
 
 # customization
 function dbo_transaction_history_customize(&$dbo){
+	$dbo->searchModifier = 'dbo_transaction_history_custom_search';
+}
+
+
+function dbo_transaction_history_custom_search(&$search){
+	$search[0]['col'] = 'smb_pdinchar';
+	$search[0]['oper'] = '>=';
+	$search[1]['col'] = 'smb_pdinchar';
+	$search[1]['oper'] = '<=';
 }
 
 global $USER;

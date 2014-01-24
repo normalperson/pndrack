@@ -1,19 +1,19 @@
 <?php
-/*Last Modified by admin on 22-01-2014 15:24:24*/
+/*Last Modified by admin on 23-01-2014 16:20:37*/
 $translate = array (
-  'Barcode' => 'Barcode',
-  'Manual Search' => 'Manual Search',
-  'Check In Info' => 'Check In Info',
-  'Customer Name' => 'Customer Name',
-  'Last printed date' => 'Last printed date',
-  'Plate Name' => 'Plate Name',
-  'Board Created Date' => 'Board Created Date',
-  'Printed Time' => 'Printed Time',
-  'Shelf' => 'Shelf',
-  'Printed Quantity' => 'Printed Quantity',
-  'Print Quantity' => 'Print Quantity',
-  'Remark' => 'Remark',
-  'Clear' => 'Clear',
-  'Save' => 'Save',
+  'Barcode' => '条形码',
+  'Manual Search' => '手动搜索',
+  'Check In Info' => '模板资料',
+  'Customer Name' => '公司名',
+  'Last printed date' => '最后一次印刷日期',
+  'Plate Name' => '模板名字',
+  'Board Created Date' => '模板创建日',
+  'Printed Time' => '印刷次数',
+  'Shelf' => '架子',
+  'Printed Quantity' => '印刷次数',
+  'Print Quantity' => '印刷数量',
+  'Remark' => '备注',
+  'Clear' => '清除',
+  'Save' => '储存',
 );
 ?>
