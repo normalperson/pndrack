@@ -27,6 +27,7 @@ $dbo->cols['cus_contactno']->caption->set('default', 'cus_contactno', 'text');
 $dbo->cols['cus_orgid']->caption->set('default', 'cus_orgid', 'text');
 $dbo->cols['datefrom']->caption->set('default', 'Date From', 'text');
 $dbo->cols['dateto']->caption->set('default', 'Date To', 'text');
+$dbo->cols['smb_pdinchar']->caption->set('default', 'smb_pdinchar', 'text');
 
 $dbo->titleList = 'List Record';
 $dbo->titleDetail = 'Detail';
