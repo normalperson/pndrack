@@ -7,10 +7,10 @@ function checkin($colname,$colval,$rowinfo){
 }
 
 function dbo_platelist_custom_edit($table, $cols, $wheres){
+	//print 'inside custom edit';
 	global $DB;
 	$ret = array();
 
-	//vd($cols); die();
 	// original plate id
 	// get exitisting slot code
 	$sql = "select * from smplate join smplateslot on sp_psid = ps_id
@@ -58,9 +58,11 @@ function dbo_platelist_custom_edit($table, $cols, $wheres){
 }
 
 # customization
-function platelist_customize(&$dbo){
+/*function platelist_customize(&$dbo){
+	print 'inside here'; 
 	$dbo->editModifier = 'dbo_platelist_custom_edit';
-}
+}*/
+$dbo->editModifier = 'dbo_platelist_custom_edit';
 global $USER;
 
 if($USER->userid != 'admin'){

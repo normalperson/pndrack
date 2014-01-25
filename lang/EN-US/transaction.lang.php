@@ -1,5 +1,5 @@
 <?php
-/*Last Modified by pndadmin on 15-01-2014 15:20:36*/
+/*Last Modified by admin on 23-01-2014 16:20:37*/
 $translate = array (
   'Barcode' => 'Barcode',
   'Manual Search' => 'Manual Search',

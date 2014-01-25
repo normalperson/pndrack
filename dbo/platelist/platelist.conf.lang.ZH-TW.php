@@ -34,7 +34,7 @@ $dbo->cols['ps_available']->caption->set('default', 'ps_available', 'text');
 $dbo->cols['sp_orgid']->caption->set('default', 'sp_orgid', 'text');
 $dbo->cols['checkin']->caption->set('default', '行动', 'text');
 
-$dbo->titleList = 'List 记录';
+$dbo->titleList = '记录列表';
 $dbo->titleDetail = '细节';
 $dbo->titleNew = '增加记录';
 $dbo->titleEdit = '更改记录';
