@@ -820,6 +820,17 @@ div.dbo_theme_skyblue td.dbo_container_edit pre.dbo_error_new{
     background-color: #f2dede;
     border-color: #ebccd1;
 }
+div.dbo_theme_skyblue td.dbo_container_edit pre.dbo_error_edit{
+	color:red;
+	padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    color: #a94442;
+    background-color: #f2dede;
+    border-color: #ebccd1;
+}
+
 
 div.dbo_theme_skyblue td.dbo_container_edit th.caption{
 	font-weight:normal;
