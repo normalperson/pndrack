@@ -1,5 +1,4 @@
 <?php
-error_reporting(E_ERROR);
 require(dirname(__FILE__).DIRECTORY_SEPARATOR.'plate_multiedit.conf.php');
 
 # customization

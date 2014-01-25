@@ -5,7 +5,7 @@ html_header();
 
 $dbo = dbo_include('setup_org');
 
-if(in_array($dbo->state, array('edit', 'detail'))){
+if(in_array($dbo->state, array('detail'))){
 	global $toporgID, $GLOBAL;
 	$toporgID = orgTopOrgID($GLOBAL[DBOSESS]['setup_org']['lastid']['org_id']);
 	include(DOC_DIR.'/dbo/orgpackage/orgpackage.php');

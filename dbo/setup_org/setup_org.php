@@ -56,7 +56,7 @@ function dbo_setup_org_custom_new($table, $cols){
 		$okCount = 0;
 		foreach(array(3=>'ADMIN', 4=>'OPERATOR', 5=>'MANAGER') as $roleID => $role){
 			$userid = strtoupper($cols['org_code']).$role;
-			$userCols = array('usr_userid'=>$userid, 'usr_password'=>User::genPassword($userid), 'usr_created'=>date('Y-m-d H:i:s'), 'usr_name'=>$userid, 'usr_status'=>'ACTIVE');
+			$userCols = array('usr_userid'=>$userid, 'usr_password'=>User::genPassword(strtolower($userid)), 'usr_created'=>date('Y-m-d H:i:s'), 'usr_name'=>$userid, 'usr_status'=>'ACTIVE');
 			$ok = $DB->doInsert($DB->prefix.'user', $userCols);
 			if($ok){
 				$okCount++;
