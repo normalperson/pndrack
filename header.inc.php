@@ -1,10 +1,12 @@
 <?php
 require_once(dirname(__FILE__).DIRECTORY_SEPARATOR.'init.inc.php');
-function html_header($headerTemplate='header.html', $showAutoTime = true){
+function html_header($headerTemplate='header.html'){
 	global $HTML, $THEME, $DB, $USER;
 	if($HTML->smarty){
-		require_once('inc/VMenu.inc.php');
-		$Menu = new VMenu();
+	
+		require_once('inc/AppMenu.inc.php');
+		$Menu = new AppMenu();
+		$HTML->addJS('js/moment.min.js');
 		$HTML->addJS('js/jquery-1.10.0.js');
 		$HTML->addJS('js/jquery-ui-1.10.3.custom.js');
 		$HTML->addJS('js/jquery.validate.js');
@@ -20,8 +22,10 @@ function html_header($headerTemplate='header.html', $showAutoTime = true){
 		$HTML->addCSS('css/bootstrap/css/bootstrap.css');
 		$HTML->addCSS('css/bootstrap/css/bootstrap-theme.css');
 		$HTML->addCSS('css/'.$THEME.'/custom.css');
+		
 		$HTML->smarty->assign('Menu', $Menu);
-		$HTML->smarty->assign('ShowAutoTime', $showAutoTime);
+		$serverdate = new DateTime() ;
+		$HTML->smarty->assign('serverdate', $serverdate);
 		$HTML->smarty->assign('APP', APP);
 		
 		# pndrack package expiring

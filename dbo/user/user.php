@@ -42,8 +42,8 @@ function neworgrole(){
 					<tr id='userorgrolerow_1'><td><input type='checkbox' id='checkbox_1' name='checkbox_1' value='1' /></td>
 					<td>$orgHTML</td> 
 					<td>$roleHTML</td>
-					<td><input type='button' value='addrow' id='addrow_1' onclick='addrow();'/>
-					    <input type='button' value='removerow' id='removerow_1' onclick='removerow(this);'/>
+					<td><input type='button' value='add row' id='addrow_1' onclick='addrow();'/>
+					    <input type='button' value='remove row' id='removerow_1' onclick='removerow(this);'/>
 					 </td>
 					</tr>
 				</tbody>
@@ -121,8 +121,8 @@ function editorgrole($param1,$param12,$param3){
 			$htmltr .= "<tr id='userorgrolerow_$num' style='background-color:$bgcolor'><td><input type='checkbox' id='checkbox_$num' name='checkbox_$num' value='1' $checked/></td>
 							<td>$orgHTML</td> 
 							<td>$roleHTML</td>
-							<td><input type='button' value='addrow' id='addrow_$num' onclick='addrow();'/>
-							    <input type='button' value='removerow' id='removerow_$num' onclick='removerow(this);'/>
+							<td><input type='button' value='add row' id='addrow_$num' onclick='addrow();'/>
+							    <input type='button' value='remove row' id='removerow_$num' onclick='removerow(this);'/>
 							 </td>
 							</tr>";
 			$i++;
@@ -147,8 +147,8 @@ function editorgrole($param1,$param12,$param3){
 		$htmltr = "<tr id='userorgrolerow_1'><td><input type='checkbox' id='checkbox_1' name='checkbox_1' value='1' /></td>
 						<td>$orgHTML</td> 
 						<td>$roleHTML</td>
-						<td><input type='button' value='addrow' id='addrow_1' onclick='addrow();'/>
-						    <input type='button' value='removerow' id='removerow_1' onclick='removerow(this);'/>
+						<td><input type='button' value='add row' id='addrow_1' onclick='addrow();'/>
+						    <input type='button' value='remove row' id='removerow_1' onclick='removerow(this);'/>
 						 </td>
 						</tr>";
 	}

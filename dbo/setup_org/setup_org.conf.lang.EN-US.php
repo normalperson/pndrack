@@ -12,7 +12,7 @@ $dbo->cols['org_status']->caption->set('default', 'Status', 'text');
 $dbo->cols['packageid']->caption->set('default', 'Package', 'text');
 $dbo->cols['month']->caption->set('default', 'month', 'text');
 $dbo->cols['startdate']->caption->set('default', 'Start Date', 'text');
-$dbo->cols['months']->caption->set('default', 'Duration', 'text');
+$dbo->cols['months']->caption->set('default', 'Duration (months)', 'text');
 
 $dbo->titleList = 'List Record';
 $dbo->titleDetail = 'Detail';
@@ -25,8 +25,8 @@ $dbo->text->editCancel = 'Cancel';
 $dbo->text->editSubmit = 'Edit';
 $dbo->text->newCancel = 'Cancel';
 $dbo->text->newSubmit = 'Save';
-$dbo->text->listNewEditSubmit = 'Submit';
 $dbo->text->detailCancel = 'Back';
 $dbo->text->detailDelete = 'Delete';
+$dbo->text->listNewEditSubmit = 'Submit';
 
 ?>

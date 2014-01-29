@@ -9,39 +9,51 @@
 	<script type="text/javascript" src="{$js}"></script>
 {/foreach}
 	<title>{$title}</title>
-	<style type="text/css">
-		span.expiring{
-			color:red;
-			padding-right:10px;
-		}
-	</style>
 </head>
 <body>
-<nav class="navbar navbar-inverse navbar-fixed-top" >
-   <div class="navbar-header">
-    <a class="navbar-brand" href="#">Phi Orion Logo</a>
-    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-    </button>
-  </div>
-	<div class="navbar-right">
-		<span class="expiring">{$expiring}</span> 
-		<a href="/{$APP}/web/FAQ/newsevent">FAQ</a> &nbsp; 
-		<a href="/{$APP}/web/Setting/profile">Profile</a> &nbsp; 
-		<a href="/{$APP}/login.php?logout=1">Log Out</a>
-	</div>
-	<div class="nav-collapse" >
-		{$Menu->renderMenu()}
-	</div>
-</nav>
-<div id="body" class="container">
-	<div class="row">
-{literal}
+<div id="container">
+	<nav class="navbar navbar-default navbar-inverse" role="navigation">
+	  <div class="navbar-header">
+		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#mainNavi">
+		  <span class="sr-only">Toggle navigation</span>
+		  <span class="icon-bar"></span>
+		  <span class="icon-bar"></span>
+		  <span class="icon-bar"></span>
+		</button>
+		<a class="navbar-brand" href="#">Rack System</a>
+		<ul class="nav navbar-nav navbar-fix">
+		  <li>
+			<a href="#" id='calendarToggle'><span class="glyphicon glyphicon-calendar"></span></a>
+		  </li>
+		</ul>
+		<input type='checkbox' id='toggleDateTime'/>
+		<label  class="navbar-text" for='toggleDateTime' id="dateTimeContainer">
+			<div id='timeContainer'><span id="hourContainer">10</span><span id="pointContainer">:</span><span id="minuteContainer">30</span> <span id="pmContainer">PM</span> <span id="dateContainer">10-Jan-2014</span></div>
+		</label>
+	  </div>
+	  <div class="collapse navbar-collapse" id='mainNavi'>
+		{$Menu->render()}
+		<ul class="nav navbar-nav navbar-right">
+			<li class="dropdown">
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;{$USER->name}</a>
+				<ul class="dropdown-menu" role="menu">
+				  <li><a href="{$logouturl}">Logout</a></li>
+				</ul>
+			</li>
+		</ul>
+	  </div>
+	</nav>
+
+<div id="body">
+
 <script type="text/javascript">
+var now = moment({$serverdate->getTimestamp()}*1000),
+	serverTZOffset = "{$serverdate->format('O')}";
+
+{literal}
 
 (function($){ //create closure so we can safely use $ as alias for jQuery
+	/*
 	// initialize number format
 	accounting.settings = {
 		currency: {
@@ -57,34 +69,32 @@
 			decimal : "."
 		}
 	};
+*/
+	now.formatLocal = function (fmt) {
+		return this.format(fmt);
+	}
+	now.formatServer = function (fmt) {
+		var serverNow = moment(now);
+		return serverNow.zone(serverTZOffset).format(fmt);
+	}
 
-	$(document).ready(function(){
-		// add a checking....
-
-		$('.nav li.dropdown').hover(function() {
-	        $(this).addClass('open');
-	    }, function() {
-	        $(this).removeClass('open');
-	    });
-
-		refreshAutotime();
-		window.setInterval(refreshAutotime, 1000);
-		function refreshAutotime(){
-			var arrDay = new Array("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday");
-			var arrMonth = new Array("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December");
-			var now = new Date();
-			var str = arrDay[now.getDay()];
-			str = str + ', ' + now.getDate();
-			str = str + ' ' + arrMonth[now.getMonth()];
-			str = str + ', ' + now.getFullYear();
-			str = str + ' ' + ((now.getHours()%12)<1?12:(now.getHours()%12));
-			str = str + ':' + (now.getMinutes()>9?'':'0') + now.getMinutes();
-			str = str + '' + (now.getHours()>12?'PM':'AM');
-			$('#autotime').text(str);
-		}
-	});
-
-
+	var dateEL = {
+		$hour : $('#dateTimeContainer').find('#hourContainer'),
+		$min : $('#dateTimeContainer').find('#minuteContainer'),
+		$pm : $('#dateTimeContainer').find('#pmContainer'),
+		$date : $('#dateTimeContainer').find('#dateContainer')
+	}
+	
+	refreshAutotime();
+	window.setInterval(refreshAutotime, 1000);
+	function refreshAutotime(){
+		now.add('s', 1);
+		dateEL.$hour.html(now.formatServer('h'));
+		dateEL.$min.html(now.formatServer('mm'));
+		dateEL.$pm.html(now.formatServer('A'));
+		dateEL.$date.html(now.formatServer('D-MMM-YYYY'));
+	}
+	
 })(jQuery);
 </script>
 {/literal}

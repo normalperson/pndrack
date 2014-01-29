@@ -11,7 +11,7 @@ $dbo->cols['sf_id']->caption->set('default', 'sf_id', 'text');
 $dbo->cols['sp_orgid']->caption->set('default', 'sp_orgid', 'text');
 $dbo->cols['maxdate']->caption->set('default', 'maxdate', 'text');
 $dbo->cols['daydiff']->caption->set('default', 'Day different', 'text');
-$dbo->cols['lastprintdate']->caption->set('default', 'Last Print Date', 'text');
+$dbo->cols['lastprintdate']->caption->set('default', 'Day since last use', 'text');
 
 $dbo->titleList = 'List Record';
 $dbo->titleDetail = 'Detail';

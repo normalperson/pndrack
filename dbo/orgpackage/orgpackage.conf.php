@@ -11,6 +11,7 @@ $dbo->col = array('op_id', 'op_orgid', 'op_packageid', 'op_created', 'op_createb
 $dbo->colList = array('op_orgid', 'op_packageid', 'op_startdate', 'op_enddate', 'op_created', 'op_createby');
 $dbo->colListEdit = array();
 $dbo->colListNew = array();
+$dbo->colListGlobalInput = array();
 $dbo->colDetail = array('op_id', 'op_orgid', 'op_packageid', 'op_created', 'op_createby', 'op_status', 'op_startdate', 'op_enddate');
 $dbo->colNew = array('op_packageid', 'op_startdate', 'months', 'op_status');
 $dbo->colEdit = array('op_packageid', 'op_startdate', 'months', 'op_status');
@@ -43,8 +44,6 @@ $dbo->defaultState = 'list';
 $dbo->maxSortCount = 9;
 $dbo->lang = 'EN-US';
 $dbo->render = array();
-$dbo->colListedit = array();
-$dbo->colListnew = array();
 $dbo->detailBack = 'Back';
 $dbo->listEditSubmit = 'Submit';
 

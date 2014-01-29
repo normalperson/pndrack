@@ -157,6 +157,8 @@ class Main{
 	
 		html_header('header.nh.html');
 		#vd($shelfinfo);die();
+		$totalplate = count($plidarr);
+		$smarty->assign('totalplate',$totalplate);
 		$smarty->assign('plateinfo',$plateinfo);
  		$smarty->display('printbarcode.html');
 
