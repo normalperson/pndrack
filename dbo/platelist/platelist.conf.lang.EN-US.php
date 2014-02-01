@@ -33,6 +33,7 @@ $dbo->cols['ps_code']->caption->set('default', 'Location', 'text');
 $dbo->cols['ps_available']->caption->set('default', 'ps_available', 'text');
 $dbo->cols['sp_orgid']->caption->set('default', 'sp_orgid', 'text');
 $dbo->cols['checkin']->caption->set('default', 'Action', 'text');
+$dbo->cols['sp_plateinfo']->caption->set('default', 'Plate Info', 'text');
 
 $dbo->titleList = 'List Record';
 $dbo->titleDetail = 'Detail';

@@ -53,7 +53,7 @@ class rackOperation{
 
 		$ret = array();
 		$sql = "select cus_name, sp_platename, date_format(sp_createddate, '%d-%M-%Y')  as createddate,
-					   ps_code, sf_desc,sp_id
+					   ps_code, sf_desc,sp_id,sp_plateinfo
 		        from smplate 
 		        join smcustomer on sp_cusid = cus_id 
 		        join smplateslot on sp_psid = ps_id 

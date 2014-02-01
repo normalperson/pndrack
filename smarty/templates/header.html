@@ -11,7 +11,6 @@
 	<title>{$title}</title>
 </head>
 <body>
-<div id="container">
 	<nav class="navbar navbar-default navbar-inverse" role="navigation">
 	  <div class="navbar-header">
 		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#mainNavi">
@@ -43,9 +42,9 @@
 		</ul>
 	  </div>
 	</nav>
-
-<div id="body">
-
+<div id="body" class="container">
+	<div class="row">
+		
 <script type="text/javascript">
 var now = moment({$serverdate->getTimestamp()}*1000),
 	serverTZOffset = "{$serverdate->format('O')}";

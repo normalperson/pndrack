@@ -65,6 +65,7 @@ class Main{
 			'sp_psid'       => $slotid,
 			'sp_platename'  => (trim($platename))==''?null:trim($platename),
 		    'sp_platemodel' => (trim($platemodel))==''?null:trim($platemodel),
+		    'sp_plateinfo'  => (trim($plateinfo))==''?null:substr(trim($plateinfo), 0, 3999),
 		    'sp_createdby'  => $USER->userid,
 		    'sp_orgid'      => $USER->orgid
 		    );

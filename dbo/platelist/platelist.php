@@ -87,18 +87,18 @@ $tbl = {
 $btn = {
 	barcode : $('<input type="button" id="printbarcode" class="btn btn-primary btn-xs" value="Print Barcode" />')
 };
-/*$findparent = $('<input type="button" style="margin-right:5px" class="edit_cancel button" value="Find parent" id="findparent"/>');
-$findchild = $('<input type="button" style="margin-right:5px" class="edit_cancel button" value="Find child" id="findchild"/>');
-$tbl.plateedit.prepend($findparent);
-$tbl.plateedit.prepend($findchild);
-*/
-$btnLoadSlot = $('<a href="#" id="loadslot">Load Slot</a>');
-// append hyperlink
-$div.location.append($btnLoadSlot);
-// append beside paging
-$div.paging.append($btn.barcode);
+/*$textarea = {
+	plateinfo : $('#dbo_platelist_edit_sp_plateinfo')
+};*/
 
-
+$(document).ready(function(){
+	//$textarea.plateinfo.attr('rows',4);
+	$btnLoadSlot = $('<a href="#" id="loadslot">Load Slot</a>');
+	// append hyperlink
+	$div.location.append($btnLoadSlot);
+	// append beside paging
+	$div.paging.append($btn.barcode);
+});
 
 $('#loadslot').click(function(){
 	// if location is different with the selected, then get available slot
