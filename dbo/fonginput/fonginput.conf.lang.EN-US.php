@@ -30,5 +30,8 @@ $dbo->text->detailDelete = 'Delete';
 $dbo->text->messageAfterNew = 'Record has been created';
 $dbo->text->messageAfterEdit = 'Record is updated';
 $dbo->text->messageAfterDelete = 'Record is deleted';
+$dbo->text->defaultMessageAfterNew = 'Record created.';
+$dbo->text->defaultMessageAfterEdit = 'Record updated.';
+$dbo->text->defaultMessageAfterDelete = 'Record deleted.';
 
 ?>
