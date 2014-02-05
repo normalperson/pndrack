@@ -18,6 +18,8 @@ function dbo_plate_multiedit_customize(&$dbo){
 function dbo_plate_multiedit_custom_edit($table, $cols, $wheres){
 	global $DB;
 	$ret = array();
+/*	vd($cols);
+	vd($wheres); die();*/
 	// if set to throw, free up the slot
 	
 	// get slotid

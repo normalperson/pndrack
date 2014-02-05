@@ -9,7 +9,7 @@ $dbo->cols['op_createby']->caption->set('default', 'Created By', 'text');
 $dbo->cols['op_status']->caption->set('default', 'Status', 'text');
 $dbo->cols['op_startdate']->caption->set('default', 'Start Date', 'text');
 $dbo->cols['op_enddate']->caption->set('default', 'End Date', 'text');
-$dbo->cols['months']->caption->set('default', 'Month(s)', 'text');
+$dbo->cols['months']->caption->set('default', 'Duration (months)', 'text');
 $dbo->cols['op_enddateori']->caption->set('default', 'op_enddateori', 'text');
 $dbo->cols['op_previd']->caption->set('default', 'op_previd', 'text');
 

@@ -11,7 +11,8 @@
       {if $i %2==0}
       </tr><tr>
       {/if}
-      <td>
+      
+      <td width="50%">
         <table class="table table-bordered" style="width:100%">
         <tr>
           <div id="npbarcode_{$pi.sp_id}"></div>
@@ -29,7 +30,29 @@
           <td>{$pi.sp_createdby}</td>
         </tr>
       </table>   
-      </td>      
+      </td>     
+
+      {if $totalplate == 1}
+      <td  width="50%"> 
+        <table class="table table-bordered" style="width:100%">
+        <tr>
+          <div>-</div>
+        </tr>
+        <tr>
+          <td>Location</td>
+          <td><span>-</span></td>
+        </tr>
+        <tr>
+          <td>Customer Name</td>
+          <td>-</td>
+        </tr>
+         <tr>
+          <td>Created By</td>
+          <td>-</td>
+        </tr>
+      </table>   
+      </td> 
+      {/if} 
       {assign var="i" value=$i+1}
   {/foreach} <!-- end of from=$plateinfo  -->
   </tr>

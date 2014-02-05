@@ -1,7 +1,7 @@
 <?php
 require_once(dirname(__FILE__).DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'init.inc.php');
 
-$dbo->cols['usr_userid']->caption->set('default', 'Userid', 'text');
+$dbo->cols['usr_userid']->caption->set('default', 'User ID', 'text');
 $dbo->cols['usr_password']->caption->set('default', 'Password', 'text');
 $dbo->cols['usr_created']->caption->set('default', 'Created Date', 'text');
 $dbo->cols['usr_name']->caption->set('default', 'User Name', 'text');
@@ -13,7 +13,7 @@ $dbo->cols['usr_group']->caption->set('default', 'usr_group', 'text');
 $dbo->cols['usr_sessiondata']->caption->set('default', 'usr_sessiondata', 'text');
 $dbo->cols['usr_langid']->caption->set('default', 'Language', 'text');
 $dbo->cols['usr_status']->caption->set('default', 'Status', 'text');
-$dbo->cols['password2']->caption->set('default', 'Repeat Password', 'text');
+$dbo->cols['password2']->caption->set('default', 'Re-type password', 'text');
 $dbo->cols['password1']->caption->set('default', 'Password', 'text');
 $dbo->cols['orgid']->caption->set('default', 'orgid', 'text');
 $dbo->cols['userRole']->caption->set('default', 'Role', 'text');

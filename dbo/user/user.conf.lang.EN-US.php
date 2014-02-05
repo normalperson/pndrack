@@ -1,7 +1,7 @@
 <?php
 require_once(dirname(__FILE__).DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'init.inc.php');
 
-$dbo->cols['usr_userid']->caption->set('default', 'Userid', 'text');
+$dbo->cols['usr_userid']->caption->set('default', 'User ID', 'text');
 $dbo->cols['usr_password']->caption->set('default', 'Password', 'text');
 $dbo->cols['usr_password']->caption->set('search', 'Password', 'text');
 $dbo->cols['usr_password']->caption->set('list', 'Password', 'text');
@@ -42,7 +42,7 @@ $dbo->cols['userRole']->caption->set('default', 'userRole', 'text');
 $dbo->cols['usr_orgid']->caption->set('default', 'usr_orgid', 'text');
 $dbo->cols['currpassword']->caption->set('default', 'currpassword', 'text');
 $dbo->cols['newpassword']->caption->set('default', 'newpassword', 'text');
-$dbo->cols['newpassword2']->caption->set('default', 'newpassword2', 'text');
+$dbo->cols['newpassword2']->caption->set('default', 're-type new password', 'text');
 
 $dbo->titleList = 'List User';
 $dbo->titleDetail = 'Detail';

@@ -1,5 +1,5 @@
 <?php
-/*Last Modified by admin on 23-01-2014 16:20:37*/
+/*Last Modified by admin on 01-02-2014 10:36:49*/
 $translate = array (
   'Barcode' => 'Barcode',
   'Manual Search' => 'Manual Search',
@@ -15,5 +15,7 @@ $translate = array (
   'Remark' => 'Remark',
   'Clear' => 'Clear',
   'Save' => 'Save',
+  'Plate Info' => 'Plate Info',
+  'Close' => 'Close',
 );
 ?>

@@ -29,15 +29,16 @@ $input = {
   mastercardid : $('#mastercardid'),
   platename    : $('#platename'),
   platemodel   : $('#platemodel'),
-  mdmasterid   : $('#mdmasterid')
-
+  mdmasterid   : $('#mdmasterid'),
+  plateinfo    : $('#plateinfo')
 };
 function clearForm(){
   // clear all the input
   $input.custname.val('');
   $input.mastercardid.val('');
   $input.platename.val('');
-  $input.platemodel.val('');
+  $input.platemodel.val('');  
+  $input.plateinfo.val('');
   // make the select the first option
   $select.shelf.val('default');
   $div.alert.hide();
@@ -63,11 +64,12 @@ function getPlateInfo(){
     'custid'    : $('#custname').data('cusid'),
     'shelfid'   : $('#shelf').val(),
     'platename' : $('#platename').val(),
-    'platemodel': $('#platemodel').val()
+    'platemodel': $('#platemodel').val(),
+    'plateinfo' : $('#plateinfo').val()
   };
 
-  console.log(formArr.custid);
-  console.log(parseFloat(formArr.custid));
+/*  console.log(formArr.custid);
+  console.log(parseFloat(formArr.custid));*/
 
   return formArr;
 }
@@ -177,6 +179,7 @@ $( document ).ready(function() {
       dataType:'json',
       data: getPlateInfo(),
       success: function (data,textStatus,jqXHR) {
+        console.log(data);
         // show modal on the location
         $span.nplocation.text(data.location);
         $span.npcreatdby.text(data.createdby);

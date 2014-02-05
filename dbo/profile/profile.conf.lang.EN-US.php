@@ -26,9 +26,9 @@ $dbo->titleSearch = 'Search Record';
 $dbo->text->searchCancel = 'Cancel';
 $dbo->text->searchSubmit = 'Search';
 $dbo->text->editCancel = 'Cancel';
-$dbo->text->editSubmit = 'Edit';
+$dbo->text->editSubmit = 'Save';
 $dbo->text->newCancel = 'Cancel';
-$dbo->text->newSubmit = 'Submit';
+$dbo->text->newSubmit = 'Save';
 $dbo->text->detailCancel = 'Back';
 
 ?>

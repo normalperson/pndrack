@@ -64,8 +64,7 @@ function dbo_platelist_custom_edit($table, $cols, $wheres){
 }*/
 $dbo->editModifier = 'dbo_platelist_custom_edit';
 global $USER;
-
-if($USER->userid != 'admin'){
+if($USER->userid != 'admin' && $USER->userid != 'pndadmin'){
 	$dbo->whereSQL = "sp_orgid = '".$USER->orgid."'";
 	$dbo->cols['sp_sfid']->option->default = "select sf_id,sf_desc from smshelfsetting where sf_orgid = ".$USER->orgid." order by sf_seq";
 	$dbo->cols['sp_cusid']->option->default = 'select cus_id, cus_name from smcustomer where cus_orgid = '.$USER->orgid.' order by cus_id';
@@ -75,23 +74,31 @@ if($USER->userid != 'admin'){
 
 # final rendering
 $dbo->render();
-if($dbo->state == 'list') echo '<input type="button" id="printbarcode" class="btn btn-primary" value="Print Barcode" />';
+#if($dbo->state == 'list') echo '<input type="button" id="printbarcode" class="btn btn-primary" value="Print Barcode" />';
 ?>
 <script type="text/javascript">
 $div = {
-	location : $('#dbo_platelist_edit_cont_ps_code')
+	location : $('#dbo_platelist_edit_cont_ps_code'),
+	paging   : $('.paging_container')
 };
 $tbl = {
 	plateedit : $('#dbo_platelist_edittable tfoot .form_button')
 };
-/*$findparent = $('<input type="button" style="margin-right:5px" class="edit_cancel button" value="Find parent" id="findparent"/>');
-$findchild = $('<input type="button" style="margin-right:5px" class="edit_cancel button" value="Find child" id="findchild"/>');
-$tbl.plateedit.prepend($findparent);
-$tbl.plateedit.prepend($findchild);
-*/
-$btnLoadSlot = $('<a href="#" id="loadslot">Load Slot</a>');
+$btn = {
+	barcode : $('<input type="button" id="printbarcode" class="btn btn-primary btn-xs" value="Print Barcode" />')
+};
+/*$textarea = {
+	plateinfo : $('#dbo_platelist_edit_sp_plateinfo')
+};*/
 
-$div.location.append($btnLoadSlot);
+$(document).ready(function(){
+	//$textarea.plateinfo.attr('rows',4);
+	$btnLoadSlot = $('<a href="#" id="loadslot">Load Slot</a>');
+	// append hyperlink
+	$div.location.append($btnLoadSlot);
+	// append beside paging
+	$div.paging.append($btn.barcode);
+});
 
 $('#loadslot').click(function(){
 	// if location is different with the selected, then get available slot

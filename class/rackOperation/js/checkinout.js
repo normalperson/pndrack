@@ -7,7 +7,6 @@ $input = {
 $span = {
   custname          : $('#custname'),
   lastprintdate     : $('#lastprintdate'),
-  platename         : $('#platename'),
   platecreateddate  : $('#platecreateddate'),
   pibarcode         : $('#pibarcode'),
   printednotime     : $('#printedtime'),
@@ -15,8 +14,15 @@ $span = {
   printedqty        : $('#printedqty'),
   advsearch         : $('#advsearch')
 };
+$p = {
+  plateinfo : $('#plateinfodet')
+};
+$atag = {
+  platename : $('#platename')
+};
 $div = {
-  plateinfo : $('#plateinfo')
+  plateinfo   : $('#plateinfo'),
+  mdplateinfo : $('#mdplateinfo')
 };
 $btn = {
   btnclear : $('#btnclear'),
@@ -34,12 +40,13 @@ function clearPlateInfo(){
   $input.msearch.val('');
   $span.custname.text('');
   $span.lastprintdate.text('');
-  $span.platename.text('');
+  $atag.platename.text('');
   $span.platecreateddate.text('');
   $span.pibarcode.text('');
   $span.printednotime.text('');
   $span.shelf.text('');
   $span.printedqty.text('');
+  $p.plateinfo.text('');
   $div.plateinfo.slideUp( "slow" );
 }
 function populatePlateInfo(plateinfo, platesumm){
@@ -48,12 +55,13 @@ function populatePlateInfo(plateinfo, platesumm){
   $input.msearch.val(plateinfo.sp_platename);
   $span.custname.text(plateinfo.cus_name);
   $span.lastprintdate.text(platesumm.lastprinteddate);
-  $span.platename.text(plateinfo.sp_platename);
+  $atag.platename.text(plateinfo.sp_platename);
   $span.platecreateddate.text(plateinfo.createddate);
   $span.pibarcode.text(plateinfo.ps_code);
   $span.printednotime.text(platesumm.totalprint);
   $span.shelf.text(plateinfo.sf_desc);
   $span.printedqty.text(platesumm.totalqty);
+  $p.plateinfo.text(plateinfo.sp_plateinfo);
 }
 function getFormInfo(){
   var retArr = {
@@ -87,6 +95,10 @@ function selectplateinfo(plateid){
   });
 }
 $( document ).ready(function() {
+  $atag.platename.click(function(event ){
+    event.stopPropagation();
+    $div.mdplateinfo.modal('show');
+  });
   $btn.btnclear.click(function(){
     clearPlateInfo();
   });

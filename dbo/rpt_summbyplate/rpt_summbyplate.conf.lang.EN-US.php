@@ -2,10 +2,10 @@
 require_once(dirname(__FILE__).DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'init.inc.php');
 
 $dbo->cols['totalqty']->caption->set('default', 'Total Print Quantity', 'text');
-$dbo->cols['totalprint']->caption->set('default', 'Count', 'text');
+$dbo->cols['totalprint']->caption->set('default', 'Use Count', 'text');
 $dbo->cols['sp_platename']->caption->set('default', 'Plate Name', 'text');
 $dbo->cols['sp_orgid']->caption->set('default', 'sp_orgid', 'text');
-$dbo->cols['ratio']->caption->set('default', 'Print Ratio', 'text');
+$dbo->cols['ratio']->caption->set('default', 'Average Quantity <br>Per Use', 'text');
 $dbo->cols['datefrom']->caption->set('default', 'Date From', 'text');
 $dbo->cols['dateto']->caption->set('default', 'Date To', 'text');
 $dbo->cols['smb_pdinchar']->caption->set('default', 'Date', 'text');

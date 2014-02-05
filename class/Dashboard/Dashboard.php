@@ -174,7 +174,7 @@ class Dashboard{
 	function plateSumm(){
 		global $DB,$USER,$HTML;
 
-		#print 'orgid = '.$USER->orgid.'<br>'; die();
+		//print 'orgid = '.$USER->orgid.'<br>'; die();
 		$sql = "select count(*) 
 				from smshelfsetting
 				where sf_orgid = :0";
