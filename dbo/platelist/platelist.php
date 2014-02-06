@@ -49,7 +49,7 @@ function dbo_platelist_custom_edit($table, $cols, $wheres){
 	}
 	unset($cols['ps_code']); // does not update slot info
 	// update plate info
-	$ok = $DB->doUpdate($table, $cols, $wheres);
+	$ok = $DB->doUpdateAudit($table, $cols, $wheres, array('sp_plateinfo'));
 	if(!$ok){
 		$ret[] = $DB->lastError;
 	}
