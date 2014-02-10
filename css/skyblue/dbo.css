@@ -713,7 +713,6 @@ div.dbo_theme_skyblue td.dbo_container_new{
 }
 
 div.dbo_theme_skyblue td.dbo_container_new pre.dbo_error_new{
-	color:red;
 	padding: 15px;
     margin-bottom: 20px;
     border: 1px solid transparent;
@@ -722,6 +721,17 @@ div.dbo_theme_skyblue td.dbo_container_new pre.dbo_error_new{
     background-color: #f2dede;
     border-color: #ebccd1;
 }
+div.dbo_theme_skyblue td.dbo_container_new .dbo_after_new_message{
+	padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    color: #3c763d;
+    background-color: #dff0d8;
+    border-color: #d6e9c6;         
+}
+
+
 
 div.dbo_theme_skyblue td.dbo_container_new th.caption{
 	font-weight:normal;
@@ -813,7 +823,6 @@ div.dbo_theme_skyblue td.dbo_container_new td.form_button input.new_submit:hover
 div.dbo_theme_skyblue td.dbo_container_edit{
 }
 div.dbo_theme_skyblue td.dbo_container_edit pre.dbo_error_new{
-	color:red;
 	padding: 15px;
     margin-bottom: 20px;
     border: 1px solid transparent;
@@ -823,7 +832,6 @@ div.dbo_theme_skyblue td.dbo_container_edit pre.dbo_error_new{
     border-color: #ebccd1;
 }
 div.dbo_theme_skyblue td.dbo_container_edit pre.dbo_error_edit{
-	color:red;
 	padding: 15px;
     margin-bottom: 20px;
     border: 1px solid transparent;
@@ -831,6 +839,15 @@ div.dbo_theme_skyblue td.dbo_container_edit pre.dbo_error_edit{
     color: #a94442;
     background-color: #f2dede;
     border-color: #ebccd1;
+}
+div.dbo_theme_skyblue td.dbo_container_edit .dbo_after_edit_message{
+	padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    color: #3c763d;
+    background-color: #dff0d8;
+    border-color: #d6e9c6;  
 }
 
 

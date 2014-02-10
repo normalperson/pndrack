@@ -34,6 +34,7 @@ $dbo->cols['ps_available']->caption->set('default', 'ps_available', 'text');
 $dbo->cols['sp_orgid']->caption->set('default', 'sp_orgid', 'text');
 $dbo->cols['checkin']->caption->set('default', 'Action', 'text');
 $dbo->cols['sp_plateinfo']->caption->set('default', 'Plate Info', 'text');
+$dbo->cols['history']->caption->set('default', 'History', 'text');
 
 $dbo->titleList = 'List Record';
 $dbo->titleDetail = 'Detail';
@@ -46,5 +47,8 @@ $dbo->text->editCancel = 'Cancel';
 $dbo->text->editSubmit = 'Save';
 $dbo->text->newCancel = 'Cancel';
 $dbo->text->newSubmit = 'Save';
+$dbo->text->defaultMessageAfterNew = 'Record created.';
+$dbo->text->defaultMessageAfterEdit = 'Record updated.';
+$dbo->text->defaultMessageAfterDelete = 'Record deleted.';
 
 ?>

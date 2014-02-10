@@ -105,7 +105,14 @@ class rackOperation{
 		html_header();
 		$dbo = dbo_include('transaction_history');
 	}
+	function showPlateHistory(){
+		global $HTML;
 
+		$HTML->showPageTime = false;
+		html_header('iframeheader.html');
+		$dbo = dbo_include('plate_audit');
+
+	}
 	
 
 	

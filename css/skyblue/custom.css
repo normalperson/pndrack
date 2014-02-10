@@ -76,3 +76,6 @@ span.mandatory:after {
     background-color:#101010;
     color: #ffffff;
 }
+.modal-large .modal-dialog{
+    width: 100%;
+}

@@ -6,15 +6,16 @@ $dbo = DBO_init($dboID);
 $dbo->id = $dboID;
 $dbo->table = 'smplate';
 $dbo->key = array('sp_id');
-$dbo->sql = 'select sp_id,cus_masterid, cus_name, sp_platename, sp_platemodel, ps_code,sp_orgid,sp_cusid,sp_sfid,\'Checkin\' as checkin,sp_plateinfo
+$dbo->sql = 'select sp_id,cus_masterid, cus_name, sp_platename, sp_platemodel, ps_code,sp_orgid,sp_cusid,sp_sfid,\'Checkin\' as checkin,sp_plateinfo,
+\'History\' as history
 from smplate 
 join smplateslot on sp_psid = ps_id
 join smcustomer on sp_cusid = cus_id
 join smshelfsetting on sp_sfid = sf_id
 join smshelfgroup on sf_sgid = sg_id
 where sp_status = \'ACTIVE\'';
-$dbo->col = array('sp_id', 'cus_masterid', 'cus_name', 'sp_platename', 'sp_platemodel', 'ps_code', 'sp_orgid', 'sp_cusid', 'sp_sfid', 'checkin', 'sp_plateinfo');
-$dbo->colList = array('cus_masterid', 'cus_name', 'sp_sfid', 'sp_platename', 'sp_platemodel', 'ps_code', 'checkin');
+$dbo->col = array('sp_id', 'cus_masterid', 'cus_name', 'sp_platename', 'sp_platemodel', 'ps_code', 'sp_orgid', 'sp_cusid', 'sp_sfid', 'checkin', 'sp_plateinfo', 'history');
+$dbo->colList = array('cus_masterid', 'cus_name', 'sp_sfid', 'sp_platename', 'sp_platemodel', 'ps_code', 'checkin', 'history');
 $dbo->colListEdit = array();
 $dbo->colListNew = array();
 $dbo->colListGlobalInput = array();
@@ -407,6 +408,19 @@ $dbo->cols['sp_plateinfo']->option->listMethod = 'text';
 $dbo->cols['sp_plateinfo']->option->detailMethod = 'text';
 $dbo->cols['sp_plateinfo']->option->newMethod = 'text';
 $dbo->cols['sp_plateinfo']->option->editMethod = 'text';
+$dbo->cols['history'] = new DBO_COL('history', 'VAR_STRING', '21', '0');
+$dbo->cols['history']->displayListModifierMethod = 'phpfunc';
+$dbo->cols['history']->displayListModifier = 'history';
+$dbo->cols['history']->inputTypeDefault = 'text';
+$dbo->cols['history']->searchMode = 'exact';
+$dbo->cols['history']->capContClassDefault = array();
+$dbo->cols['history']->valContClassDefault = array();
+$dbo->cols['history']->option->defaultMethod = 'text';
+$dbo->cols['history']->option->searchMethod = 'text';
+$dbo->cols['history']->option->listMethod = 'text';
+$dbo->cols['history']->option->detailMethod = 'text';
+$dbo->cols['history']->option->newMethod = 'text';
+$dbo->cols['history']->option->editMethod = 'text';
 
 // support multiple language. only caption
 global $LANG;

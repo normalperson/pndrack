@@ -5,6 +5,10 @@ function checkin($colname,$colval,$rowinfo){
 	//$rowinfo['hmc_receiptdt']
 	return "<a href='../rackOperation/checkinout?psid=".$rowinfo['sp_id']."'>$colval</a>";
 }
+function history($colname,$colval,$rowinfo){
+	//$rowinfo['hmc_receiptdt']
+	return "<a href='#' class='history' data-spid='".$rowinfo['sp_id']."' data-platename='".$rowinfo['sp_platename']."'>$colval</a>";
+}
 
 function dbo_platelist_custom_edit($table, $cols, $wheres){
 	//print 'inside custom edit';
@@ -76,16 +80,39 @@ if($USER->userid != 'admin' && $USER->userid != 'pndadmin'){
 $dbo->render();
 #if($dbo->state == 'list') echo '<input type="button" id="printbarcode" class="btn btn-primary" value="Print Barcode" />';
 ?>
+
+<!-- new cust modal start -->
+<div class="modal fade modal-large" id="mdplatehistory">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title"></h4>
+      </div>
+      <div class="modal-body">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 <script type="text/javascript">
 $div = {
-	location : $('#dbo_platelist_edit_cont_ps_code'),
-	paging   : $('.paging_container')
+	location  : $('#dbo_platelist_edit_cont_ps_code'),
+	paging    : $('.paging_container'),
+	history   : $('#mdplatehistory'),
+	hisbody   : $('#mdplatehistory .modal-body'),
+	histitle  : $('#mdplatehistory .modal-title')
 };
 $tbl = {
 	plateedit : $('#dbo_platelist_edittable tfoot .form_button')
 };
 $btn = {
 	barcode : $('<input type="button" id="printbarcode" class="btn btn-primary btn-xs" value="Print Barcode" />')
+};
+$atag = {
+	history : $('.history')
 };
 /*$textarea = {
 	plateinfo : $('#dbo_platelist_edit_sp_plateinfo')
@@ -98,6 +125,16 @@ $(document).ready(function(){
 	$div.location.append($btnLoadSlot);
 	// append beside paging
 	$div.paging.append($btn.barcode);
+
+	$atag.history.click(function(){
+		$spid = $(this).data('spid');
+		$platename = $(this).data('platename');
+		$('#iframewithdbo').remove();
+  		$newiframe = $('<iframe id="iframewithdbo" src="showPlateHistory?spid='+$spid+'" style="zoom:0.60" width="99.6%" height="600px" frameborder="0"></iframe>');
+  		$div.histitle.text('Plate History : '+$platename);
+  		$div.hisbody.append($newiframe);
+		$div.history.modal('show');
+	});
 });
 
 $('#loadslot').click(function(){

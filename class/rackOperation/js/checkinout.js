@@ -22,7 +22,9 @@ $atag = {
 };
 $div = {
   plateinfo   : $('#plateinfo'),
-  mdplateinfo : $('#mdplateinfo')
+  mdplateinfo  : $('#mdplateinfo'),
+  mdplatebody  : $('#mdplateinfo .modal-body'),
+  mdplatetitle : $('#mdplateinfo .modal-title')
 };
 $btn = {
   btnclear : $('#btnclear'),
@@ -97,6 +99,12 @@ function selectplateinfo(plateid){
 $( document ).ready(function() {
   $atag.platename.click(function(event ){
     event.stopPropagation();
+    $spid = $input.msearch.data('plateid');
+    $platename = $(this).text();
+    $('#iframewithdbo').remove();
+    $newiframe = $('<iframe id="iframewithdbo" src="showPlateHistory?spid='+$spid+'" style="zoom:0.60" width="99.6%" height="600px" frameborder="0"></iframe>');
+    $div.mdplatetitle.text('Plate History : '+$platename);
+    $div.mdplatebody.append($newiframe);
     $div.mdplateinfo.modal('show');
   });
   $btn.btnclear.click(function(){
