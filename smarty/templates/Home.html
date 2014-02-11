@@ -1,0 +1,37 @@
+<div class="col-lg-12">&nbsp;</div>
+<div class="container">
+  <div class="col-lg-6">        
+      <img src="../../image/landing/create_plate.png" class="img-responsive" alt="Create Plate" id="createplate">
+  </div>
+  <div class="col-lg-6">        
+      <img src="../../image/landing/create_shelf.png" class="img-responsive" alt="Create Shelf" id="createshelf">
+  </div>
+  <div class="col-lg-12">&nbsp;</div>
+  <div class="col-lg-6">        
+      <img src="../../image/landing/search_plate.png" class="img-responsive" alt="Search Plate" id="searchplate">
+  </div>
+  <div class="col-lg-6">        
+      <img src="../../image/landing/summary_page.png" class="img-responsive" alt="Summary Page" id="summarypage">
+  </div>
+</div>
+<script type="text/javascript">
+$img = {
+  searchplate : $('#searchplate'),
+  createplate : $('#createplate'),
+  createshelf : $('#createshelf'),
+  summarypage : $('#summarypage')
+};
+
+$img.createplate.click(function(){
+   window.location.href = '../Main/createplate';
+});
+$img.searchplate.click(function(){
+   window.location.href = '../Main/searchplate';
+});
+$img.summarypage.click(function(){
+   window.location.href = '../Dashboard/plateSumm';
+});
+$img.createshelf.click(function(){
+   window.location.href = '../Setting/shelfSetting?dboid=setup_shelf&dbostate=new';
+});
+</script>
