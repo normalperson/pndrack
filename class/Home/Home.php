@@ -22,7 +22,7 @@ class Home{
 		$HTML->showPageTime = false;
 		$smarty = $this->initSmarty();
 		html_header('header.nh.html');
-		$smarty->display('home.html');	
+		$smarty->display('Home.html');	
 	}
 	function plateSumm(){
 		global $DB,$USER,$HTML;
