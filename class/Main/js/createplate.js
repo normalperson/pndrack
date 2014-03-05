@@ -114,6 +114,26 @@ function valNewCust(){
   // if master card id is null 
   if($.trim($input.mdmasterid.val()) == '') msg += '<p>'+$jsmsg.mastercardid+'</p>';  
 
+  // ajax validation
+  $.ajax({
+        url: "valcustomer",
+        type: "post",
+        async:false,
+        dataType:'json',
+        data: {
+               'cus_name'     : $input.companyname.val(),
+               'cus_regno'    : $input.compregno.val(),
+               'cus_masterid' : $input.mdmasterid.val()
+               },
+        success: function (data,textStatus,jqXHR) {
+          // get the name and cus_id and assign back to input box        
+          for(var i=0;i<data.length;i++){
+            msg += '<p>'+data[i]+'</p>';
+          }
+        }
+      }); 
+
+
   return msg;
 }
 $( document ).ready(function() {
