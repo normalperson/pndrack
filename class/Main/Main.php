@@ -37,11 +37,37 @@ class Main{
 		$dbo = dbo_include('setup_customer');
 
 	}
+	function valcustomer(){
+		global $DB,$USER;
+		extract($_POST);
+		$topOrgID = userTopOrgID();
+
+		// add validation if same customer name or master ID
+		$cnt = $DB->GetOne("select count(*) from smcustomer
+							where cus_name = :0
+							and cus_orgid = :1",array($cus_name,userTopOrgID()));
+		if($cnt > 0) $ret[] = 'Duplicate customer name found. Please enter other name';
+		$cnt = $DB->GetOne("select count(*) from smcustomer
+							where cus_regno = :0
+							and cus_orgid = :1",array($cus_regno,userTopOrgID()));
+		if($cnt > 0) $ret[] = 'Duplicate customer registration number found. Please enter other customer registration number';
+		$cnt = $DB->GetOne("select count(*) from smcustomer
+							where cus_masterid = :0
+							and cus_orgid = :1",array($cus_masterid,userTopOrgID()));
+		if($cnt > 0) $ret[] = 'Duplicate customer master ID found. Please enter other customer master id';	
+
+		if(count($ret) > 0) echo  json_encode($ret);
+
+
+	}
 	function newcustomer(){
 		global $DB,$USER;
 		extract($_POST);
 		$topOrgID = userTopOrgID();
 		$table = "smcustomer";
+
+		
+
 		$data = array("cus_name" => $companyname,
 		              "cus_regno" => (trim($companyregno))==''?null:trim($companyregno),
 		              "cus_contactno" => (trim($contactno))==''?null:trim($contactno),

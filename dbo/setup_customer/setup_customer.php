@@ -13,6 +13,22 @@ function setup_customer_custom_new($table, $cols){
 	global $DB;
 	$ret = array();
 	$cols['cus_orgid'] = userTopOrgID();
+	// add validation if same customer name or master ID
+	$cnt = $DB->GetOne("select count(*) from smcustomer
+						where cus_name = :0
+						and cus_orgid = :1",array($cols['cus_name'],userTopOrgID()));
+	if($cnt > 0) $ret[] = 'Duplicate customer name found. Please enter other name';
+	$cnt = $DB->GetOne("select count(*) from smcustomer
+						where cus_regno = :0
+						and cus_orgid = :1",array($cols['cus_regno'],userTopOrgID()));
+	if($cnt > 0) $ret[] = 'Duplicate customer registration number found. Please enter other customer registration number';
+	$cnt = $DB->GetOne("select count(*) from smcustomer
+						where cus_masterid = :0
+						and cus_orgid = :1",array($cols['cus_masterid'],userTopOrgID()));
+	if($cnt > 0) $ret[] = 'Duplicate customer master ID found. Please enter other customer master id';	
+
+	if(count($ret) > 0) return $ret;
+
 	$ok = $DB->doInsert($table, $cols);
 	if(!$ok){
 		$ret[] = $DB->lastError;
