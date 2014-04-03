@@ -14,6 +14,7 @@ $dbo->cols['ct_last_status_date']->caption->set('default', 'Status Date', 'text'
 $dbo->cols['ct_approval_status']->caption->set('default', 'Approval Status', 'text');
 $dbo->cols['ct_approval_date']->caption->set('default', 'Approval Date', 'text');
 $dbo->cols['ct_approval_by']->caption->set('default', 'Approval By', 'text');
+$dbo->cols['ct_imagelocation']->caption->set('default', 'Image location', 'text');
 
 $dbo->titleList = 'Content Management';
 $dbo->titleDetail = 'Detail';
@@ -27,5 +28,8 @@ $dbo->text->editSubmit = 'Save';
 $dbo->text->newCancel = 'Cancel';
 $dbo->text->newSubmit = 'Save';
 $dbo->text->detailCancel = 'Back';
+$dbo->text->defaultMessageAfterNew = 'Record created.';
+$dbo->text->defaultMessageAfterEdit = 'Record updated.';
+$dbo->text->defaultMessageAfterDelete = 'Record deleted.';
 
 ?>
