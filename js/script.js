@@ -1,3 +1,4 @@
+if(!window.console) console = {log: function(){}};
 /* 
 use this in onkeypress="return isNumericKey(event,this,true,false)" of a numeric input box
 Parameters : 	e - event

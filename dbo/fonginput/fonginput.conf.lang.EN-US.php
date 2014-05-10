@@ -12,6 +12,9 @@ $dbo->cols['fi_radio']->caption->set('default', 'fi_radio', 'text');
 $dbo->cols['fi_date']->caption->set('default', 'fi_date', 'text');
 $dbo->cols['fi_integer']->caption->set('default', 'fi_integer', 'text');
 $dbo->cols['fi_html']->caption->set('default', 'fi_html', 'text');
+$dbo->cols['fi_datetime']->caption->set('default', 'fi_datetime', 'text');
+$dbo->cols['fi_time']->caption->set('default', 'fi_time', 'text');
+$dbo->cols['fi_timestamp']->caption->set('default', 'fi_timestamp', 'text');
 
 $dbo->titleList = 'List Record';
 $dbo->titleDetail = 'Detail';
