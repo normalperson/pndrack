@@ -197,7 +197,6 @@ div.dbo_theme_skyblue table.dbo_list td.recordnum{
 	white-space:nowrap;
 }
 div.dbo_theme_skyblue table.dbo_list td.recordnum > div:after{
-	content:".";
 }
 
 div.dbo_theme_skyblue table.dbo_list td.tool{
