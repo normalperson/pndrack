@@ -5,10 +5,13 @@ $dboID = 'permission';
 $dbo = DBO_init($dboID);
 $dbo->id = $dboID;
 $dbo->table = 'fcpermission';
-$dbo->key = array('pms_id');
-$dbo->sql = 'select * from fcpermission order by pms_id';
-$dbo->col = array('pms_id', 'pms_code', 'pms_desc', 'last_modified_date', 'last_synchronized_date', 'record_synchronized', 'cloud_refid');
+$dbo->key = array('pms_code');
+$dbo->sql = 'select * from fcpermission order by pms_code';
+$dbo->col = array('pms_code', 'pms_desc');
 $dbo->colList = array('pms_code', 'pms_desc');
+$dbo->colListEdit = array();
+$dbo->colListNew = array();
+$dbo->colListGlobalInput = array();
 $dbo->colDetail = array('pms_code', 'pms_desc');
 $dbo->colNew = array('pms_code', 'pms_desc');
 $dbo->colEdit = array('pms_code', 'pms_desc');
@@ -35,6 +38,7 @@ $dbo->theme = 'skyblue';
 $dbo->layout = 'One';
 $dbo->pageLinkCount = 7;
 $dbo->recordPerPage = 50;
+$dbo->showRecordNo = 1;
 $dbo->defaultState = 'list';
 $dbo->maxSortCount = 9;
 $dbo->lang = 'EN-GB';
@@ -53,7 +57,7 @@ $dbo->cols['pms_id']->option->listMethod = 'text';
 $dbo->cols['pms_id']->option->detailMethod = 'text';
 $dbo->cols['pms_id']->option->newMethod = 'text';
 $dbo->cols['pms_id']->option->editMethod = 'text';
-$dbo->cols['pms_code'] = new DBO_COL('pms_code', 'varchar', '-1', '54');
+$dbo->cols['pms_code'] = new DBO_COL('pms_code', 'VAR_STRING', '150', '0');
 $dbo->cols['pms_code']->inputTypeDefault = 'text';
 $dbo->cols['pms_code']->searchMode = 'exact';
 $dbo->cols['pms_code']->capContClassDefault = array();
@@ -64,7 +68,7 @@ $dbo->cols['pms_code']->option->listMethod = 'text';
 $dbo->cols['pms_code']->option->detailMethod = 'text';
 $dbo->cols['pms_code']->option->newMethod = 'text';
 $dbo->cols['pms_code']->option->editMethod = 'text';
-$dbo->cols['pms_desc'] = new DBO_COL('pms_desc', 'varchar', '-1', '2004');
+$dbo->cols['pms_desc'] = new DBO_COL('pms_desc', 'VAR_STRING', '6000', '0');
 $dbo->cols['pms_desc']->inputTypeDefault = 'text';
 $dbo->cols['pms_desc']->searchMode = 'exact';
 $dbo->cols['pms_desc']->capContClassDefault = array();
@@ -134,8 +138,8 @@ $dbo->saveDir = dirname(dirname(__FILE__));
 $dbo->run();
 
 /*
-$dbo->newModifier = 'permission_custom_new';
-function permission_custom_new($table, $cols){
+$dbo->newModifier = 'dbo_permission_custom_new';
+function dbo_permission_custom_new($table, $cols){
 	global $DB;
 	$ret = array();
 	$ok = $DB->doInsert($table, $cols);
@@ -145,8 +149,8 @@ function permission_custom_new($table, $cols){
 	return $ret;
 }
 
-$dbo->editModifier = 'permission_custom_edit';
-function permission_custom_edit($table, $cols, $wheres){
+$dbo->editModifier = 'dbo_permission_custom_edit';
+function dbo_permission_custom_edit($table, $cols, $wheres){
 	global $DB;
 	$ret = array();
 	$ok = $DB->doUpdate($table, $cols, $wheres);
@@ -156,12 +160,12 @@ function permission_custom_edit($table, $cols, $wheres){
 	return $ret;
 }
 
-$dbo->searchModifier = 'permission_custom_search';
-function permission_custom_search(&$search){
+$dbo->searchModifier = 'dbo_permission_custom_search';
+function dbo_permission_custom_search(&$search){
 }
 
-$dbo->deleteModifier = 'permission_custom_delete';
-function permission_custom_delete($table, $wheres){
+$dbo->deleteModifier = 'dbo_permission_custom_delete';
+function dbo_permission_custom_delete($table, $wheres){
 	global $DB;
 	$ret = array();
 	$ok = $DB->doDelete($table, $wheres);
@@ -169,6 +173,9 @@ function permission_custom_delete($table, $wheres){
 		$ret[] = $DB->lastError;
 	}
 	return $ret;
+}
+
+function dbo_permission_display_modifier($col, $colVal, $data=array(), $html=null){
 }
 */
 ?>

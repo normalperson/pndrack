@@ -1,0 +1,49 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+			<div class="panel panel-default">
+			  <div class="panel-heading">
+			    <h3 class="panel-title">{'Template download'|tl:true:'importexcel'}</h3>
+			  </div>
+			  <div class="panel-body">
+				    <input type="button" class="btn btn-info" id="excel2013" value="download excel template 2013">
+      				<input type="button" class="btn btn-info" id="excel2007" value="download excel template 2007">
+			  </div>
+			</div>      
+        </div>
+        <div class="col-md-12">
+			<div class="panel panel-info">
+			  <div class="panel-heading">
+			    <h3 class="panel-title">{'Import data'|tl:true:'importexcel'}</h3>
+			  </div>
+			  <div class="panel-body">
+			  	    <form method="post" id="formExcel" enctype="multipart/form-data" action="impExcelData">
+			  		<div class="row">
+			  			<div class="col-md-12" style="margin-bottom:15px">
+							<label for="file">{'File'|tl:true:'createplate'} <span class="mandatory"></span> </label>
+		      				<input type="file" class="form-control" id="file" name="file" >
+	      				</div>
+
+	      				<div class="col-md-12">
+	      					<input type="submit" class="btn btn-primary" value="upload" />
+						</div>	      					
+      				</div>
+      				</form>
+			  </div>
+			</div>      
+        </div>        
+    </div>
+</div>
+<script type="text/javascript">
+function download(file)
+{
+ 	window.location='../../exceltemplate/'+file;
+}
+	$('#excel2013').click(function(){
+		download('importdata.xlsx');
+	});
+	$('#excel2007').click(function(){
+		download('importdata.xls');
+	});
+
+</script>

@@ -144,9 +144,10 @@ var editRole = {
 		$.ajax({
     		url : 'getrole',
     		type: 'POST',
-			data:  { rolecode: self.config.inprolecode.val()},
+			data:  { 'rolid': $('#dbo_role_edit_rol_id').val()},
 			dataType: 'json',
 			success: function(results) {
+				console.log(results);
 				if(results.length > 0){
 					for (var i = 0; i < results.length; i++){
 						$('input[value="'+results[i][0]+'"]').attr('checked','checked');

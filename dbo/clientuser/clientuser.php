@@ -197,12 +197,12 @@ function neworgrole(){
 	$tableprefix = $DB->prefix;
 	$tblrole = $tableprefix.$rolepostname;
 
-	if($USER->userid == 'admin') $roledata = $DB->GetArray("select rol_id,rol_code,rol_desc from $tblrole where rol_status = :0 ",array('ACTIVE'));
-	else $roledata = $DB->GetArray("select rol_id,rol_code,rol_desc from $tblrole where rol_status = :0 and rol_code not in (:1,:2)",array('ACTIVE','admin','PNDADMIN'));
+	if($USER->userid == 'admin') $roledata = $DB->GetArray("select rol_id,rol_name from $tblrole ");
+	else $roledata = $DB->GetArray("select rol_id,rol_name from $tblrole where rol_id not in (:0,:1)",array(1,2));
 
 	$roleHTML = "<select id='userrole_1' name='userrole_1'><option value='default'>--Select Role--</option>";
 	foreach ($roledata as $data){
-		$roleHTML .= "<option value='".$data['rol_id']."'>".$data['rol_desc']."</option>";
+		$roleHTML .= "<option value='".$data['rol_id']."'>".$data['rol_name']."</option>";
 	}
 	$roleHTML .= "</select>"; 
 	$html = "<table id='userorgrole'>
@@ -273,15 +273,15 @@ function editorgrole($param1,$param12,$param3){
 			}
 			$orgHTML .= "</select>"; 
 
-			//$roledata = $DB->GetArray("select rol_id,rol_code,rol_desc from $tblrole where rol_status = :0 ",array('ACTIVE'));
-			if($USER->userid == 'admin') $roledata = $DB->GetArray("select rol_id,rol_code,rol_desc from $tblrole where rol_status = :0 ",array('ACTIVE'));
-			else $roledata = $DB->GetArray("select rol_id,rol_code,rol_desc from $tblrole where rol_status = :0 and rol_code not in (:1,:2)",array('ACTIVE','admin','PNDADMIN'));
+			//$roledata = $DB->GetArray("select rol_id,rol_code,rol_name from $tblrole where rol_status = :0 ",array('ACTIVE'));
+			if($USER->userid == 'admin') $roledata = $DB->GetArray("select rol_id,rol_name from $tblrole ");
+			else $roledata = $DB->GetArray("select rol_id,rol_name from $tblrole where rol_code not in (:0,:1)",array(1,2));
 
 
 			$roleHTML = "<select id='userrole_$num' name='userrole_$num'><option value='default'>--Select Role--</option>";
 			foreach ($roledata as $data){
-				if($data['rol_id'] == $val['uor_rolid']) $roleHTML .= "<option selected value='".$data['rol_id']."'>".$data['rol_desc']."</option>";
-				else $roleHTML .= "<option value='".$data['rol_id']."'>".$data['rol_desc']."</option>";
+				if($data['rol_id'] == $val['uor_rolid']) $roleHTML .= "<option selected value='".$data['rol_id']."'>".$data['rol_name']."</option>";
+				else $roleHTML .= "<option value='".$data['rol_id']."'>".$data['rol_name']."</option>";
 			}
 			$roleHTML .= "</select>"; 
 
@@ -312,11 +312,11 @@ function editorgrole($param1,$param12,$param3){
 		}
 		$orgHTML .= "</select>"; 
 
-		$roledata = $DB->GetArray("select rol_id,rol_code,rol_desc from $tblrole where rol_status = :0 ",array('ACTIVE'));
+		$roledata = $DB->GetArray("select rol_id,rol_code,rol_name from $tblrole ");
 
 		$roleHTML = "<select id='userrole_1' name='userrole_1'><option value='default'>--Select Role--</option>";
 		foreach ($roledata as $data){
-			$roleHTML .= "<option value='".$data['rol_id']."'>".$data['rol_desc']."</option>";
+			$roleHTML .= "<option value='".$data['rol_id']."'>".$data['rol_name']."</option>";
 		}
 		$roleHTML .= "</select>"; 
 

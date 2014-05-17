@@ -13,7 +13,6 @@ function html_header($headerTemplate='header.html'){
 		$HTML->addJS('js/accounting.js');
 		$HTML->addJS('js/popup.js');
 		$HTML->addJS('js/bootstrap.js');
-		$HTML->addJS('js/bootstrap-modal-carousel.js');
 		$HTML->addCSS('css/'.$THEME.'/jquery-ui-1.10.3.custom.css');
 		$HTML->addCSS('css/'.$THEME.'/jquery.ui.custom.css');
 		$HTML->addCSS('css/'.$THEME.'/headermenu.css');		
@@ -21,7 +20,6 @@ function html_header($headerTemplate='header.html'){
 		$HTML->addCSS('css/'.$THEME.'/dbo.css');
 		$HTML->addCSS('css/bootstrap/css/bootstrap.css');
 		$HTML->addCSS('css/bootstrap/css/bootstrap-theme.css');
-		$HTML->addCSS('css/'.$THEME.'/bootstrap-modal-carousel.css');
 		$HTML->addCSS('css/'.$THEME.'/custom.css');
 		
 		$HTML->smarty->assign('Menu', $Menu);

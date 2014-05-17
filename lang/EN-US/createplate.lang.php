@@ -1,5 +1,5 @@
 <?php
-/*Last Modified by DEMO1OPERATOR on 01-02-2014 09:41:47*/
+/*Last Modified by admin on 21-04-2014 10:42:57*/
 $translate = array (
   'Customer Name' => 'Customer Name',
   'Master Card ID' => 'Master Card ID',
@@ -20,5 +20,6 @@ $translate = array (
   'Created By' => 'Created By',
   'Print' => 'Print',
   'Plate Info' => 'Plate Info',
+  'File' => 'File',
 );
 ?>

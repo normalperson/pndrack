@@ -5,17 +5,20 @@ $dboID = 'role';
 $dbo = DBO_init($dboID);
 $dbo->id = $dboID;
 $dbo->table = 'fcrole';
-$dbo->key = array('rol_code');
+$dbo->key = array('rol_id');
 $dbo->sql = 'select fcrole.*,\'\' as rol_permission from fcrole';
-$dbo->col = array('rol_id', 'rol_code', 'rol_desc', 'last_modified_date', 'last_synchronized_date', 'record_synchronized', 'cloud_refid', 'rol_status', 'rol_permission');
-$dbo->colList = array('rol_code', 'rol_desc', 'rol_status');
-$dbo->colDetail = array('rol_code', 'rol_desc', 'rol_status');
-$dbo->colNew = array('rol_code', 'rol_desc', 'rol_permission');
-$dbo->colEdit = array('rol_code', 'rol_desc', 'rol_status', 'rol_permission');
-$dbo->colSearch = array('rol_code', 'rol_desc', 'rol_status');
-$dbo->colExport = array('rol_code', 'rol_desc', 'rol_permission');
+$dbo->col = array('rol_id', 'rol_name', 'rol_permission');
+$dbo->colList = array('rol_id', 'rol_name');
+$dbo->colListEdit = array();
+$dbo->colListNew = array();
+$dbo->colListGlobalInput = array();
+$dbo->colDetail = array();
+$dbo->colNew = array('rol_permission');
+$dbo->colEdit = array('rol_id', 'rol_permission');
+$dbo->colSearch = array();
+$dbo->colExport = array('rol_permission');
 $dbo->colSort = array();
-$dbo->canSearch = true;
+$dbo->canSearch = false;
 $dbo->canNew = true;
 $dbo->canEdit = true;
 $dbo->canDelete = false;
@@ -35,13 +38,14 @@ $dbo->theme = 'skyblue';
 $dbo->layout = 'One';
 $dbo->pageLinkCount = 7;
 $dbo->recordPerPage = 10;
+$dbo->showRecordNo = 1;
 $dbo->defaultState = 'list';
 $dbo->maxSortCount = 9;
 $dbo->lang = 'EN-GB';
 $dbo->render = array();
 $dbo->detailBack = 'Back';
 
-$dbo->cols['rol_id'] = new DBO_COL('rol_id', 'int4', '4', '-1');
+$dbo->cols['rol_id'] = new DBO_COL('rol_id', 'LONG', '11', '0');
 $dbo->cols['rol_id']->inputTypeDefault = 'text';
 $dbo->cols['rol_id']->searchMode = 'exact';
 $dbo->cols['rol_id']->capContClassDefault = array();
@@ -84,14 +88,14 @@ $dbo->cols['rol_desc']->option->listMethod = 'text';
 $dbo->cols['rol_desc']->option->detailMethod = 'text';
 $dbo->cols['rol_desc']->option->newMethod = 'text';
 $dbo->cols['rol_desc']->option->editMethod = 'text';
-$dbo->cols['rol_permission'] = new DBO_COL('rol_permission', 'unknown', '-2', '-1');
+$dbo->cols['rol_permission'] = new DBO_COL('rol_permission', 'STRING', '0', '0');
 $dbo->cols['rol_permission']->inputTypeDefault = 'checkbox';
 $dbo->cols['rol_permission']->searchMode = 'exact';
 $dbo->cols['rol_permission']->capContClassDefault = array();
 $dbo->cols['rol_permission']->valContClassDefault = array();
 $dbo->cols['rol_permission']->filter = array();
 $dbo->cols['rol_permission']->filterVal = array();
-$dbo->cols['rol_permission']->option->default = 'select pms_id,pms_desc from fcpermission';
+$dbo->cols['rol_permission']->option->default = 'select pms_code,pms_desc from fcpermission';
 $dbo->cols['rol_permission']->option->defaultMethod = 'sql';
 $dbo->cols['rol_permission']->option->searchMethod = 'text';
 $dbo->cols['rol_permission']->option->listMethod = 'text';
@@ -155,6 +159,17 @@ $dbo->cols['rol_status']->option->listMethod = 'text';
 $dbo->cols['rol_status']->option->detailMethod = 'text';
 $dbo->cols['rol_status']->option->newMethod = 'text';
 $dbo->cols['rol_status']->option->editMethod = 'text';
+$dbo->cols['rol_name'] = new DBO_COL('rol_name', 'VAR_STRING', '6000', '0');
+$dbo->cols['rol_name']->inputTypeDefault = 'text';
+$dbo->cols['rol_name']->searchMode = 'exact';
+$dbo->cols['rol_name']->capContClassDefault = array();
+$dbo->cols['rol_name']->valContClassDefault = array();
+$dbo->cols['rol_name']->option->defaultMethod = 'text';
+$dbo->cols['rol_name']->option->searchMethod = 'text';
+$dbo->cols['rol_name']->option->listMethod = 'text';
+$dbo->cols['rol_name']->option->detailMethod = 'text';
+$dbo->cols['rol_name']->option->newMethod = 'text';
+$dbo->cols['rol_name']->option->editMethod = 'text';
 
 // support multiple language. only caption
 global $LANG;
@@ -170,8 +185,8 @@ $dbo->saveDir = dirname(dirname(__FILE__));
 $dbo->run();
 
 /*
-$dbo->newModifier = 'role_custom_new';
-function role_custom_new($table, $cols){
+$dbo->newModifier = 'dbo_role_custom_new';
+function dbo_role_custom_new($table, $cols){
 	global $DB;
 	$ret = array();
 	$ok = $DB->doInsert($table, $cols);
@@ -181,8 +196,8 @@ function role_custom_new($table, $cols){
 	return $ret;
 }
 
-$dbo->editModifier = 'role_custom_edit';
-function role_custom_edit($table, $cols, $wheres){
+$dbo->editModifier = 'dbo_role_custom_edit';
+function dbo_role_custom_edit($table, $cols, $wheres){
 	global $DB;
 	$ret = array();
 	$ok = $DB->doUpdate($table, $cols, $wheres);
@@ -192,12 +207,12 @@ function role_custom_edit($table, $cols, $wheres){
 	return $ret;
 }
 
-$dbo->searchModifier = 'role_custom_search';
-function role_custom_search(&$search){
+$dbo->searchModifier = 'dbo_role_custom_search';
+function dbo_role_custom_search(&$search){
 }
 
-$dbo->deleteModifier = 'role_custom_delete';
-function role_custom_delete($table, $wheres){
+$dbo->deleteModifier = 'dbo_role_custom_delete';
+function dbo_role_custom_delete($table, $wheres){
 	global $DB;
 	$ret = array();
 	$ok = $DB->doDelete($table, $wheres);
@@ -205,6 +220,9 @@ function role_custom_delete($table, $wheres){
 		$ret[] = $DB->lastError;
 	}
 	return $ret;
+}
+
+function dbo_role_display_modifier($col, $colVal, $data=array(), $html=null){
 }
 */
 ?>

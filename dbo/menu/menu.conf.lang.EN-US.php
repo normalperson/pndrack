@@ -36,8 +36,11 @@ $dbo->text->editCancel = 'Cancel';
 $dbo->text->editSubmit = 'Save';
 $dbo->text->newCancel = 'Cancel';
 $dbo->text->newSubmit = 'Save';
-$dbo->text->listNewEditSubmit = 'Save';
 $dbo->text->detailCancel = 'Back';
+$dbo->text->defaultMessageAfterNew = 'Record created.';
+$dbo->text->defaultMessageAfterEdit = 'Record updated.';
+$dbo->text->defaultMessageAfterDelete = 'Record deleted.';
+$dbo->text->listNewEditSubmit = 'Save';
 $dbo->text->detailBack = 'detail back text';
 
 ?>

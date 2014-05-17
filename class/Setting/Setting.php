@@ -1,5 +1,6 @@
 <?php
 require_once(dirname(__FILE__).'/../../init.inc.php');
+require_once(dirname(__FILE__).'/../../inc/generalFunc.php');
 require_once(CORE_DIR.DS.'inc'.DS.'dompdf'.DS.'dompdf_config.inc.php');
 
 class Setting{
@@ -15,6 +16,135 @@ class Setting{
 			//html_header();
 			// echo '<!-- function not found -->';
 		} */		
+	}
+	function datamapping(){
+		$tablearr = array('smcustomer','smplate');
+
+		$custmapping = array('cus_name' => 'Customer name',
+			                 'cus_regno' => 'Customer registration number',
+			                 'cus_masterid' => 'Customer masterID',
+			                 'cus_contactno' => 'Customer contact number');
+
+		$platemapping = array('sp_platename' => 'Plate name',
+			                  'sp_platemodel' => 'Plate model',
+			                  'sp_plateinfo' => 'Plate info');
+
+		$colmapping = array('custmapping' => $custmapping, 'platemapping' => $platemapping);
+
+		$datamapping = array('table' => $tablearr, 'colmapping' => $colmapping);
+
+		return $datamapping;
+	}
+	function procesdata($excelobj){
+		global $USER,$DB;
+		// get mapping data
+		$datamapping = $this->datamapping();
+
+		// map into customer table		
+		$custmapping = $datamapping['colmapping']['custmapping']; // get customer mapping array
+		$platemapping = $datamapping['colmapping']['platemapping']; // get plate mapping array
+		//loop
+		$data = $excelobj->genData();
+		$header = $excelobj->genColKey();
+		vd($header);
+		 
+		vd($data);
+		foreach ($data as $key => $value) {
+			// search customer name
+			# code...
+			$custdata = array(); // construct customer data
+			foreach ($custmapping as $custkey => $custvalue) {
+				$valuekey = array_search($custvalue, $header);
+				$custdata =  associative_push($custdata, array($custkey => $value[$valuekey]));
+			}
+			// do a search 
+			$sql = "select cus_id,cus_name from smcustomer
+					where cus_name = :0
+					and cus_orgid = :1";
+			$cusdata = $DB->GetRow($sql,array($custdata['cus_name'],$USER->orgid), PDO::FETCH_ASSOC);
+			// no data do insert
+			if(count($cusdata) == 0){
+				$ok = $DB->doInsert('smcustomer',$custdata);
+				$custid = $DB->lastInsertId(); // get the customerID
+			}else{
+				$custid = $cusdata['cus_id']; // get the customerID
+			}
+
+			$platedata = array(); // construct plate data
+			foreach ($platemapping as $plkey => $plvalue) {
+				$valuekey = array_search($plvalue, $header);
+				$platedata =  associative_push($platedata, array($plkey => $value[$valuekey]));
+			}
+			vd('plate data');
+			vd($platedata);
+			// insert plate info
+			
+			// ignore shelf part first?
+
+			// validate plate name???
+			$sql = "select count(*) from smplate
+					where sp_platename = :0
+					and sp_orgid = :1";			
+			$platecnt = $DB->GetOne($sql,array($platedata['sp_platename'],$USER->orgid), PDO::FETCH_ASSOC);
+			$data[$key]['error'] = '';
+			if($platecnt == 0){
+				$platedata =  associative_push($platedata, array('sp_cusid' => $custid));
+				$ok = $DB->doInsert('smplate',$platedata);
+				if(!$ok) $data[$key]['error'] = $DB->lastError;
+			}else{
+				 $data[$key]['error'] = 'Data failed to insert due to duplicated plate name';
+			}
+
+			// error handling
+			if($data[$key]['error'] == ''){
+				// insert into smimport table
+			}
+
+
+		}
+
+	}
+	function impExcelData(){	
+		global $DB,$LABEL,$USER;
+		
+		require_once(dirname(__FILE__).'/../../inc/ExcelUpload.php');
+
+		header( 'Cache-Control: no-store, no-cache, must-revalidate' ); 
+		header( 'Cache-Control: post-check=0, pre-check=0', false ); 
+		header( 'Pragma: no-cache' ); 
+		set_time_limit(0);
+
+		// file type and extentsion array
+		$arrayZips = array("application/vnd.ms-excel", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+	    $arrayExtensions = array(".xls", ".xlsx");
+	    vd($_FILES);
+	    // file type validation
+	    if($_FILES){
+	    	$extension = (false === $pos = strrpos($_FILES['file']['name'], '.')) ? '' : substr($_FILES['file']['name'], $pos);
+	    	if ($_FILES["file"]["error"] > 0 || 
+	    		!in_array($extension, $arrayExtensions) ||
+	    		!in_array($_FILES["file"]["type"], $arrayZips)) 
+	    	{
+				echo 'INVALID FILE TYPE OR FORMAT. ONLY ACCEPT .xls or .xlsx';
+				return ;	
+			}
+	    }
+		$inputFileName = $_FILES["file"]["tmp_name"];
+
+		// take off the . for the extension
+		$extension =  substr($extension, 1);
+		$upExcel = new phi_ExcelUpload($inputFileName, $extension);
+		$this->procesdata($upExcel);
+		echo 'haha';
+	
+	}
+	function importdata(){
+
+		
+		html_header();
+		$dbo = dbo_include('importdata');
+
+
 	}
 	function initSmarty(){
 		$smarty = new Smarty();
@@ -57,6 +187,7 @@ class Setting{
 		$smarty->display('gensetting.html');
 		$HTML->addJS('js/js.php?c=Setting&js=gensetting');
 	}	
+
 	function shelfSetting(){
 		global $HTML,$DB;
 		$HTML->addJS('js/js.php?c=DBO&js=DBO');
@@ -160,6 +291,11 @@ class Setting{
 		global $HTML, $DB;
 		html_header();		
 		$dbo = dbo_include('content_management');
+	}
+	function getrole(){
+		global $DB;
+		$rolepermarr = $DB->GetArray("select rp_pmscode from fcroleperm join fcrole on rp_rolid = rol_id where rol_id = :0",array($_POST['rolid']));
+		echo json_encode($rolepermarr);
 	}
 	
 }
